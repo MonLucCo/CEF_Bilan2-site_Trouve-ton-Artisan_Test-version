@@ -1,0 +1,60 @@
+# Ce fichier .gitignore ne filtre aucun fichier ou dossier.
+
+# Ignorer tous les fichiers et dossiers dans un répertoire spécifique
+# /path/to/directory/
+
+# Ignorer tous les fichiers avec une extension spécifique
+# *.log
+
+# Ignorer un fichier spécifique
+# /path/to/file.txt
+
+# Ignorer tous les fichiers sauf un fichier spécifique
+# !/path/to/important-file.txt
+
+# Ignorer tous les fichiers dans un répertoire sauf un fichier spécifique
+# /path/to/directory/*
+# !/path/to/directory/important-file.txt
+
+# Ignorer tous les fichiers dans un répertoire sauf un sous-répertoire spécifique
+# /path/to/directory/*
+# !/path/to/directory/important-subdirectory/
+
+# Ignorer tous les fichiers temporaires créés par le système
+# *.tmp
+
+# Ignorer tous les fichiers de sauvegarde créés par les éditeurs de texte
+# *~
+
+# Ignorer tous les fichiers de compilation
+# *.o
+# *.a
+# *.so
+
+# Ignorer tous les fichiers de configuration spécifiques à l'IDE
+# .vscode/
+# .idea/
+
+# Ignorer tous les fichiers de dépendances
+# node_modules/
+# vendor/
+
+# Ignorer tous les fichiers générés par les outils de build
+# dist/
+# build/
+
+# Ignorer tous les fichiers de logs
+# logs/
+# *.log
+
+# Ignorer tous les fichiers de cache
+# .cache/
+# .temp/
+
+# Ignorer tous les fichiers de base de données
+# *.db
+# *.sqlite
+
+# Ignorer tous les fichiers de configuration spécifiques à l'environnement
+# .env
+# .env.local
