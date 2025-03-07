@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingHarness } from '@angular/router/testing';
-import { provideRouter, ROUTES } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { Location } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { ArtisanListComponent } from './pages/artisan-list/artisan-list.component';
