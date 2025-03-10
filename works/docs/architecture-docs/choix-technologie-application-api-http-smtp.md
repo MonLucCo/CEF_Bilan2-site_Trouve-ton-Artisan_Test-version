@@ -74,3 +74,10 @@ L'application (la seconde) jouera le rôle d’une API back-end intermédiaire. 
 
 La contrainte de l'étude impose Angular ou React. Ainsi **Angular** est choisi pour sa structure plus rigoureuse et la possibilité de réutiliser des pratiques déjà appliquées dans l'application principale.
 Cependant, dans un contexte professionnel, un back-end avec **Node.js** ou d’autres frameworks back-end plus adaptés serait le choix optimal.
+
+Les documentations suivantes précisent :
+
+- les [concepts de la passerelle HTTP-SMTP](email-gateway-concept.md) du projet.
+- les travaux d'[implémentaton de la passerelle HTTP-SMTP](../implementation-docs/email-gateway-http-smtp.md).
+
+---
