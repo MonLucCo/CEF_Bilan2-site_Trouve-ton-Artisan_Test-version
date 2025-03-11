@@ -1,11 +1,14 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+// // Note: This file is dedicated to Angular.js configuration only.
+/* Configuration des tests-unitaires front-end (technologie Angular.js) du projet */
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.angular.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine"
+      "jasmine",
+      "node" // Inclut les types Node.js pour certains tests (si besoin)
     ]
   },
   "include": [
