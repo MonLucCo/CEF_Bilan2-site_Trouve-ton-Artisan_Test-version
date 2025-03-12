@@ -77,6 +77,12 @@ Next, install the necessary dependencies for your project locally:
    npm install -g maildev
    ```
 
+5. **Install `Cross-Env` for multiplatform compatibility** (Uniform treatment of environmental variables for Windows, MacOS, Linux platforms):
+
+   ```bash
+   npm install --save-dev cross-env
+   ```
+
 ---
 
 ## **Starting Development Servers**

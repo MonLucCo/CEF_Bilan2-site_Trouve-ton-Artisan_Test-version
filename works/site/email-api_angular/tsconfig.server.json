@@ -16,6 +16,7 @@
         "src/server.ts"
     ],
     "include": [
-        "src/environments/**/*.ts"
+        "src/**/*.ts",
+        "src/environments/**/*.d.ts"
     ]
 }

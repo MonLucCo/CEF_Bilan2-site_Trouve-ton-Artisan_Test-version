@@ -1,0 +1,19 @@
+{
+    "server": {
+        "port": 3000,
+        "contentType": "text/plain; charset=UTF-8"
+    },
+    "api": {
+        "sendEmailEndpoint": "/api/send-email"
+    },
+    "smtp": {
+        "host": "localhost",
+        "port": 1025,
+        "secure": false
+    },
+    "messages": {
+        "emailSuccess": "Email envoyé avec succès !",
+        "emailError": "Une erreur est survenue lors de l'envoi de l'email.",
+        "unknownError": "Une erreur inconnue est survenue."
+    }
+}
