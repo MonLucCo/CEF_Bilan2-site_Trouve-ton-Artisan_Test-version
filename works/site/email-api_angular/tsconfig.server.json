@@ -8,9 +8,16 @@
         "outDir": "./dist/server",
         "module": "commonjs",
         "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
         "types": [
             "node"
-        ]
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "@environments/*": [
+                "src/environments/*"
+            ]
+        }
     },
     "files": [
         "src/server.ts"
