@@ -1,0 +1,39 @@
+<div>
+    <h2>Formulaire d'email</h2>
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+        <!-- Nom -->
+        <div>
+            <label for="name">Nom :</label>
+            <input id="name" type="text" formControlName="name" placeholder="Entrez votre nom" />
+            <div *ngIf="emailForm.get('name')?.invalid && emailForm.get('name')?.touched">
+                Le nom est obligatoire.
+            </div>
+        </div>
+
+        <!-- Objet -->
+        <div>
+            <label for="subject">Objet :</label>
+            <input id="subject" type="text" formControlName="subject" placeholder="Entrez l'objet du message" />
+            <div *ngIf="emailForm.get('subject')?.invalid && emailForm.get('subject')?.touched">
+                L'objet est obligatoire.
+            </div>
+        </div>
+
+        <!-- Message -->
+        <div>
+            <label for="message">Message :</label>
+            <textarea id="message" formControlName="message" placeholder="Écrivez votre message ici"
+                rows="5"></textarea>
+            <div *ngIf="emailForm.get('message')?.invalid && emailForm.get('message')?.touched">
+                Le message est obligatoire.
+            </div>
+        </div>
+
+        <!-- Bouton envoyer -->
+        <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
+    </form>
+
+    <!-- Messages de succès ou d'erreur -->
+    <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+</div>

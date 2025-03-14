@@ -3,7 +3,7 @@
 // Note: This file is dedicated to Angular.js configuration only.
 /* Configuration de l'application front-end (technologie Angular.js) du projet */
 {
-  "extends": "./tsconfig.angular.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": []
@@ -13,5 +13,9 @@
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "src/server.ts",
+    "src/environments/**/*.ts"
   ]
 }

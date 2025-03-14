@@ -1,7 +1,8 @@
 {
+    "versionEnv": "0.0.1",
     "server": {
         "port": 3000,
-        "contentType": "text/plain; charset=UTF-8"
+        "contentType": "application/json; charset=UTF-8"
     },
     "api": {
         "sendEmailEndpoint": "/api/send-email"
@@ -14,6 +15,7 @@
     "messages": {
         "emailSuccess": "Email envoyé avec succès !",
         "emailError": "Une erreur est survenue lors de l'envoi de l'email.",
-        "unknownError": "Une erreur inconnue est survenue."
+        "unknownError": "Une erreur inconnue est survenue.",
+        "invalidRequest": "Tous les champs 'from', 'to', 'subject' et 'text' sont obligatoires."
     }
 }

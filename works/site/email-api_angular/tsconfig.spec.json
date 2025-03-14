@@ -3,7 +3,7 @@
 // // Note: This file is dedicated to Angular.js configuration only.
 /* Configuration des tests-unitaires front-end (technologie Angular.js) du projet */
 {
-  "extends": "./tsconfig.angular.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [

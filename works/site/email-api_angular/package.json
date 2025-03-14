@@ -1,23 +1,22 @@
 {
   "name": "email-api-angular",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
     "start:frontend": "ng serve",
-    "start:backend": "node dist/server/server.js",
-    "start-dev:backend": "cross-env NODE_ENV=dev nodemon src/server.ts",
-    "start-prod:backend": "cross-env NODE_ENV=prod node dist/server.js",
-    "start-db": "cross-env NODE_ENV=dev nodemon src/database.ts",
-    "start-pb": "cross-env NODE_ENV=prod node dist/database.js",
-    "build": "ng build",
     "build:frontend": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test:frontend": "ng test",
+    "start:backend": "node dist/server/server.js",
+    "start-dev:backend": "cross-env NODE_ENV=dev nodemon --watch src --ext ts,json --exec ts-node --project tsconfig.server.json src/server.ts",
+    "start-prod:backend": "cross-env NODE_ENV=prod nodemon dist/server.js",
+    "start-dbe": "npm run start-dev:backend",
+    "start-pbe": "npm run start-prod:backend",
     "build:backend": "tsc -p tsconfig.server.json",
     "build:all": "npm run build:frontend && npm run build:backend",
-    "watch": "ng build --watch --configuration development",
+    "lint": "eslint . --ext .ts",
     "test": "ng test",
-    "test:frontend": "ng test",
-    "lint": "eslint . --ext .ts"
+    "test:backend": "echo \"Backend test scripts not yet implemented\" && exit 0"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +43,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/nodemailer": "^6.4.17",
     "cross-env": "^7.0.3",
+    "eslint": "^8.44.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -52,6 +52,6 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "~5.6.2"
+    "typescript": "^5.8.2"
   }
 }
