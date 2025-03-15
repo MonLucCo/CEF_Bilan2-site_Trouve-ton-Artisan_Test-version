@@ -1,7 +1,9 @@
-<header class="app-header">
-    <nav>
-        <ul class="nav-list">
-            <li><a routerLink="/send-email" routerLinkActive="active">Test email</a></li>
-        </ul>
-    </nav>
+<header class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Email Dashboard</a>
+        <nav>
+            <a class="nav-link" routerLink="/send-email"><i class="fas fa-envelope"></i> Envoyer un Email</a>
+            <a class="nav-link" routerLink="/email-history"><i class="fas fa-history"></i> Historique des envois</a>
+        </nav>
+    </div>
 </header>

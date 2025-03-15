@@ -12,10 +12,11 @@
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/environments/front-end/*.ts"
   ],
   "exclude": [
     "src/server.ts",
-    "src/environments/**/*.ts"
+    "src/environments/back-end"
   ]
 }

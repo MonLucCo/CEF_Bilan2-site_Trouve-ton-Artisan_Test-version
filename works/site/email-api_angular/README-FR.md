@@ -1,5 +1,16 @@
 # **EmailApiAngular**
 
+>> **A documenter** :
+
+1. ajout des scripts de tests
+2. mise à jour de commandes de script backend et frontend de Dev et de Prod
+3. ajout de CORS dans la config
+4. ajout des configurations (Dev et Prod) d'environnement pour le back-end et le front-end
+   1. préciser la configuration dans angular.json pour remplacement automatique de la config (environments/front-end/environment.*.ts) lors de la compilation (serve ou build)
+   2. préciser la séparation des responsabilités interface utilisateur et logique métier : création des services Email (envoi HTTP et logs) et Logger (logs de l'application)
+
+>> **A documenter**
+
 ## **Présentation technique et fonctionnelle**
 
 Ce projet est une **application full-stack** combinant un **front-end Angular** et un **back-end Node.js avec Express**.  

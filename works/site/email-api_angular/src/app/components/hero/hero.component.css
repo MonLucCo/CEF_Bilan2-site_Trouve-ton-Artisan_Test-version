@@ -1,0 +1,9 @@
+section {
+    min-height: 300px;
+    /* Taille minimale pour chaque section */
+}
+
+.bg-primary {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    /* Dégradé bleu */
+}

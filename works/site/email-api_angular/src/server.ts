@@ -1,9 +1,13 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
+import cors from 'cors';
 
 // Version du serveur de passerelle HTTP-SMTP
-const versionAPI = '0.0.2';
+// v0.0.1 : version initiale minimal (status 200 et 500) et vEnv0.0.1
+// v0.0.2 : version avec logs et status (200, 400 et 500) et vEnv00.1
+// v0.0.3 : version avec cors
+const versionAPI = '0.0.3';
 
 // Interface pour typer le corps de la requête
 interface EmailRequestBody {
@@ -14,11 +18,28 @@ interface EmailRequestBody {
 }
 
 // Chargement de la configuration en fonction de l'environnement
-const environment = process.env['NODE_ENV'] || 'dev';
-const config = require(`./environments/environment.${environment}.json`);
-console.log(`L'environnement actuel est : ${environment}`);
+let config; // Déclarer la variable en dehors du bloc try...catch
+
+try {
+    // Charger la configuration en fonction de l'environnement
+    const environment = process.env['NODE_ENV'] || 'dev';
+    config = require(`./environments/back-end/environment.${environment}.json`);
+    console.log(`L'environnement actuel est : ${environment}`);
+} catch (error) {
+    console.error(`Erreur : Impossible de charger le fichier de configuration pour l'environnement spécifié (${process.env['NODE_ENV'] || 'dev'}).`);
+    process.exit(1); // Terminer le processus en cas d'erreur critique
+}
 
 const app = express();
+
+// Middleware CORS : autorise les requêtes provenant d'origines différentes (CROS : Cross-Origin-Ressource-Sharing)
+// Cela permet au frontend Angular (http://localhost:4200) de communiquer avec le backend (http://localhost:3000)
+app.use(cors({
+    origin: config.cors.origin, // Autorise les requêtes depuis cette origine
+    methods: config.cors.methods, // Méthodes HTTP autorisées
+    allowedHeaders: config.cors.allowedHeaders // En-têtes HTTP autorisés
+}));
+
 
 // Middleware pour parser les requêtes JSON
 // app.use(bodyParser.json());

@@ -1,39 +1,49 @@
-<div>
-    <h2>Formulaire d'email</h2>
-    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-        <!-- Nom -->
-        <div>
-            <label for="name">Nom :</label>
-            <input id="name" type="text" formControlName="name" placeholder="Entrez votre nom" />
-            <div *ngIf="emailForm.get('name')?.invalid && emailForm.get('name')?.touched">
-                Le nom est obligatoire.
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3><i class="fas fa-envelope"></i> Formulaire de l'Email</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="from" class="form-label">De :</label>
+                <input id="from" type="email" formControlName="from" class="form-control" placeholder="Votre email" />
+                <div *ngIf="emailForm.get('from')?.invalid && emailForm.get('from')?.touched"
+                    class="form-text text-danger">
+                    Un email valide est obligatoire.
+                </div>
             </div>
-        </div>
 
-        <!-- Objet -->
-        <div>
-            <label for="subject">Objet :</label>
-            <input id="subject" type="text" formControlName="subject" placeholder="Entrez l'objet du message" />
-            <div *ngIf="emailForm.get('subject')?.invalid && emailForm.get('subject')?.touched">
-                L'objet est obligatoire.
+            <div class="mb-3">
+                <label for="to" class="form-label">À :</label>
+                <input id="to" type="email" formControlName="to" class="form-control"
+                    placeholder="Email du destinataire" />
+                <div *ngIf="emailForm.get('to')?.invalid && emailForm.get('to')?.touched" class="form-text text-danger">
+                    Un email valide est obligatoire.
+                </div>
             </div>
-        </div>
 
-        <!-- Message -->
-        <div>
-            <label for="message">Message :</label>
-            <textarea id="message" formControlName="message" placeholder="Écrivez votre message ici"
-                rows="5"></textarea>
-            <div *ngIf="emailForm.get('message')?.invalid && emailForm.get('message')?.touched">
-                Le message est obligatoire.
+            <div class="mb-3">
+                <label for="subject" class="form-label">Sujet :</label>
+                <input id="subject" type="text" formControlName="subject" class="form-control"
+                    placeholder="Sujet de l'email" />
+                <div *ngIf="emailForm.get('subject')?.invalid && emailForm.get('subject')?.touched"
+                    class="form-text text-danger">
+                    Le sujet est obligatoire.
+                </div>
             </div>
-        </div>
 
-        <!-- Bouton envoyer -->
-        <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
-    </form>
+            <div class="mb-3">
+                <label for="text" class="form-label">Message :</label>
+                <textarea id="text" formControlName="text" class="form-control" placeholder="Écrivez votre message ici"
+                    rows="5"></textarea>
+                <div *ngIf="emailForm.get('text')?.invalid && emailForm.get('text')?.touched"
+                    class="form-text text-danger">
+                    Le message est obligatoire.
+                </div>
+            </div>
 
-    <!-- Messages de succès ou d'erreur -->
-    <p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>
-    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+            <button type="submit" class="btn btn-primary" [disabled]="emailForm.invalid"><i
+                    class="fas fa-paper-plane"></i> Envoyer</button>
+        </form>
+    </div>
 </div>

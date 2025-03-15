@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem;
+}
+
+header .nav-link {
+    color: #fff !important;
+    margin-right: 1rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+.card {
+    margin: 1rem 0;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #fff;
+}

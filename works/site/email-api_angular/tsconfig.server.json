@@ -29,11 +29,12 @@
     ],
     "include": [
         "src/**/*.ts",
-        "src/environments/**/*.d.ts"
+        "src/environments/back-end/**/*.d.ts"
     ],
     "exclude": [
         "node_modules",
         "dist",
-        "src/app"
+        "src/app",
+        "src/environments/front-end"
     ]
 }
