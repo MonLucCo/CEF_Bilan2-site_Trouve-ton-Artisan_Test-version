@@ -1,0 +1,40 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+// Note: This file is dedicated to Node.js configuration only.
+/* Configuration de l'application back-end (technologie Node.js) du projet */
+{
+    "compilerOptions": {
+        "outDir": "./dist/server",
+        "module": "commonjs",
+        "target": "ES2022",
+        "strict": true,
+        "rootDir": "./src",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "types": [
+            "node"
+        ],
+        "baseUrl": "./",
+        "paths": {
+            "@environments/*": [
+                "src/environments/*"
+            ]
+        }
+    },
+    "files": [
+        "src/server.ts"
+    ],
+    "include": [
+        "src/**/*.ts",
+        "src/environments/back-end/**/*.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src/app",
+        "src/environments/front-end"
+    ]
+}

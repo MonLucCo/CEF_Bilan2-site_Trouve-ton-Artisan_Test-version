@@ -1,0 +1,19 @@
+{
+    "server": {
+        "port": 8080,
+        "contentType": "text/plain; charset=UTF-8"
+    },
+    "api": {
+        "sendEmailEndpoint": "/api/send-email"
+    },
+    "smtp": {
+        "host": "smtp.votre-serveur.com",
+        "port": 587,
+        "secure": true
+    },
+    "messages": {
+        "emailSuccess": "L'email a été envoyé avec succès.",
+        "emailError": "Impossible d'envoyer l'email, veuillez réessayer.",
+        "unknownError": "Une erreur inconnue est survenue."
+    }
+}

@@ -1,0 +1,22 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+// Note: This file is dedicated to Angular.js configuration only.
+/* Configuration de l'application front-end (technologie Angular.js) du projet */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "src/environments/front-end/*.ts"
+  ],
+  "exclude": [
+    "src/server.ts",
+    "src/environments/back-end"
+  ]
+}

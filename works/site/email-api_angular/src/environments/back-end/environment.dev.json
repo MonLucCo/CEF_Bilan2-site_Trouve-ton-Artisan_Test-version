@@ -1,0 +1,26 @@
+{
+    "versionEnv": "0.0.2",
+    "server": {
+        "port": 3000,
+        "contentType": "application/json; charset=UTF-8"
+    },
+    "api": {
+        "sendEmailEndpoint": "/api/send-email"
+    },
+    "cors": {
+        "origin": "http://localhost:4200",
+        "methods": "GET,POST,PUT,DELETE,OPTIONS",
+        "allowedHeaders": "Content-Type, Authorization"
+    },
+    "smtp": {
+        "host": "localhost",
+        "port": 1025,
+        "secure": false
+    },
+    "messages": {
+        "emailSuccess": "Email envoyé avec succès !",
+        "emailError": "Une erreur est survenue lors de l'envoi de l'email.",
+        "unknownError": "Une erreur inconnue est survenue.",
+        "invalidRequest": "Tous les champs 'from', 'to', 'subject' et 'text' sont obligatoires."
+    }
+}

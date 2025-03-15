@@ -1,1 +1,34 @@
-<p>contact-form works!</p>
+<div>
+    <h2>Formulaire de Contact</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Nom :</label>
+            <input id="name" type="text" formControlName="name" placeholder="Entrez votre nom" />
+            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                Le nom est obligatoire.
+            </div>
+        </div>
+
+        <div>
+            <label for="subject">Objet :</label>
+            <input id="subject" type="text" formControlName="subject" placeholder="Entrez l'objet du message" />
+            <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+                L'objet est obligatoire.
+            </div>
+        </div>
+
+        <div>
+            <label for="message">Message :</label>
+            <textarea id="message" formControlName="message" placeholder="Écrivez votre message ici"
+                rows="5"></textarea>
+            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+                Le message est obligatoire.
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
+    </form>
+
+    <p *ngIf="successMessage">{{ successMessage }}</p>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
