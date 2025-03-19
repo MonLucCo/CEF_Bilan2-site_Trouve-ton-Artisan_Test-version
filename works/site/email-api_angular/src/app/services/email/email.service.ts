@@ -3,22 +3,26 @@ import { environment } from '../../../environments/front-end/environment.dev';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
+import { EmailData, EmailResponse } from './email.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
-  private apiURL = `${environment.backendUrl}${environment.apiService}`;
+  private apiURL = `${environment.backendUrl}${environment.apiService.email}`;
 
-  constructor(private http: HttpClient, private logger: LoggerService) { }
+  constructor(private http: HttpClient, private logger: LoggerService) {
+    this.logger.logDebug(this, "L'url de l'API est : ", this.apiURL);
+  }
 
-  sendEmail(emailData: any): Observable<any> {
-    console.log("Envoi de l'email avec les données suivantes : ", emailData);
-    return this.http.post(this.apiURL, emailData).pipe(
-      tap(response => this.logger.logInfo('Réponse du backend reçue', response)),
+  sendEmail(emailData: EmailData): Observable<EmailResponse> {
+    this.logger.logDebug(this, "Envoi de l'email avec les données suivantes : ", emailData);
+    return this.http.post<EmailResponse>(this.apiURL, emailData).pipe(
+      tap(response => this.logger.logInfo(this, "Réponse du backend reçue", response)),
       catchError(error => {
-        this.logger.logError("Erreur lors de l'envoi d'email", error);
-        return throwError(() => new Error(error.message || "Erreur inconnue lors de l'envoi de l'email"));
+        this.logger.logError(this, "Erreur lors de l'envoi d'email", error);
+        return throwError(() =>
+          new Error(error.message || "[Emailservice] : Erreur inconnue lors de l'envoi de l'email"));
       })
     )
   }

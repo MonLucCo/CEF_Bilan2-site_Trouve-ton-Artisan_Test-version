@@ -1,11 +1,17 @@
 {
-    "versionEnv": "0.0.2",
+    "versionEnv": "0.0.4",
     "server": {
         "port": 3000,
         "contentType": "application/json; charset=UTF-8"
     },
     "api": {
-        "sendEmailEndpoint": "/api/send-email"
+        "sendEmailEndpoint": "/api/send-email",
+        "sendMessagesEndpoint": "/api/messages",
+        "sendStatusEndpoint": {
+            "statusRoute": "/api/status",
+            "serverEndpoint": "/server",
+            "targetEndpoint": "/maildev"
+        }
     },
     "cors": {
         "origin": "http://localhost:4200",
@@ -21,6 +27,79 @@
         "emailSuccess": "Email envoyé avec succès !",
         "emailError": "Une erreur est survenue lors de l'envoi de l'email.",
         "unknownError": "Une erreur inconnue est survenue.",
-        "invalidRequest": "Tous les champs 'from', 'to', 'subject' et 'text' sont obligatoires."
+        "invalidRequest": "Tous les champs 'from', 'to', 'subject' et 'text' sont obligatoires.",
+        "invalidAddress": "Le champ 'from' ou 'to' contient une adresse email invalide.",
+        "invalidDate": "Le champ 'date' contient une date invalide."
+    },
+    "testCases": {
+        "configTest": true,
+        "messagesHistory": [
+            {
+                "id": "1",
+                "from": "example1@example.com",
+                "to": "example2@example.com",
+                "subject": "Hello 1",
+                "body": "Message content 1",
+                "date": "2025-03-12"
+            },
+            {
+                "id": "2",
+                "from": "example2@example.com",
+                "to": "example1@example.com",
+                "subject": "Hello 2",
+                "body": "Message content 2",
+                "date": "2025-03-14"
+            },
+            {
+                "id": "3",
+                "from": "example2@example.com",
+                "to": "example1@example.com",
+                "subject": "Hello 2",
+                "body": "Message content 2",
+                "date": "2025-03-15"
+            },
+            {
+                "id": "4",
+                "from": "example3@example.com",
+                "to": "example4@example.com",
+                "subject": "Hello 3",
+                "body": "Message content 3",
+                "date": "2025-03-15"
+            }
+        ],
+        "messagesKo": [
+            {
+                "description": "Missing 'from' field",
+                "data": {
+                    "id": "5",
+                    "to": "user5@example.com",
+                    "subject": "Missing From",
+                    "body": "No 'from' field in this message.",
+                    "date": "2025-03-14"
+                }
+            },
+            {
+                "description": "Empty 'subject' field",
+                "data": {
+                    "id": "6",
+                    "from": "user6@example.com",
+                    "to": "user7@example.com",
+                    "subject": "",
+                    "body": "The subject field is empty.",
+                    "date": "2025-03-13"
+                }
+            },
+            {
+                "description": "Invalid email format in 'to' field",
+                "data": {
+                    "id": "7",
+                    "from": "user8@example.com",
+                    "to": "invalid-email",
+                    "subject": "Invalid To Field",
+                    "body": "The 'to' field has an invalid email format.",
+                    "date": "2025-03-12"
+                }
+            }
+        ]
     }
 }

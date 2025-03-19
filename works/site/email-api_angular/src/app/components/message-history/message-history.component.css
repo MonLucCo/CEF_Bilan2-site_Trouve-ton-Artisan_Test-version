@@ -1,0 +1,21 @@
+/* Empêche le scrolling de la page quand la modale est ouverte */
+/* .modal {
+    overflow: visible;
+} */
+
+/* Centrer la modale */
+.modal-dialog {
+    margin: auto;
+}
+
+.table-responsive {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.table-hover tbody tr:hover {
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    /* Couleur de survol */
+    cursor: pointer;
+    /* Curseur pour indiquer qu'on peut cliquer */
+}

@@ -17,6 +17,7 @@
   ],
   "exclude": [
     "src/server.ts",
-    "src/environments/back-end"
+    "src/environments/back-end",
+    "src/backend"
   ]
 }

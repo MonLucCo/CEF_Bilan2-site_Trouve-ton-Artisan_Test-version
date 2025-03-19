@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EmailService } from '../../services/email/email.service';
 import { LoggerService } from '../../services/logger/logger.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-email-sender',
@@ -14,20 +15,19 @@ export class EmailSenderComponent {
 
   constructor(private emailService: EmailService, private logger: LoggerService) { }
 
-  handleEmailSubmission(emailData: any) {
-    this.logger.logInfo("Début du processus d'envoi d'email", emailData);
+  async handleEmailSubmission(emailData: any) {
+    this.logger.logInfo(this, "Début du processus d'envoi d'email", emailData);
 
-    this.emailService.sendEmail(emailData).subscribe(
-      (response: any) => {
-        this.successMessage = response.message || 'Votre email a été envoyé avec succès !';
-        this.errorMessage = '';
-        this.logger.logInfo('Email envoyé avec succès', response)
-      },
-      (error) => {
-        this.successMessage = '';
-        this.errorMessage = error.error?.message || 'Une erreur est survenue lors de l\'envoi.';
-        this.logger.logError("Erreur détectée lors de l'envoi", error)
-      }
-    )
+    try {
+      const response: any = await lastValueFrom(this.emailService.sendEmail(emailData));
+      this.successMessage = response.message || 'Votre email a été envoyé avec succès !';
+      this.errorMessage = '';
+      this.logger.logInfo(this, 'Email envoyé avec succès', response)
+    }
+    catch (error: any) {
+      this.successMessage = '';
+      this.errorMessage = error.error?.message || "Une erreur est survenue lors de l'envoi.";
+      this.logger.logError(this, "Erreur détectée lors de l'envoi", error)
+    }
   }
 }
