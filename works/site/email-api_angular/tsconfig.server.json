@@ -29,6 +29,7 @@
     ],
     "include": [
         "src/**/*.ts",
+        "src/backend/**/*.ts",
         "src/environments/back-end/**/*.d.ts"
     ],
     "exclude": [
