@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { EmailHistoryComponent } from './components/email-history/email-history.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
+import { MessageHistoryComponent } from './components/message-history/message-history.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HeroComponent } from './components/hero/hero.component';
     HeaderComponent,
     EmailHistoryComponent,
     FooterComponent,
-    HeroComponent
+    HeroComponent,
+    MessageHistoryComponent
   ],
   imports: [
     BrowserModule,

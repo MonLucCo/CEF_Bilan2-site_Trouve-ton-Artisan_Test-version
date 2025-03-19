@@ -8,6 +8,17 @@
 4. ajout des configurations (Dev et Prod) d'environnement pour le back-end et le front-end
    1. préciser la configuration dans angular.json pour remplacement automatique de la config (environments/front-end/environment.*.ts) lors de la compilation (serve ou build)
    2. préciser la séparation des responsabilités interface utilisateur et logique métier : création des services Email (envoi HTTP et logs) et Logger (logs de l'application)
+5. gestion dynamique des liste de messages dans le dashbord
+   1. modification de la structure avec création d'un src/backend pour les codes du BackEnd (BE)
+   2. modification de server.ts et désinstallation de bodyParser
+   3. création service 'message' du FrontEnd (FE) et intégration dans DashBoard
+   4. création de scripts pour tester le BE et mise en place d'une configuration pour les tests
+   5. amélioration du LoggerService dans le FE
+6. fonctionnalités du dashbord
+   1. Historique des messages dans un tableau Bootstrap (BS) avec affichage du message (sur clic) dans une modale.
+   2. Suppression des messages (par message ou tous les messages de l'historique) avec modale de confirmation.
+   3. Rafraîchissement du tableau automatique ou manuel
+   4. Ajout d'un service pour les Status du 'server' et du 'MailDev'. Utilisation du service de Status par abonnement dans le Footer, le Header et la Modale qui teste le status
 
 >> **A documenter**
 

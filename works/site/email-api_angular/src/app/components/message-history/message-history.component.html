@@ -1,0 +1,173 @@
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Historique des messages</h1>
+
+    <!-- Boutons pour les actions -->
+    <div class="d-flex justify-content-between mb-2">
+        <div class="cde-gestion d-flex flex-column align-items-center gap-3 mb-4">
+            <!-- Bouton "Actualiser l'historique" -->
+            <button (click)="fetchMessages()" class="btn btn-primary">
+                <i class="fa-solid fa-arrows-rotate"></i> Actualiser l'historique
+            </button>
+            <!-- Bouton "Tester le statut serveur" -->
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#statusModal">
+                <i class="fa-solid fa-server"></i> Tester le status serveur
+            </button>
+        </div>
+
+        <div class="cde-actualisation d-flex flex-column align-items-center gap-3 mb-4">
+            <!-- Rafraîchissement automatique -->
+            <button (click)="toggleAutoRefresh()" [class.btn-success]="!autoRefreshEnabled"
+                [class.btn-warning]="autoRefreshEnabled" class="btn">
+                <i class="fa-solid" [class.fa-play]="!autoRefreshEnabled" [class.fa-stop]="autoRefreshEnabled"></i>
+                {{ autoRefreshEnabled ? 'Arrêter' : 'Activer' }} le rafraîchissement auto
+            </button>
+            <!-- Barre de progression -->
+            <div *ngIf="autoRefreshEnabled" class="progress w-75 justify-content-center mb-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                    [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0"
+                    aria-valuemax="100">
+                    {{ progressValue | number : '1.0-0' }}%
+                </div>
+            </div>
+            <!-- Configuration de la période -->
+            <div class="d-flex justify-content-center mb-3">
+                <button (click)="updateRefreshPeriod(30)" class="btn me-2"
+                    [ngClass]="{'btn-warning': refreshPeriod === 30, 'btn-secondary': refreshPeriod !== 30}">
+                    30s
+                </button>
+                <button (click)="updateRefreshPeriod(600)" class="btn me-2"
+                    [ngClass]="{'btn-warning': refreshPeriod === 600, 'btn-secondary': refreshPeriod !== 600}">
+                    10mn
+                </button>
+                <button (click)="updateRefreshPeriod(3600)" class="btn"
+                    [ngClass]="{'btn-warning': refreshPeriod === 3600, 'btn-secondary': refreshPeriod !== 3600}">
+                    1h
+                </button>
+            </div>
+        </div>
+
+        <div class="cde-messages d-flex flex-column align-items-center gap-3 mb-4">
+            <!-- Suppression des messages -->
+            <div *ngIf="(messages$ | async)?.length as messagesLength; else noMessages">
+                <button *ngIf="messagesLength > 0" class="btn btn-danger" (click)="confirmDeleteAll()"
+                    data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                    <i class="fa-solid fa-trash"></i> Supprimer tous les messages
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message "Aucun message" -->
+    <ng-template #noMessages>
+        <p class="text-center text-muted">Aucun message dans l'historique.</p>
+    </ng-template>
+
+    <!-- Tableau des messages -->
+    <div class="table-responsive" style="max-height: 60vh; overflow-y: auto;">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sujet</th>
+                    <th>De</th>
+                    <th>À</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of messages$ | async; trackBy: trackByMessageId"
+                    [class.table-active]="selectedMessage === message" (click)="viewMessageDetails(message)"
+                    data-bs-toggle="modal" data-bs-target="#messageDetailsModal">
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.from }}</td>
+                    <td>{{ message.to }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-danger btn-sm"
+                            (click)="confirmDeleteMessage(message); $event.stopPropagation()" data-bs-toggle="modal"
+                            data-bs-target="#deleteConfirmationModal">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modale des détails du message -->
+    <div class="modal fade" id="messageDetailsModal" tabindex="-1" aria-labelledby="messageDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageDetailsModalLabel">Détails du message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>De :</strong> {{ selectedMessage?.from }}</p>
+                    <p><strong>À :</strong> {{ selectedMessage?.to }}</p>
+                    <p><strong>Sujet :</strong> {{ selectedMessage?.subject }}</p>
+                    <hr>
+                    <pre>{{ selectedMessage?.body }}</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale de confirmation de suppression -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation de suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p *ngIf="deleteAll">Êtes-vous sûr de vouloir supprimer tous les messages&nbsp;?</p>
+                    <p *ngIf="!deleteAll">Êtes-vous sûr de vouloir supprimer le message <strong>{{
+                            messageToDelete?.subject }}</strong>&nbsp;?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteMessageConfirmed()"
+                        data-bs-dismiss="modal">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale du statut serveur -->
+    <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statusModalLabel">Statut Serveur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Serveur Backend : </strong>
+                        <span *ngIf="serverStatus !== 'UNKNOWN'; else loadingServer"
+                            [class.text-success]="serverStatus === 'UP'" [class.text-danger]="serverStatus === 'DOWN'">
+                            {{ serverStatus === 'UP' ? 'Actif' : 'Hors ligne' }}
+                        </span>
+                        <ng-template #loadingServer>Chargement...</ng-template>
+                    </p>
+                    <p><strong>MailDev : </strong>
+                        <span *ngIf="mailDevStatus !== 'UNKNOWN'; else loadingMailDev"
+                            [class.text-success]="mailDevStatus === 'UP'"
+                            [class.text-danger]="mailDevStatus === 'DOWN'">
+                            {{ mailDevStatus === 'UP' ? 'Actif' : 'Hors ligne' }}
+                        </span>
+                        <ng-template #loadingMailDev>Chargement...</ng-template>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
