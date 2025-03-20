@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtisanDetailComponent } from './artisan-detail.component';
+import { ArtisanDetailPageComponent } from './artisan-detail-page.component';
 import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { EmailService } from '../../services/email/email.service';
 
-describe('ArtisanDetailComponent', () => {
-  let component: ArtisanDetailComponent;
-  let fixture: ComponentFixture<ArtisanDetailComponent>;
+describe('ArtisanDetailPageComponent', () => {
+  let component: ArtisanDetailPageComponent;
+  let fixture: ComponentFixture<ArtisanDetailPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        ArtisanDetailComponent,
+        ArtisanDetailPageComponent,
         // Déclarations des composants enfants
         ContactFormComponent
       ],
@@ -29,7 +29,7 @@ describe('ArtisanDetailComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ArtisanDetailComponent);
+    fixture = TestBed.createComponent(ArtisanDetailPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

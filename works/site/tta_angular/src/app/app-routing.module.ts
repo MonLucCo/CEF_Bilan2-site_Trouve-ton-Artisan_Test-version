@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { ArtisanListComponent } from './pages/artisan-list/artisan-list.component';
-import { ArtisanDetailComponent } from './pages/artisan-detail/artisan-detail.component';
-import { Error404Component } from './pages/error404/error404.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ArtisansPageComponent } from './pages/artisans-page/artisans-page.component';
+import { ArtisanDetailPageComponent } from './pages/artisan-detail-page/artisan-detail-page.component';
+import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 
 // Exportation des routes pour une réutilisation (par exemple, dans les TU)
 export const routes: Routes = [
-  { path: 'accueil', component: HomeComponent },
-  { path: 'liste-artisans', component: ArtisanListComponent },
-  { path: 'fiche-artisan', component: ArtisanDetailComponent },
+  { path: 'accueil', component: HomePageComponent },
+  { path: 'liste-artisans', component: ArtisansPageComponent },
+  { path: 'fiche-artisan', component: ArtisanDetailPageComponent },
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
-  { path: 'erreur-404', component: Error404Component },
+  { path: 'erreur-404', component: Error404PageComponent },
   { path: '**', redirectTo: '/erreur-404' } // pour toutes les autres URLs
 ];
 

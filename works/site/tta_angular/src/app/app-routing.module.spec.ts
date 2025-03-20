@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { provideRouter } from '@angular/router';
 import { Location } from '@angular/common';
-import { HomeComponent } from './pages/home/home.component';
-import { ArtisanListComponent } from './pages/artisan-list/artisan-list.component';
-import { ArtisanDetailComponent } from './pages/artisan-detail/artisan-detail.component';
-import { Error404Component } from './pages/error404/error404.component';
+import { HomeComponent } from './pages/home-page/home-page.component';
+import { ArtisanListComponent } from './pages/artisans-page/artisans-page.component';
+import { ArtisanDetailComponent } from './pages/artisan-detail-page/artisan-detail-page.component';
+import { Error404Component } from './pages/error404-page/error404-page.component';
 import { routes } from './app-routing.module';
 
 describe('AppRoutingModule', () => {
