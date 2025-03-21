@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtisanListComponent } from './artisan-list.component';
+import { TopArtisansComponent } from './top-artisans.component';
 
-describe('ArtisanListComponent', () => {
-  let component: ArtisanListComponent;
-  let fixture: ComponentFixture<ArtisanListComponent>;
+describe('TopArtisansComponent', () => {
+  let component: TopArtisansComponent;
+  let fixture: ComponentFixture<TopArtisansComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ArtisanListComponent]
+      declarations: [TopArtisansComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ArtisanListComponent);
+    fixture = TestBed.createComponent(TopArtisansComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

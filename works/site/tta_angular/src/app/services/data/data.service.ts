@@ -20,7 +20,7 @@ export interface Artisan {
   providedIn: 'root',
 })
 export class DataService {
-  private dataUrl = '/datas.json';
+  private dataUrl = '/assets/datas.json';
 
   constructor(private http: HttpClient) { }
 
