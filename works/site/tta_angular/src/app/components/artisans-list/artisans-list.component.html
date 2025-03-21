@@ -1,0 +1,16 @@
+<div>
+    <input type="text" placeholder="Rechercher un artisan..." (input)="search($event)" />
+</div>
+
+<div *ngIf="artisans.length > 0; else noArtisans">
+    <div *ngFor="let artisan of artisans" class="artisan-card">
+        <h3>{{ artisan.name }} - Id : {{ artisan.id}}</h3>
+        <p>Note : {{ artisan.note }}/5</p>
+        <p>Spécialité : {{ artisan.specialty }}</p>
+        <p>Localisation : {{ artisan.location }}</p>
+    </div>
+</div>
+
+<ng-template #noArtisans>
+    <p>Aucun artisan trouvé.</p>
+</ng-template>
