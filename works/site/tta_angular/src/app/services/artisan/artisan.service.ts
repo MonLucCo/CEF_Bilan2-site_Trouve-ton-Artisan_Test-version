@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Artisan } from '../../models/artisan.models';
 import { ArtisanCard } from '../../models/artisan-card.models';
-import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { ArtisanContact } from '../../models/artisan-contact.models';
+import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toArtisanContact } from '../../utils/to-artisan-contact.utils';
 import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
 
@@ -22,8 +22,16 @@ export class ArtisanService {
    * @returns Observable contenant un tableau d'artisans.
    */
   private getDatasArtisans(): Observable<Artisan[]> {
-    return this.http.get<Artisan[]>(this.dataUrl).pipe(
-      map(rawData => rawData.map(fromRawToArtisan))
+    return this.http.get<any[]>(this.dataUrl).pipe(
+      map(rawData =>
+        rawData
+          .map(fromRawToArtisan) // Transforme chaque entrée brute
+          .filter((artisan): artisan is Artisan => artisan !== null) // Élimine les valeurs nulles
+      ),
+      catchError(err => {
+        console.error('Erreur lors de la récupération des artisans', err);
+        return of([]); // Retourne un tableau vide en cas d'erreur
+      })
     );
   }
 
@@ -34,7 +42,7 @@ export class ArtisanService {
    */
   private getDatasArtisanById(id: string): Observable<Artisan | undefined> {
     return this.getDatasArtisans().pipe(
-      map(artisans => artisans.find(artisan => artisan.ranking.id === id))
+      map(artisans => artisans.find(artisan => artisan.id === id))
     );
   }
 

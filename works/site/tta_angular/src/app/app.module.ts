@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/Xhome-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ArtisansPageComponent } from './pages/artisans-page/artisans-page.component';
 import { ArtisanContactPageComponent } from './pages/artisan-contact-page/artisan-contact-page.component';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
@@ -17,6 +17,7 @@ import { SearchPipe } from './pipes/search/search.pipe';
 import { TopArtisansPipe } from './pipes/top-artisans/top-artisans.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { TopArtisansComponent } from './components/top-artisans/top-artisans.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { provideHttpClient } from '@angular/common/http';
     FilterByCategoryPipe,
     SearchPipe,
     TopArtisansPipe,
-    ArtisansListComponent
+    ArtisansListComponent,
+    TopArtisansComponent
   ],
   imports: [
     CommonModule,
