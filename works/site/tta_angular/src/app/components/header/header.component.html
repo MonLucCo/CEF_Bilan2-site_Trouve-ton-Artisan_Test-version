@@ -1,11 +1,19 @@
 <header class="app-header">
     <p>header works!</p>
     <nav>
-        <ul class="nav-list">
+        <ul class="nav-list d-flex flex-row gap-5">
             <li><a routerLink="/accueil" routerLinkActive="active">Accueil</a></li>
             <li><a routerLink="/liste-artisans" routerLinkActive="active">Artisans</a></li>
             <li><a routerLink="/fiche-artisan" routerLinkActive="active">Détails</a></li>
             <li><a routerLink="/erreur-404" routerLinkActive="active">Erreur 404</a></li>
+            <li><a routerLink="/erreur-route" routerLinkActive="active">Erreur route !</a></li>
+        </ul>
+        <ul class="nav-list d-flex flex-row gap-5">
+            <li><a [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a></li>
+            <li><a [routerLink]="['/categorie', 'Services']">Services</a></li>
+            <li><a [routerLink]="['/categorie', 'Fabrication']">Fabrication</a></li>
+            <li><a [routerLink]="['/categorie', 'Alimentation']">Alimentation</a></li>
+            <li><a [routerLink]="['/categorie', 'ErreurCatégorie...']">Erreur catégorie !</a></li>
         </ul>
     </nav>
 </header>

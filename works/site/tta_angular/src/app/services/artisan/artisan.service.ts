@@ -154,4 +154,18 @@ export class ArtisanService {
     );
   }
 
+  /**
+  * Fournit la liste des catégories valides.
+  * @returns Un tableau contenant les catégories valides.
+  */
+  getValidCategories(): Observable<string[]> {
+    // return ['Bâtiment', 'Services', 'Fabrication', 'Alimentation']; // Liste des catégories (version statique)
+
+    return this.getAllArtisans().pipe(
+      map(artisans =>
+        Array.from(new Set(artisans.map(artisan => artisan.category))) // Extrait les catégories uniques
+      )
+    );
+  }
+
 }

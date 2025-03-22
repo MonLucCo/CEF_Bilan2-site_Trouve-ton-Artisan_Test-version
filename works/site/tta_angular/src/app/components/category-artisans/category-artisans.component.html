@@ -1,0 +1,15 @@
+<p>category-artisans works!</p>
+
+<div *ngIf="artisans.length > 0; else noArtisans">
+    <h2>Artisans - Catégorie : {{ category }}</h2>
+    <div *ngFor="let artisan of artisans" class="artisan-card">
+        <h3>{{ artisan.name }} - Id : {{ artisan.id }}</h3>
+        <p>Note : {{ artisan.note }}/5</p>
+        <p>Spécialité : {{ artisan.specialty }}</p>
+        <p>Localisation : {{ artisan.location }}</p>
+    </div>
+</div>
+
+<ng-template #noArtisans>
+    <p>Aucun artisan trouvé pour la catégorie {{ category }}.</p>
+</ng-template>

@@ -18,6 +18,7 @@ import { TopArtisansPipe } from './pipes/top-artisans/top-artisans.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { TopArtisansComponent } from './components/top-artisans/top-artisans.component';
+import { CategoryArtisansComponent } from './components/category-artisans/category-artisans.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TopArtisansComponent } from './components/top-artisans/top-artisans.com
     SearchPipe,
     TopArtisansPipe,
     ArtisansListComponent,
-    TopArtisansComponent
+    TopArtisansComponent,
+    CategoryArtisansComponent
   ],
   imports: [
     CommonModule,
