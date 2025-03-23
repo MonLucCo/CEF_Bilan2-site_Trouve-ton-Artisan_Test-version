@@ -17,7 +17,7 @@ export class CategoryGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const category = route.paramMap.get('category'); // Récupère la catégorie depuis l'URL
 
-    return this.artisanService.getValidCategories().pipe(
+    return this.artisanService.getAllCategories().pipe(
       map(validCategories => {
         if (category && validCategories.includes(category)) {
           console.log('[CategoryGard] : Valeur de la catégorie : ', category);

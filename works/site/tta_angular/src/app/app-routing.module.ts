@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'accueil', component: HomePageComponent },
   { path: 'liste-artisans', component: ArtisansPageComponent },
   { path: 'categorie/:category', component: CategoryArtisansComponent, canActivate: [CategoryGuard] },
+  { path: 'recherche', component: ArtisansPageComponent },
   { path: 'fiche-artisan', component: ArtisanContactPageComponent },
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'erreur-404', component: Error404PageComponent },
