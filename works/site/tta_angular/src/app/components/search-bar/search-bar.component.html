@@ -1,0 +1,20 @@
+<p>search-bar works!</p>
+
+<div class="input-group">
+    <!-- Champ de recherche -->
+    <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+        (keyup.enter)="onSearch()" />
+
+    <!-- Bouton lié à la catégorie sélectionnée (s'il y a une catégorie active) -->
+    <div *ngIf="category" class="input-group-append">
+        <button class="btn btn-secondary d-flex align-items-center gap-2" (click)="clearCategory()">
+            <span>{{ category }}</span> <!-- Affichage de la catégorie -->
+            <i class="fas fa-times"></i> <!-- Icône de fermeture (Font Awesome) -->
+        </button>
+    </div>
+
+    <!-- Bouton de recherche -->
+    <button class="btn btn-primary" (click)="onSearch()">
+        <i class="fas fa-search"></i> <!-- Icône recherche -->
+    </button>
+</div>
