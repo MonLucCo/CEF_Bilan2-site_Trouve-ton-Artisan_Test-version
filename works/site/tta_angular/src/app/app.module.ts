@@ -20,6 +20,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { TopArtisansComponent } from './components/top-artisans/top-artisans.component';
 import { CategoryArtisansComponent } from './components/category-artisans/category-artisans.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ArtisansListComponent,
     TopArtisansComponent,
     CategoryArtisansComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SearchArtisansComponent
   ],
   imports: [
     CommonModule,

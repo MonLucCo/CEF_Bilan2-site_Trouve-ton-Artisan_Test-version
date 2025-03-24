@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtisanCard } from '../../models/artisan-card.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
+import { map, Observable, switchMap } from 'rxjs';
 
 /**
  * Composant pour afficher les artisans par catégorie.
@@ -12,27 +13,18 @@ import { ArtisanService } from '../../services/artisan/artisan.service';
   templateUrl: './category-artisans.component.html',
   styleUrls: ['./category-artisans.component.scss']
 })
-export class CategoryArtisansComponent implements OnInit {
-  artisans: ArtisanCard[] = []; // Liste des artisans pour la catégorie
-  category: string | null = null; // Catégorie sélectionnée
+export class CategoryArtisansComponent {
+  artisans$: Observable<ArtisanCard[]>; // Observable des artisans
+  category$: Observable<string | null>; // Observable de la catégorie
 
   constructor(
-    private artisanService: ArtisanService,
-    private route: ActivatedRoute // Pour récupérer les paramètres de la route
-  ) { }
-
-  ngOnInit(): void {
-    // Récupère la catégorie depuis les paramètres de la route
-    this.route.paramMap.subscribe(params => {
-      this.category = params.get('category'); // Exemple : "Bâtiment"
-
-      if (this.category) {
-        // Charge les artisans pour la catégorie donnée
-        this.artisanService.getArtisansByCategory(this.category).subscribe({
-          next: (data) => (this.artisans = data),
-          error: (err) => console.error('Erreur lors du chargement des artisans par catégorie', err)
-        });
-      }
-    });
+    private route: ActivatedRoute,
+    private artisanService: ArtisanService
+  ) {
+    // Charger les artisans en fonction de la catégorie
+    this.category$ = this.route.paramMap.pipe(map(params => params.get('category')));
+    this.artisans$ = this.category$.pipe(
+      switchMap(category => category ? this.artisanService.getArtisansByCategory(category) : [])
+    );
   }
 }

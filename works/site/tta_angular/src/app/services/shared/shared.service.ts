@@ -28,7 +28,7 @@ export class SharedService {
    */
   setCategory(category: string | null): void {
     this._categorySubject.next(category); // Met à jour la catégorie dans le BehaviorSubject
-    console.log('[SharedService] : la valeur stockée de la catégorie est : ', this._categorySubject);
+    console.log('[SharedService] : la valeur stockée de la catégorie est : ', this._categorySubject.getValue());
   }
 
   /**
