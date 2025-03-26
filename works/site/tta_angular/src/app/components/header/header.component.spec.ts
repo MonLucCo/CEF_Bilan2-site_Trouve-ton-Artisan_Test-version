@@ -40,11 +40,17 @@ describe('HeaderComponent', () => {
 
   it('should render links for each route', () => {
     const links = fixture.debugElement.queryAll(By.css('a'));
-    expect(links.length).toBe(4); // Nombre total de liens
+    expect(links.length).toBe(10); // Nombre total de liens
     expect(links[0].nativeElement.getAttribute('routerLink')).toBe('/accueil');
     expect(links[1].nativeElement.getAttribute('routerLink')).toBe('/liste-artisans');
     expect(links[2].nativeElement.getAttribute('routerLink')).toBe('/fiche-artisan');
     expect(links[3].nativeElement.getAttribute('routerLink')).toBe('/erreur-404');
+    expect(links[4].nativeElement.getAttribute('routerLink')).toBe('/erruer-404');
+    expect(links[5].nativeElement.getAttribute('routerLink')).toBe('/catégorie/Bâtiment');
+    expect(links[6].nativeElement.getAttribute('routerLink')).toBe('/catégorie/Services');
+    expect(links[7].nativeElement.getAttribute('routerLink')).toBe('/catégorie/Fabrication');
+    expect(links[8].nativeElement.getAttribute('routerLink')).toBe('/catégorie/Alimentation');
+    expect(links[9].nativeElement.getAttribute('routerLink')).toBe('/erreur-404');
   });
 });
 

@@ -6,4 +6,5 @@ export interface ArtisanCard {
     note: number;        // Note (sur 5)
     specialty: string;   // Spécialité (ex. : "Plombier")
     location: string;    // Localisation (ville ou région)
+    top: boolean;        // Indique si l'artisan est au "top"
 }

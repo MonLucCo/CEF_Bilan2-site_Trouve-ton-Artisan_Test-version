@@ -1,6 +1,4 @@
-<div class="search-container">
-    <input type="text" placeholder="Rechercher un artisan..." (input)="search($event)" class="search-bar" />
-</div>
+<p>search-artisans works!</p>
 
 <div *ngIf="(artisans$ | async) as artisans; else loading">
     <div *ngIf="artisans.length > 0; else noResults">

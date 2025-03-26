@@ -1,0 +1,17 @@
+<p>category-artisans works!</p>
+
+<div *ngIf="artisans$ | async as artisans; else noArtisans">
+    <h2>Artisans - Catégorie : {{ category$ | async }}</h2>
+    <div *ngFor="let artisan of artisans" class="artisan-card d-flex">
+        <div class="card m-2 p-3">
+            <h3>{{ artisan.name }} - Id : {{ artisan.id }}</h3>
+            <p>Note : {{ artisan.note }}/5</p>
+            <p>Spécialité : {{ artisan.specialty }}</p>
+            <p>Localisation : {{ artisan.location }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #noArtisans>
+    <p>Aucun artisan trouvé pour cette catégorie.</p>
+</ng-template>

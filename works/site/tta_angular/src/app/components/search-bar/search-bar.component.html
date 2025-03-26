@@ -1,0 +1,38 @@
+<p>search-bar works!</p>
+
+<div class="input-group">
+    <!-- Bouton lié à la catégorie sélectionnée -->
+    <div *ngIf="category" class="input-group-prepend">
+        <div class="btn-group">
+            <!-- Case à cocher pour activer/désactiver la catégorie -->
+            <button class="btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
+                [disabled]="!keyword.trim()">
+                <input type="checkbox" [checked]="categoryActive" />
+                <span>{{ category }}</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Champ de recherche (selon le mode de recherche) -->
+    <ng-container *ngIf="modeOnRealTimeSearch; else validateSearch">
+        <!-- Mode instantané -->
+        <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+            (input)="onInputChange()" />
+    </ng-container>
+    <ng-template #validateSearch>
+        <!-- Mode avec validation -->
+        <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+            (keyup.enter)="triggerSearch()" />
+    </ng-template>
+
+    <!-- Bouton reset -->
+    <button class="btn btn-outline-secondary" (click)="resetSearchField()" [disabled]="!keyword.trim()">
+        <i class="fas fa-undo"></i> <!-- Icône de reset -->
+    </button>
+
+    <!-- Bouton de recherche -->
+    <button class="btn btn-outline-primary" (click)="triggerSearch()"
+        [disabled]="modeOnRealTimeSearch || !keyword.trim()">
+        <i class="fas fa-search"></i> <!-- Icône recherche (loupe) -->
+    </button>
+</div>

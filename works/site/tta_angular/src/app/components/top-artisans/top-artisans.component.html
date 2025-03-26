@@ -1,9 +1,9 @@
 <!-- Section affichant les artisans s'il y en a, ou un message alternatif dans le cas contraire. -->
-<div *ngIf="topArtisans.length > 0; else noTopArtisans">
+<div *ngIf="topArtisans$ | async as topArtisans; else noTopArtisans">
     <h2>Top Artisans</h2>
     <!-- Boucle pour afficher chaque artisan avec leurs détails. -->
     <div *ngFor="let artisan of topArtisans" class="card top-artisan-card">
-        <h3>{{ artisan.name }} - Id : {{artisan.id}}</h3>
+        <h3>{{ artisan.name }} - Id : {{ artisan.id }}</h3>
         <p>Note : {{ artisan.note.toFixed(1) }}</p> <!-- Affiche la note avec une décimale. -->
         <p>Spécialité : {{ artisan.specialty }}</p>
         <p>Localisation : {{ artisan.location }}</p>

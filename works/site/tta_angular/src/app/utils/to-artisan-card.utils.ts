@@ -16,6 +16,7 @@ export function toArtisanCard(artisan: Artisan | undefined): ArtisanCard {
         name: artisan.profile.name,            // Nom provenant de la partie Profile
         note: artisan.profile.note,            // Note provenant de la partie Profile
         specialty: artisan.profile.specialty,  // Spécialité provenant de la partie Profile
-        location: artisan.profile.location     // Localisation provenant de la partie Profile
+        location: artisan.profile.location,    // Localisation provenant de la partie Profile
+        top: artisan.ranking.top               // Top provenant de la partie Ranking
     };
 }

@@ -11,4 +11,3 @@ export interface Artisan {
     profile: ArtisanProfile; // Informations liées au profil de l'artisan
     contact: ArtisanContact; // Détails pour joindre l'artisan
 }
-

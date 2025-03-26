@@ -14,7 +14,8 @@ export function transformToArtisanCard(artisan: any): ArtisanCard {
         name: artisan.profile.name, // Nom ou entreprise
         note: artisan.profile.note, // Note moyenne sur 5
         specialty: artisan.profile.specialty, // Spécialité
-        location: artisan.profile.location // Localisation
+        location: artisan.profile.location, // Localisation
+        top: artisan.ranking.top // Artisan est au "top"
     };
 }
 

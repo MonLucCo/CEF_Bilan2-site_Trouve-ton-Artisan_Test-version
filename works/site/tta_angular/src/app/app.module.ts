@@ -15,9 +15,12 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { FilterByCategoryPipe } from './pipes/filter-by-category/filter-by-category.pipe';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { TopArtisansPipe } from './pipes/top-artisans/top-artisans.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { TopArtisansComponent } from './components/top-artisans/top-artisans.component';
+import { CategoryArtisansComponent } from './components/category-artisans/category-artisans.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
 
 
 @NgModule({
@@ -34,12 +37,16 @@ import { TopArtisansComponent } from './components/top-artisans/top-artisans.com
     SearchPipe,
     TopArtisansPipe,
     ArtisansListComponent,
-    TopArtisansComponent
+    TopArtisansComponent,
+    CategoryArtisansComponent,
+    SearchBarComponent,
+    SearchArtisansComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     ReactiveFormsModule, // Ajout pour la réactivité du formulaire
+    FormsModule,         // Nécessaire pour que [(ngModel)] fonctionne (emploi dans SearchBar)
     AppRoutingModule
   ],
   providers: [
