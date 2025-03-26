@@ -14,42 +14,71 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   category: string | null = null; // Catégorie active dans le header
-  keyword: string = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
+  topAction: boolean = false; // Permet de tracer le top d'une action
 
   constructor(private sharedService: SharedService, private router: Router) { }
 
   ngOnInit(): void {
-    // Récupérer la catégorie active depuis le service
-    this.category = this.sharedService.getCategory();
-    console.log('[Header]-[OnInit] : Catégorie dans HeaderComponent :', this.category);
+    // Abonnement aux changements de catégorie active via SharedService
+    this.sharedService.currentCategory$.subscribe((category) => {
+      this.category = category;
+      console.log('[Header]-[OnInit] : Catégorie active mise à jour :', this.category);
+    });
 
     // Surveiller les changements de route pour réinitialiser la catégorie si nécessaire
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-      const currentUrl = event.urlAfterRedirects;
-      if (!currentUrl.startsWith('/categorie/')) {
-        this.sharedService.setCategory(null); // Réinitialise la catégorie
-        console.log('[Header]-[Router] : Réinitialisation de la catégorie après changement de route');
-      }
-    });
+    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+    //   const currentUrl = event.urlAfterRedirects;
+    //   if (!currentUrl.startsWith('/categorie/')) {
+    //     this.sharedService.setCategory(null); // Réinitialise la catégorie
+    //     console.log('[Header]-[Router] : Réinitialisation de la catégorie après changement de route');
+    //   }
+    // });
   }
+
+  /**
+   * Définit une nouvelle catégorie et redirige vers la route correspondante.
+   * @param category - La catégorie sélectionnée
+   */
+  // onCategoryChange(category: string): void {
+  //   this.sharedService.setCategory(category); // Met à jour la catégorie active dans SharedService
+  //   this.router.navigate(['/categorie', category]); // Redirige vers la page de la catégorie
+  //   console.log('[Header]-[onCategoryChange] : Catégorie changée et redirection :', category);
+  // }
 
   /**
    * Méthode appelée lorsque l'utilisateur change de mode.
    */
   onModeChange(mode: string): void {
-    this.mode = mode;
+    const searchMode = mode === 'validate' ? 'validateOn' : 'validateOff';
+    this.sharedService.setSearchMode(searchMode);
+    console.log('[Header]-[onModeChange] : Mode de recherche changé :', searchMode);
   }
 
   /**
    * Méthode appelée lorsque la barre de recherche émet un événement.
    */
   onSearch(event: { category: string | null; keyword: string }): void {
-    if (this.mode === 'validate') {
-      // Exemple : Naviguer ou exécuter une logique
-      console.log('[Header]-[onSearch] : Recherche activée pour la loupe : ', event);
+    const queryParams: any = {}; // Initialisation des paramètres d'URL
+
+    // Ajout des paramètres category et keyword si présents
+    if (event.category) {
+      queryParams['category'] = event.category;
     }
+    if (event.keyword) {
+      queryParams['keyword'] = event.keyword;
+    }
+
+    // Redirection selon les paramètres
+    if (!event.category && !event.keyword) {
+      this.router.navigate(['/liste-artisans']); // Redirection vers /liste-artisans si aucun paramètre
+    } else {
+      this.router.navigate(['/recherche'], { queryParams }); // Redirection vers /recherche avec les paramètres
+    }
+
+    console.log('[Header]-[onSearch] : Redirection effectuée avec les paramètres :', queryParams);
   }
+
 
   /**
    * Méthode appelée pour une recherche en temps réel (instantanée).
@@ -58,5 +87,13 @@ export class HeaderComponent implements OnInit {
     if (this.mode === 'realtime') {
       console.log('[Header]-[onSearch] : Recherche instantanée :', event);
     }
+  }
+
+  /**
+   * Méthode pour trace de 'début ou de fin d'action
+   */
+  onTraceAction(): void {
+    this.topAction = !this.topAction;
+    console.log('[Header]-[onTraceAction] : Top de la trace', this.topAction);
   }
 }

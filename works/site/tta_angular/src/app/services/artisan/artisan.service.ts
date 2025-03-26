@@ -33,6 +33,7 @@ import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
  * - `getArtisanByTop()` : Retourne les artisans ayant le statut "top".
  * - `getAllCategories()` : Retourne les catégories uniques des artisans.
  * - `reloadDatas()` : Recharge toutes les données artisans, contacts, et catégories.
+ * - `isValidCategory(category: string)` : Retourne un booléen qui indique si la catégorie donnée est valide.
  * 
  * ### Exemple d'utilisation :
  * ```typescript
@@ -354,4 +355,27 @@ export class ArtisanService {
     return this.categories$
   }
 
+  /**
+ * Vérifie si la catégorie donnée est valide.
+ * 
+ * Cette méthode utilise un flux réactif (`categories$`) contenant la liste des catégories valides pour 
+ * vérifier si la catégorie passée en paramètre est incluse dans cette liste. 
+ * Retourne un `Observable<boolean>` qui émet :
+ * - `true` si la catégorie est valide,
+ * - `false` sinon.
+ * 
+ * @param category - La catégorie à vérifier.
+ * @returns `Observable<boolean>` indiquant la validité de la catégorie.
+ * 
+ * @remarks
+ * - Cette méthode est idéale pour valider dynamiquement une catégorie dans des composants ou des Guards.
+ * - En cas de mise à jour de `categories$`, la logique restera réactive.
+ * 
+ * @see `categories$` pour la liste des catégories valides.
+ */
+  isValidCategory(category: string): Observable<boolean> {
+    return this.categories$.pipe(
+      map((validcategories) => validcategories.includes(category))
+    );
+  }
 }

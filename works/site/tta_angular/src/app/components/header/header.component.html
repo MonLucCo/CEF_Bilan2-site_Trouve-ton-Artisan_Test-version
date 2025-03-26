@@ -3,8 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- Logo du site-->
-            <div class="col3">
+            <div class="d-flex flex-column col-3">
                 <a class="navbar-brand" href="/">Trouve Ton Artisan</a>
+                <button (click)="onTraceAction()">Top Trace Action !</button>
             </div>
 
             <!-- Boutons de navigation -->
@@ -17,6 +18,11 @@
                     <li><a routerLink="/erreur-route" routerLinkActive="active">Erreur route !</a></li>
                 </ul>
                 <ul class="nav-list d-flex flex-column gap-2">
+                    <!-- <li><button (click)="onCategoryChange('Bâtiment')">Bâtiment</button></li>
+                    <li><button (click)="onCategoryChange('Services')">Services</button></li>
+                    <li><button (click)="onCategoryChange('Fabrication')">Fabrication</button></li>
+                    <li><button (click)="onCategoryChange('Alimentation')">Alimentation</button></li>
+                    <li><button (click)="onCategoryChange('ErreurCatégorie...')">Erreur catégorie !</button></li> -->
                     <li><a [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a></li>
                     <li><a [routerLink]="['/categorie', 'Services']">Services</a></li>
                     <li><a [routerLink]="['/categorie', 'Fabrication']">Fabrication</a></li>
@@ -42,14 +48,9 @@
                 </div>
 
                 <!-- Instance de SearchBar avec la loupe -->
-                <app-search-bar *ngIf="mode === 'validate'" [placeholder]="'Recherche avec validation !'"
-                    (search)="onSearch($event)"></app-search-bar>
-
-                <!-- Instance de SearchBar instantanée -->
-                <app-search-bar *ngIf="mode === 'realtime'" [placeholder]="'Recherche instantanée...'"
-                    (search)="onRealTimeSearch($event)"></app-search-bar>
+                <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
+                </app-search-bar>
             </div>
-
         </div>
     </nav>
 </header>
