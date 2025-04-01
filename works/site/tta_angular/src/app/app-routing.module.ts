@@ -30,18 +30,6 @@ export const routes: Routes = [
   { path: 'artisans/recherche/:keyword', component: ArtisansPageComponent, canActivate: [SearchGuard] },
   { path: 'artisans/categorie/:category', component: ArtisansPageComponent, canActivate: [CategoryGuard] },
 
-  // Route avec un Guard à la racine et des enfants
-  // {
-  //   path: 'artisans',
-  //   component: HomePageComponent,
-  //   canActivate: [artisansGuard], // Guard général pour l'accès aux artisans
-  //   children: [
-  //     { path: 'contact/:id', component: ContactPageComponent, canActivate: [ContactGuard] },
-  //     { path: 'recherche/:keyword', component: ArtisansPageComponent, canActivate: [SearchGuard] },
-  //     { path: 'categorie/:category', component: ArtisansPageComponent, canActivate: [CategoryGuard] },
-  //  ],
-  // }, 
-
   // Redirections conviviales
   {
     path: 'categorie/:category',

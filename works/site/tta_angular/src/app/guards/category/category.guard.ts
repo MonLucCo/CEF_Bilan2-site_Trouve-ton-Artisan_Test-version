@@ -18,26 +18,26 @@ export class CategoryGuard implements CanActivate {
    * Vérifie l'accès à une route en validant la catégorie fournie dans l'URL (via segments ou requêtes).
    */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    // passage dans le Guard à partir de quelle url
     console.log("[CategoryGuard] Appel du Guard à partir de l'url :", { stateUrl: state.url });
 
     // Extraction de la catégorie via `paramMap` ou `queryParamMap`
     const category = route.queryParamMap.get('categorie') || route.paramMap.get('category');
 
-    // Log des informations pour le débogage
-    console.log('[CategoryGuard] Tentative de navigation vers :', {
-      routeUrl: route.url,
+    console.log('[CategoryGuard] Tentative de navigation avec catégorie :', {
       stateUrl: state.url,
-      routeQueryParams: route.queryParamMap,
-      routeParams: route.paramMap,
       extractedCategory: category,
     });
 
     // Vérifier si la catégorie est absente ou invalide
     if (!category || category.trim() === '' || category.trim() === 'undefined') {
       console.warn('[CategoryGuard] : Catégorie absente ou invalide.');
-      this.sharedService.setCategory(null);
-      this.router.navigate(['/erreur-404']); // Redirection vers une page d'erreur
+
+      // Mise à jour du contexte et des données partagées
+      this.sharedService.setContextMode('erreur'); // Contexte d'erreur
+      this.sharedService.setCategory(null); // Réinitialise la catégorie
+      this.sharedService.setKeyword(''); // Réinitialise les mots-clés
+
+      this.router.navigate(['/erreur-404']); // Redirection vers la page d'erreur
       return of(false); // Empêche la navigation
     }
 
@@ -46,18 +46,34 @@ export class CategoryGuard implements CanActivate {
       map(isValid => {
         if (!isValid) {
           console.warn('[CategoryGuard] : Catégorie non valide :', category);
+
+          // Mise à jour du contexte et des données partagées pour une erreur
+          this.sharedService.setContextMode('erreur');
           this.sharedService.setCategory(null);
-          this.router.navigate(['/erreur-404']); // Redirection si non valide
+          this.sharedService.setKeyword('');
+
+          this.router.navigate(['/erreur-404']); // Redirection si la catégorie est invalide
           return false; // Empêche la navigation
         }
 
         console.log('[CategoryGuard] : Catégorie validée :', category);
-        this.sharedService.setCategory(category); // Mise à jour avec la catégorie
+
+        // Mise à jour du contexte et des données pour un succès
+        this.sharedService.setContextMode('list'); // Contexte liste
+        this.sharedService.setCategory(category); // Mise à jour de la catégorie
+        this.sharedService.setKeyword(''); // Réinitialise les mots-clés (aucun mot-clé pour le contexte catégorie)
+        this.sharedService.setFiltredMode('categoryOnly'); // Mode filtré par catégorie
+
         return true; // Autorise la navigation
       }),
       catchError((error) => {
-        console.error('[CategoryGuard] : Erreur lors de la validation.', error);
-        this.sharedService.setCategory(null); // Nettoyage en cas d'erreur
+        console.error('[CategoryGuard] : Erreur lors de la validation de la catégorie.', error);
+
+        // Mise à jour du contexte et des données partagées pour une erreur
+        this.sharedService.setContextMode('erreur');
+        this.sharedService.setCategory(null);
+        this.sharedService.setKeyword('');
+
         this.router.navigate(['/erreur-404']); // Redirection en cas d'erreur
         return of(false); // Empêche la navigation
       })

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
-import { filter } from 'rxjs';
 
 /**
  * Composant du Header affichant le menu et interagissant avec la catégorie active via SharedService.
@@ -14,16 +13,37 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   category: string | null = null; // Catégorie active dans le header
+  keyword: string = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
   topAction: boolean = false; // Permet de tracer le top d'une action
+  private isUpdatingUrl = false; // Drapeau pour contrôler les mises à jour
 
-  constructor(private sharedService: SharedService, private router: Router) { }
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    // Initialisation depuis l'URL pour éviter les conflits initiaux
+    this.syncFromUrl();
+
     // Abonnement aux changements de catégorie active via SharedService
     this.sharedService.currentCategory$.subscribe((category) => {
-      this.category = category;
-      console.log('[Header]-[OnInit] : Catégorie active mise à jour :', this.category);
+      if (!this.isUpdatingUrl) {
+        this.category = category;
+        this.updateUrlIfNeeded(); // Met à jour l'URL si nécessaire
+        console.log('[Header]-[OnInit] : Catégorie active mise à jour :', this.category);
+      }
+    });
+
+    // Abonnement aux changements de mot-clé via SharedService
+    this.sharedService.currentKeyword$.subscribe((keyword) => {
+      if (!this.isUpdatingUrl) {
+        this.keyword = keyword;
+        this.updateUrlIfNeeded(); // Met à jour l'URL si nécessaire
+        console.log('[Header]-[OnInit] : Mot-clé actif mis à jour :', this.keyword);
+      }
     });
   }
 
@@ -37,41 +57,30 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
+ * Met à jour l'URL en fonction des catégories et mots-clés.
+ */
+  private updateUrl(): void {
+    const queryParams: any = {};
+
+    if (this.category) {
+      queryParams['categorie'] = this.category.trim();
+    }
+    if (this.keyword) {
+      queryParams['recherche'] = this.keyword.trim();
+    }
+
+    this.router.navigate(['/artisans'], { queryParams });
+    console.log('[Header]-[updateUrl] : URL mise à jour avec paramètres :', queryParams);
+  }
+
+  /**
    * Méthode appelée lorsque la barre de recherche émet un événement.
    */
   onSearch(event: { category: string | null; keyword: string }): void {
-    const queryParams: any = {}; // Initialisation des paramètres d'URL
-
-    // // Ajout des paramètres category et keyword si présents
-    // if (event.category) {
-    //   queryParams['categorie'] = event.category.trim();
-    // }
-    // if (event.keyword) {
-    //   queryParams['recherche'] = event.keyword.trim();
-    // }
-
-    // // Redirection selon les paramètres
-    // // this.router.navigate(['/artisans'], { queryParams: { event } });
-    // if (!event.category && !event.keyword) {
-    //   this.router.navigate(['/artisans']); // Redirection vers /artisans si aucun paramètre
-    //   console.log('[Header]-[onSearch] : Redirection demandée vers /artisans', {
-    //     routerUrl: this.router.url,
-    //     queryParams: queryParams,
-    //     event: event
-    //   });
-    // } else {
-    //   this.router.navigate(['/artisans'], { queryParams }); // Redirection vers /recherche avec les paramètres
-    //   console.log('[Header]-[onSearch] : Redirection demandée vers /artisans avec requête', {
-    //     routerUrl: this.router.url,
-    //     queryParams: queryParams,
-    //     event: event
-    //   });
-    // }
-
-    console.log('[Header]-[onSearch] : Redirection effectuée avec les paramètres :', { event, queryParams });
-    // console.log('[Header]-[onSearch] : Activation effectuée avec les paramètres :', { event, queryParams });
+    this.sharedService.setCategory(event.category); // Mise à jour de la catégorie
+    this.sharedService.setKeyword(event.keyword); // Mise à jour du mot-clé
+    console.log('[Header]-[onSearch] : Événement de recherche traité :', event);
   }
-
 
   /**
    * Méthode appelée pour une recherche en temps réel (instantanée).
@@ -79,6 +88,46 @@ export class HeaderComponent implements OnInit {
   onRealTimeSearch(event: { category: string | null; keyword: string }): void {
     if (this.mode === 'realtime') {
       console.log('[Header]-[onSearch] : Recherche instantanée :', event);
+    }
+  }
+
+
+  /**
+   * Synchronise les paramètres initiaux depuis l'URL.
+   */
+  private syncFromUrl(): void {
+    const currentCategory = this.route.snapshot.queryParamMap.get('categorie');
+    const currentKeyword = this.route.snapshot.queryParamMap.get('recherche');
+
+    this.sharedService.setCategory(currentCategory);
+    this.sharedService.setKeyword(currentKeyword || '');
+    console.log('[Header]-[syncFromUrl] : Synchronisé depuis l’URL', {
+      categorie: currentCategory,
+      recherche: currentKeyword,
+    });
+  }
+
+  /**
+ * Vérifie si les paramètres d'URL doivent être mis à jour, pour éviter les boucles infinies.
+ */
+  private updateUrlIfNeeded(): void {
+    const queryParams: any = {};
+    if (this.category) queryParams['categorie'] = this.category.trim();
+    if (this.keyword) queryParams['recherche'] = this.keyword.trim();
+
+    // Compare les paramètres actuels et ceux souhaités
+    const currentCategory = this.route.snapshot.queryParamMap.get('categorie');
+    const currentKeyword = this.route.snapshot.queryParamMap.get('recherche');
+
+    if (
+      currentCategory !== queryParams['categorie'] ||
+      currentKeyword !== queryParams['recherche']
+    ) {
+      this.isUpdatingUrl = true; // Active le drapeau pour prévenir les boucles
+      this.router.navigate(['/artisans'], { queryParams }).finally(() => {
+        this.isUpdatingUrl = false; // Réinitialise le drapeau après la mise à jour
+      });
+      console.log('[Header]-[UpdateUrlIfNeeded] : URL mise à jour avec paramètres :', queryParams);
     }
   }
 
