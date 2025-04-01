@@ -1,52 +1,65 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { ArtisanService } from '../../services/artisan/artisan.service';
 import { SharedService } from '../../services/shared/shared.service';
 import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryGuard implements CanActivate {
   constructor(
-    private artisanService: ArtisanService, // Accéder aux catégories valides
-    private sharedService: SharedService, // Service partagé
-    private router: Router // Rediriger en cas d'erreur
+    private artisanService: ArtisanService, // Vérifie les catégories valides
+    private sharedService: SharedService,  // Gère les données partagées
+    private router: Router                 // Gère les redirections
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const category = route.paramMap.get('category'); // Récupère la catégorie depuis l'URL
+  /**
+   * Vérifie l'accès à une route en validant la catégorie fournie dans l'URL (via segments ou requêtes).
+   */
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    // passage dans le Guard à partir de quelle url
+    console.log("[CategoryGuard] Appel du Guard à partir de l'url :", { stateUrl: state.url });
 
-    // Vérifie si la catégorie est nulle
-    if (!category) {
-      console.log('[CategoryGuard] : Aucune catégorie fournie.');
+    // Extraction de la catégorie via `paramMap` ou `queryParamMap`
+    const category = route.queryParamMap.get('categorie') || route.paramMap.get('category');
+
+    // Log des informations pour le débogage
+    console.log('[CategoryGuard] Tentative de navigation vers :', {
+      routeUrl: route.url,
+      stateUrl: state.url,
+      routeQueryParams: route.queryParamMap,
+      routeParams: route.paramMap,
+      extractedCategory: category,
+    });
+
+    // Vérifier si la catégorie est absente ou invalide
+    if (!category || category.trim() === '' || category.trim() === 'undefined') {
+      console.warn('[CategoryGuard] : Catégorie absente ou invalide.');
       this.sharedService.setCategory(null);
-      this.router.navigate(['/erreur-404']); // Redirige si catégorie invalide
-      return of(false); // Observable<boolean> renvoyant false
+      this.router.navigate(['/erreur-404']); // Redirection vers une page d'erreur
+      return of(false); // Empêche la navigation
     }
+
+    // Validation de la catégorie via ArtisanService
     return this.artisanService.isValidCategory(category).pipe(
       map(isValid => {
-        if (isValid) {
-          console.log('[CategoryGard] : Catégorie validée : ', category);
-          this.sharedService.setCategory(category); // Définir la catégorie dans le service partagé
-          console.log('[CategoryGard] : Valeur de la catégorie mise à jour')
-          return true; // Autorise l'accès si la catégorie est valide
-        } else {
-          console.log('[CategoryGard] : Valeur non valide pour la catégorie : ', category);
-          this.sharedService.setCategory(null); // Réinitialise la catégorie si invalide
-          console.log('[CategoryGard] : Valeur de la catégorie mise à jour : ', null);
-          this.router.navigate(['/erreur-404']); // Redirige si catégorie invalide
-          console.log('[CategoryGard] : Redirection vers erreur-404')
-          return false;
+        if (!isValid) {
+          console.warn('[CategoryGuard] : Catégorie non valide :', category);
+          this.sharedService.setCategory(null);
+          this.router.navigate(['/erreur-404']); // Redirection si non valide
+          return false; // Empêche la navigation
         }
+
+        console.log('[CategoryGuard] : Catégorie validée :', category);
+        this.sharedService.setCategory(category); // Mise à jour avec la catégorie
+        return true; // Autorise la navigation
       }),
       catchError((error) => {
-        console.error('[CategoryGard]-[Erreur] : Erreur lors de la validation de la catégorie', error);
-        this.sharedService.setCategory(null); // Réinitialise la catégorie si invalide
-        console.log('[CategoryGard]-[Erreur] : Valeur de la catégorie mise à jour : ', null);
-        this.router.navigate(['/erreur-404']); // Redirige en cas d'erreur
-        console.log('[CategoryGard]-[Erreur] : Redirection vers erreur-404')
-        return of(false); // Refuse l'accès par défaut
+        console.error('[CategoryGuard] : Erreur lors de la validation.', error);
+        this.sharedService.setCategory(null); // Nettoyage en cas d'erreur
+        this.router.navigate(['/erreur-404']); // Redirection en cas d'erreur
+        return of(false); // Empêche la navigation
       })
     );
   }

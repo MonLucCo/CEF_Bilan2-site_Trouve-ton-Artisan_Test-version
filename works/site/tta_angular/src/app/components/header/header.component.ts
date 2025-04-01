@@ -25,26 +25,7 @@ export class HeaderComponent implements OnInit {
       this.category = category;
       console.log('[Header]-[OnInit] : Catégorie active mise à jour :', this.category);
     });
-
-    // Surveiller les changements de route pour réinitialiser la catégorie si nécessaire
-    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-    //   const currentUrl = event.urlAfterRedirects;
-    //   if (!currentUrl.startsWith('/categorie/')) {
-    //     this.sharedService.setCategory(null); // Réinitialise la catégorie
-    //     console.log('[Header]-[Router] : Réinitialisation de la catégorie après changement de route');
-    //   }
-    // });
   }
-
-  /**
-   * Définit une nouvelle catégorie et redirige vers la route correspondante.
-   * @param category - La catégorie sélectionnée
-   */
-  // onCategoryChange(category: string): void {
-  //   this.sharedService.setCategory(category); // Met à jour la catégorie active dans SharedService
-  //   this.router.navigate(['/categorie', category]); // Redirige vers la page de la catégorie
-  //   console.log('[Header]-[onCategoryChange] : Catégorie changée et redirection :', category);
-  // }
 
   /**
    * Méthode appelée lorsque l'utilisateur change de mode.
@@ -61,22 +42,34 @@ export class HeaderComponent implements OnInit {
   onSearch(event: { category: string | null; keyword: string }): void {
     const queryParams: any = {}; // Initialisation des paramètres d'URL
 
-    // Ajout des paramètres category et keyword si présents
-    if (event.category) {
-      queryParams['category'] = event.category;
-    }
-    if (event.keyword) {
-      queryParams['keyword'] = event.keyword;
-    }
+    // // Ajout des paramètres category et keyword si présents
+    // if (event.category) {
+    //   queryParams['categorie'] = event.category.trim();
+    // }
+    // if (event.keyword) {
+    //   queryParams['recherche'] = event.keyword.trim();
+    // }
 
-    // Redirection selon les paramètres
-    if (!event.category && !event.keyword) {
-      this.router.navigate(['/liste-artisans']); // Redirection vers /liste-artisans si aucun paramètre
-    } else {
-      this.router.navigate(['/recherche'], { queryParams }); // Redirection vers /recherche avec les paramètres
-    }
+    // // Redirection selon les paramètres
+    // // this.router.navigate(['/artisans'], { queryParams: { event } });
+    // if (!event.category && !event.keyword) {
+    //   this.router.navigate(['/artisans']); // Redirection vers /artisans si aucun paramètre
+    //   console.log('[Header]-[onSearch] : Redirection demandée vers /artisans', {
+    //     routerUrl: this.router.url,
+    //     queryParams: queryParams,
+    //     event: event
+    //   });
+    // } else {
+    //   this.router.navigate(['/artisans'], { queryParams }); // Redirection vers /recherche avec les paramètres
+    //   console.log('[Header]-[onSearch] : Redirection demandée vers /artisans avec requête', {
+    //     routerUrl: this.router.url,
+    //     queryParams: queryParams,
+    //     event: event
+    //   });
+    // }
 
-    console.log('[Header]-[onSearch] : Redirection effectuée avec les paramètres :', queryParams);
+    console.log('[Header]-[onSearch] : Redirection effectuée avec les paramètres :', { event, queryParams });
+    // console.log('[Header]-[onSearch] : Activation effectuée avec les paramètres :', { event, queryParams });
   }
 
 

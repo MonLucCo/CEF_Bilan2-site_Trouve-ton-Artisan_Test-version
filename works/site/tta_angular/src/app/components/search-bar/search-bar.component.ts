@@ -29,24 +29,41 @@ export class SearchBarComponent implements OnInit {
    * Initialise le composant et s'abonne aux changements de catégorie depuis le SharedService.
    */
   ngOnInit(): void {
+    let isInitialized = false;
+
     // Abonnement aux changements de catégorie
     this.sharedService.currentCategory$.subscribe((category) => {
       this.category = category; // Met à jour localement la catégorie
       this.categoryActive = true; // Réinitialise l'activation de la catégorie
-      this.triggerSearch();
-      console.log('[SearchBar]-[ngOnInit] : Mise à jour liste et Catégorie par SearchBar :', this.category);
+      if (isInitialized) {
+        this.triggerSearch();
+        console.log('[SearchBar]-[ngOnInit] : Mise à jour liste et Catégorie par SearchBar :', this.category);
+      } else {
+        console.log('[SearchBar]-[ngOnInit] : Mise à jour liste et Catégorie par SearchBar :', this.category);
+      }
     });
 
     // Abonnement aux changments de mode de recherche
-    this; this.sharedService.currentSearchMode$.subscribe((mode) => {
+    this.sharedService.currentSearchMode$.subscribe((mode) => {
       this.modeOnRealTimeSearch = mode === 'validateOff'; // Active/Désactive la recherche instantanée
       this.placeholder = mode === 'validateOn'
         ? 'Recherche avec validation !'
         : 'Recherche instantanée !'; // Met à jour le placeholder
-      console.log('[SearchBar]-[ngOnInit] : Récupération du mode courant de recherche dans SearchBar :', mode);
-      console.log('[SearchBar]-[ngOnInit] : Mode de recherche (temps réel) mise à jour dans SearchBar :', this.modeOnRealTimeSearch);
-      console.log('[SearchBar]-[ngOnInit] : PlaceHolder mis à jour dans SearchBar :', this.placeholder);
+      if (isInitialized) {
+        this.triggerSearch();
+        console.log('[SearchBar]-[ngOnInit] : Récupération du mode courant de recherche dans SearchBar :', mode);
+        console.log('[SearchBar]-[ngOnInit] : Mode de recherche (temps réel) mise à jour dans SearchBar :', this.modeOnRealTimeSearch);
+        console.log('[SearchBar]-[ngOnInit] : PlaceHolder mis à jour dans SearchBar :', this.placeholder);
+      } else {
+        console.log('[SearchBar]-[ngOnInit] : Situation initiale dans SearchBar :', {
+          mode,
+          modeOnRealTimeSearch: this.modeOnRealTimeSearch,
+          placeholder: this.placeholder
+        });
+      }
     });
+
+    isInitialized = true; // Initialisation terminée
   }
 
   /**
@@ -70,7 +87,7 @@ export class SearchBarComponent implements OnInit {
       category: this.category,
       keyword: this.keyword.trim(),
     });
-    this.updateUrl();
+    // this.updateUrl();
   }
 
   /**
@@ -98,16 +115,18 @@ export class SearchBarComponent implements OnInit {
   updateUrl(): void {
     const queryParams: any = {};
     if (this.categoryActive && this.category) {
-      queryParams['category'] = this.category;
+      queryParams['categorie'] = this.category;
     }
     if (this.keyword.trim()) {
-      queryParams['keyword'] = this.keyword.trim();
+      queryParams['recherche'] = this.keyword.trim();
     }
 
     if (!this.category && !this.keyword.trim()) {
-      this.router.navigate(['/liste-artisans']); // Basculer sur '/liste-artisans'
+      console.log('[SearchBar]-[updateUrl] redirection (1) vers /artisans', { queryParams, category: this.category, keyword: this.keyword });
+      this.router.navigate(['/artisans']); // Basculer sur '/artisans pour obtenir la liste de tous les artisans'
     } else {
-      this.router.navigate(['/recherche'], { queryParams });
+      console.log('[SearchBar]-[updateUrl] redirection (2) vers /artisans', { queryParams, category: this.category, keyword: this.keyword });
+      this.router.navigate(['/artisans'], { queryParams });
     }
   }
 }

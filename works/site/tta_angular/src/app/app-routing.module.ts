@@ -8,17 +8,59 @@ import { CategoryArtisansComponent } from './components/category-artisans/catego
 import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
 import { CategoryGuard } from './guards/category/category.guard';
 import { SearchGuard } from './guards/search/search.guard';
+import { ContactGuard } from './guards/contact/contact.guard';
+import { artisansGuard } from './guards/artisans/artisans.guard';
+import { contactRedirectGuard } from './guards/contact-redirect/contact-redirect.guard';
+import { testRouteGuard } from './guards/test-route/test-route.guard';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { entryGuard } from './guards/entry/entry.guard';
+import { clearUrlGuard } from './guards/clear-url/clear-url.guard';
 
-// Exportation des routes pour une réutilisation (par exemple, dans les TU)
 export const routes: Routes = [
-  { path: 'accueil', component: HomePageComponent },
-  { path: 'liste-artisans', component: ArtisansPageComponent },
-  { path: 'categorie/:category', component: CategoryArtisansComponent, canActivate: [CategoryGuard] },
-  { path: 'recherche', component: SearchArtisansComponent, canActivate: [SearchGuard] },
-  { path: 'fiche-artisan', component: ArtisanContactPageComponent },
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
-  { path: 'erreur-404', component: Error404PageComponent },
-  { path: '**', redirectTo: '/erreur-404' } // pour toutes les autres URLs
+  // Route d'accueil
+  { path: '', component: HomePageComponent, canActivate: [artisansGuard] },
+  { path: 'accueil', component: HomePageComponent, canActivate: [clearUrlGuard] },
+
+  // Route d'erreur
+  { path: 'erreur-404', component: Error404PageComponent, canActivate: [clearUrlGuard] },
+
+  // Routes principales
+  { path: 'artisans', component: HomePageComponent, canActivate: [artisansGuard] },
+  { path: 'artisans/contact/:id', component: ContactPageComponent, canActivate: [ContactGuard] },
+  { path: 'artisans/recherche/:keyword', component: ArtisansPageComponent, canActivate: [SearchGuard] },
+  { path: 'artisans/categorie/:category', component: ArtisansPageComponent, canActivate: [CategoryGuard] },
+
+  // Route avec un Guard à la racine et des enfants
+  // {
+  //   path: 'artisans',
+  //   component: HomePageComponent,
+  //   canActivate: [artisansGuard], // Guard général pour l'accès aux artisans
+  //   children: [
+  //     { path: 'contact/:id', component: ContactPageComponent, canActivate: [ContactGuard] },
+  //     { path: 'recherche/:keyword', component: ArtisansPageComponent, canActivate: [SearchGuard] },
+  //     { path: 'categorie/:category', component: ArtisansPageComponent, canActivate: [CategoryGuard] },
+  //  ],
+  // }, 
+
+  // Redirections conviviales
+  {
+    path: 'categorie/:category',
+    redirectTo: '/artisans/categorie/:category',
+    pathMatch: 'full',
+  },
+  {
+    path: 'recherche/:keyword',
+    redirectTo: '/artisans/recherche/:keyword',
+    pathMatch: 'full',
+  },
+  {
+    path: 'contact/:id',
+    redirectTo: '/artisans/contact/:id',
+    pathMatch: 'full',
+  },
+
+  // Route wildcard
+  { path: '**', redirectTo: '/erreur-404' },
 ];
 
 @NgModule({
