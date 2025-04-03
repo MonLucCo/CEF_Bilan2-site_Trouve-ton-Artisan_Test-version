@@ -24,6 +24,13 @@ import { SearchArtisansComponent } from './components/search-artisans/search-art
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ArtisanService } from './services/artisan/artisan.service';
 import { provideAppInitializer } from '@angular/core';
+import { FicheArtisanComponent } from './components/fiche-artisan/fiche-artisan.component';
+import { TopFilterPipe } from './pipes/top-filter/top-filter.pipe';
+import { CategoryFilterPipe } from './pipes/category-filter/category-filter.pipe';
+import { SearchFilterPipe } from './pipes/search-filter/search-filter.pipe';
+import { IdFilterPipe } from './pipes/id-filter/id-filter.pipe';
+import { TopArtisanTestComponent } from './components/tests/top-artisan-test/top-artisan-test.component';
+import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +50,14 @@ import { provideAppInitializer } from '@angular/core';
     CategoryArtisansComponent,
     SearchBarComponent,
     SearchArtisansComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    FicheArtisanComponent,
+    TopFilterPipe,
+    CategoryFilterPipe,
+    SearchFilterPipe,
+    IdFilterPipe,
+    TopArtisanTestComponent,
+    RatingStarsComponent
   ],
   imports: [
     CommonModule,

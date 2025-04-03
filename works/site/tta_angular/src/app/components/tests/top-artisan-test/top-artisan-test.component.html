@@ -1,0 +1,19 @@
+<div class="top-artisans-container">
+    <p>top-artisan-test works!</p>
+
+    <h3>Artisans au Top (Méthode ArtisanService)</h3>
+    <div class="d-flex flex-wrap gap-3">
+        <!-- Utilisation de la méthode ArtisanService -->
+        <div *ngFor="let artisan of topArtisansDirect" class="col-md-4">
+            <app-fiche-artisan [artisan]="artisan"></app-fiche-artisan>
+        </div>
+    </div>
+
+    <h3>Artisans au Top (Pipe TopFilter)</h3>
+    <div class="d-flex flex-wrap gap-3">
+        <!-- Utilisation du pipe topFilter -->
+        <div *ngFor="let artisan of artisans | topFilter" class="col-md-4">
+            <app-fiche-artisan [artisan]="artisan"></app-fiche-artisan>
+        </div>
+    </div>
+</div>

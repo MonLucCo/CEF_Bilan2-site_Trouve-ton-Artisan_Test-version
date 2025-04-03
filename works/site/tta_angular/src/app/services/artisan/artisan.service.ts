@@ -8,6 +8,10 @@ import { ContactCard } from '../../models/contact-card.models';
 import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toContactCard } from '../../utils/to-contact-card.utils';
 import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
+import { topFilter } from '../../pipes/top-filter/top-filter.pipe';
+import { searchFilter } from '../../pipes/search-filter/search-filter.pipe';
+import { categoryFilter } from '../../pipes/category-filter/category-filter.pipe';
+import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
 
 /**
  * Service pour gérer les données des artisans (résumés) et des contacts (détails).
@@ -374,7 +378,7 @@ export class ArtisanService {
   getArtisansByCategory(category: string): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.filter((artisan) => artisan.category === category))
+      map((artisans) => categoryFilter(artisans, category))
     );
   }
 
@@ -391,7 +395,7 @@ export class ArtisanService {
   getArtisanById(id: string): Observable<ArtisanCard | undefined> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.find((artisan) => artisan.id === id))
+      map((artisans) => idFilter(artisans, id))
     );
   }
 
@@ -408,7 +412,7 @@ export class ArtisanService {
   getContactById(id: string): Observable<ContactCard | undefined> {
     return this.contacts$.pipe(
       startWith([]),
-      map((contacts) => contacts.find((contact) => contact.id === id))
+      map((contacts) => idFilter(contacts, id))
     );
   }
 
@@ -426,13 +430,7 @@ export class ArtisanService {
   searchArtisans(keyword: string): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) =>
-        artisans.filter((artisan) =>
-          artisan.name.toLowerCase().includes(keyword.toLowerCase()) ||
-          artisan.specialty.toLowerCase().includes(keyword.toLowerCase()) ||
-          artisan.location.toLowerCase().includes(keyword.toLowerCase())
-        )
-      )
+      map((artisans) => searchFilter(artisans, keyword))
     );
   }
 
@@ -448,7 +446,7 @@ export class ArtisanService {
   getArtisanByTop(): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.filter((artisan) => artisan.top === true))
+      map((artisans) => topFilter(artisans))
     );
   }
 
