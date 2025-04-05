@@ -40,6 +40,7 @@ export class SearchGuard implements CanActivate {
       this.sharedService.setContextMode('erreur'); // Nouveau mode pour le contexte d'erreur
       this.sharedService.setCategory(null); // Réinitialise la catégorie
       this.sharedService.setKeyword(''); // Réinitialise les mots-clés
+      this.sharedService.setContactId(null); // Réinitilaise l'identifiant de contact
 
       this.router.navigate(['/erreur-404']); // Redirection vers la page 404
       return of(false); // Empêche la navigation
@@ -54,6 +55,7 @@ export class SearchGuard implements CanActivate {
     this.sharedService.setContextMode('list'); // Contexte liste pour la recherche
     this.sharedService.setCategory(category || null); // Mise à jour de la catégorie
     this.sharedService.setKeyword(searchTerm || ''); // Mise à jour des mots-clés
+    this.sharedService.setContactId(null); // Réinitialise l'identifiant de contact
 
     if (category && searchTerm) {
       this.sharedService.setFiltredMode('fullFiltred'); // Mode combiné

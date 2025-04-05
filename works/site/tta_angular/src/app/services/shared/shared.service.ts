@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
  *   - `currentFiltredMode$` : Observable exposé pour suivre les modes de filtrage.
  *   - `currentContextMode$` : Observable exposé pour suivre le mode d'affichage souhaité.
  *   - `currentKeyword$` : Observable exposé pour suivre la chaîne de recherche en temps réel.
+ *   - `currentContactid$` : Observable exposé pour suivre l'identifiant du contact sélectionné en temps réel.
  * 
  * - **Méthodes** :
  *   - `resetFiltredMode(): void` : Réinitialise le mode de filtrage et tous les états associés.
@@ -23,6 +24,8 @@ import { BehaviorSubject } from 'rxjs';
  *   - `getSearchMode(): 'validateOn' | 'validateOff'` : Récupère le mode de recherche actif de manière synchrone.
  *   - `setContextMode(mode: 'list' | 'contact' | 'erreur'): void` : Définit le mode d'affichage actif.
  *   - `getContextMode(): 'list' | 'contact' | 'erreur'` : Récupère le mode d'affichage souhaité de manière synchrone.
+ *   - `setContactId(id: string | null): void` : Définit l'identifiant du contact sélectionné.
+ *   - `getContactId() : string | null` : Récupère l'identifiant du contact sélectionné.
  */
 @Injectable({
   providedIn: 'root',
@@ -48,6 +51,39 @@ export class SharedService {
   private _keywordSubject = new BehaviorSubject<string>('');
   currentKeyword$ = this._keywordSubject.asObservable();
 
+  // Gestion de l'identifiant du contact sélectionné
+  private currentContactIdSubject = new BehaviorSubject<string | null>(null);
+  currentContactId$ = this.currentContactIdSubject.asObservable();
+
+  /**
+   * Méthode privée pour gérer les changements conditionnels sur un BehaviorSubject.
+   * Met à jour la valeur du subject uniquement si celle-ci est différente de la valeur actuelle.
+   * Permet d'exécuter une fonction callback après la mise à jour, si définie.
+   * 
+   * @template T - Type de la valeur suivie par le BehaviorSubject.
+   * @param subject - Le BehaviorSubject à modifier.
+   * @param newValue - La nouvelle valeur à appliquer au BehaviorSubject.
+   * @param callback - Fonction optionnelle à exécuter si le changement est effectué.
+   */
+  private changeValue<T>(
+    subject: BehaviorSubject<T>,
+    newValue: T,
+    callback?: () => void
+  ): void {
+    if (subject.getValue() !== newValue) {
+      subject.next(newValue); // Change la valeur uniquement si différente
+      console.log(`[SharedService] : Valeur changée - Nouvelle valeur : ${newValue}`);
+
+      if (callback) {
+        callback(); // Exécute le callback si défini
+      }
+    }
+    // else {
+    //   // Pas de modification, aucun log nécessaire
+    //   console.log('[SharedService] : Aucune modification détectée.');
+    // }
+  }
+
   /**
    * Recalcule le mode de filtrage en fonction de la catégorie et du mot-clé.
    * (machine d'états et de transitions)
@@ -57,26 +93,28 @@ export class SharedService {
     const category = this.getCategory();
     const categoryActive = category !== null;
 
+    let newMode: 'searchOnly' | 'categoryOnly' | 'fullFiltred' | null = null;
+
     if (keyword && categoryActive) {
-      this._filtredModeSubject.next('fullFiltred');
+      newMode = 'fullFiltred';
     } else if (categoryActive) {
-      this._filtredModeSubject.next('categoryOnly');
+      newMode = 'categoryOnly';
     } else if (keyword) {
-      this._filtredModeSubject.next('searchOnly');
-    } else {
-      this._filtredModeSubject.next(null); // Aucun filtrage actif
+      newMode = 'searchOnly';
     }
 
-    console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
+    // Émettre uniquement si le mode est différent
+    this.changeValue(this._filtredModeSubject, newMode);
+    // console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
   }
 
   /**
    * Réinitialise le mode de filtrage et tous les états associés.
    */
   resetFiltredMode(): void {
-    this._categorySubject.next(null);
-    this._keywordSubject.next('');
-    this._filtredModeSubject.next(null); // Réinitialise à "none"
+    this.changeValue(this._categorySubject, null);
+    this.changeValue(this._keywordSubject, '');
+    this.changeValue(this._filtredModeSubject, null); // Réinitialise à "none"
     console.log('[SharedService] : Machine d\'état réinitialisée. FiltredMode = none');
   }
 
@@ -85,8 +123,8 @@ export class SharedService {
    * @param mode - Le mode de filtrage à définir ('searchOnly', 'categoryOnly', 'fullFiltred')
    */
   setFiltredMode(mode: 'searchOnly' | 'categoryOnly' | 'fullFiltred'): void {
-    this._filtredModeSubject.next(mode);
-    console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
+    this.changeValue(this._filtredModeSubject, mode);
+    // console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
   }
 
   /**
@@ -94,9 +132,8 @@ export class SharedService {
    * @param category - La catégorie à définir (null si aucune catégorie)
    */
   setCategory(category: string | null): void {
-    this._categorySubject.next(category);
-    console.log('[SharedService] : Catégorie active mise à jour :', this._categorySubject.getValue());
-    this.updateFiltredMode(); // Recalcule automatiquement le mode de filtrage
+    this.changeValue(this._categorySubject, category, () => this.updateFiltredMode()); // Si modification, recalcule le mode
+    // console.log('[SharedService] : Catégorie active mise à jour :', this._categorySubject.getValue());
   }
 
   /**
@@ -112,9 +149,8 @@ export class SharedService {
    * @param keyword - La chaîne de caractères à définir (string vide si aucun mot-clé)
    */
   setKeyword(keyword: string): void {
-    this._keywordSubject.next(keyword.trim());
-    console.log('[SharedService] : Mot-clé mis à jour :', this._keywordSubject.getValue());
-    this.updateFiltredMode(); // Recalcule le mode de filtrage
+    this.changeValue(this._keywordSubject, keyword.trim(), () => this.updateFiltredMode()); // Si modification, recalcule le mode
+    // console.log('[SharedService] : Mot-clé mis à jour :', this._keywordSubject.getValue());
   }
 
   /**
@@ -130,8 +166,8 @@ export class SharedService {
    * @param mode - Le mode de recherche à définir ('validateOn' ou 'validateOff')
    */
   setSearchMode(mode: 'validateOn' | 'validateOff'): void {
-    this._searchModeSubject.next(mode);
-    console.log('[SharedService] : Mode de recherche mis à jour :', this._searchModeSubject.getValue());
+    this.changeValue(this._searchModeSubject, mode);
+    // console.log('[SharedService] : Mode de recherche mis à jour :', this._searchModeSubject.getValue());
   }
 
   /**
@@ -155,8 +191,8 @@ export class SharedService {
    * @param mode - Le mode d'affichage à définir ('list' ou 'contact')
    */
   setContextMode(mode: 'list' | 'contact' | 'erreur'): void {
-    this._contextModeSubject.next(mode);
-    console.log("[SharedService] : Mode d'affichage mis à jour :", this._contextModeSubject.getValue());
+    this.changeValue(this._contextModeSubject, mode);
+    // console.log("[SharedService] : Mode d'affichage mis à jour :", this._contextModeSubject.getValue());
   }
 
   /**
@@ -165,5 +201,21 @@ export class SharedService {
    */
   getContextMode(): 'list' | 'contact' | 'erreur' {
     return this._contextModeSubject.getValue();
+  }
+
+  /**
+   * Définit un nouvel ID pour le contact sélectionné.
+   * @param id - Identifiant du contact, ou null pour réinitialiser.
+   */
+  setContactId(id: string | null): void {
+    this.changeValue(this.currentContactIdSubject, id);
+  }
+
+  /**
+   * Récupère l'ID actuel du contact (valeur synchronisée).
+   * @returns ID du contact sélectionné, ou null si non défini.
+   */
+  getContactId(): string | null {
+    return this.currentContactIdSubject.getValue();
   }
 }

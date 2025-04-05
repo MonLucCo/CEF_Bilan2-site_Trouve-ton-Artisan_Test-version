@@ -36,6 +36,7 @@ export class CategoryGuard implements CanActivate {
       this.sharedService.setContextMode('erreur'); // Contexte d'erreur
       this.sharedService.setCategory(null); // Réinitialise la catégorie
       this.sharedService.setKeyword(''); // Réinitialise les mots-clés
+      this.sharedService.setContactId(null); // Réinitialise l'identifiant de contact
 
       this.router.navigate(['/erreur-404']); // Redirection vers la page d'erreur
       return of(false); // Empêche la navigation
@@ -51,6 +52,7 @@ export class CategoryGuard implements CanActivate {
           this.sharedService.setContextMode('erreur');
           this.sharedService.setCategory(null);
           this.sharedService.setKeyword('');
+          this.sharedService.setContactId(null);
 
           this.router.navigate(['/erreur-404']); // Redirection si la catégorie est invalide
           return false; // Empêche la navigation
@@ -63,6 +65,7 @@ export class CategoryGuard implements CanActivate {
         this.sharedService.setCategory(category); // Mise à jour de la catégorie
         this.sharedService.setKeyword(''); // Réinitialise les mots-clés (aucun mot-clé pour le contexte catégorie)
         this.sharedService.setFiltredMode('categoryOnly'); // Mode filtré par catégorie
+        this.sharedService.setContactId(null); // Réinitialise l'identifiant de contact
 
         return true; // Autorise la navigation
       }),
@@ -73,6 +76,7 @@ export class CategoryGuard implements CanActivate {
         this.sharedService.setContextMode('erreur');
         this.sharedService.setCategory(null);
         this.sharedService.setKeyword('');
+        this.sharedService.setContactId(null);
 
         this.router.navigate(['/erreur-404']); // Redirection en cas d'erreur
         return of(false); // Empêche la navigation

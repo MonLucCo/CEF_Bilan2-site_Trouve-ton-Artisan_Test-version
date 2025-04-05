@@ -37,6 +37,7 @@ export class ContactGuard implements CanActivate {
       this.sharedService.setContextMode('erreur');
       this.sharedService.setCategory(null); // Réinitialise la catégorie
       this.sharedService.setKeyword(''); // Réinitialise les mots-clés
+      this.sharedService.setContactId(null); // Réinitialise l'identifiant du contact
 
       this.router.navigate(['/erreur-404']); // Redirection vers la route d'erreur
       return of(false); // Empêche la navigation
@@ -47,6 +48,7 @@ export class ContactGuard implements CanActivate {
       map((isValid) => {
         if (isValid) {
           console.log('[ContactGuard] : Contact ID valide :', contactId);
+          this.sharedService.setContactId(contactId);
 
           // Mise à jour des contextes pour le contact
           this.sharedService.setContextMode('contact');
@@ -56,6 +58,7 @@ export class ContactGuard implements CanActivate {
           return true; // Autoriser la navigation
         } else {
           console.warn('[ContactGuard] : Contact ID invalide :', contactId);
+          this.sharedService.setContactId(null);
 
           // Mise à jour des contextes pour l'erreur
           this.sharedService.setContextMode('erreur');
@@ -73,6 +76,7 @@ export class ContactGuard implements CanActivate {
         this.sharedService.setContextMode('erreur');
         this.sharedService.setCategory(null);
         this.sharedService.setKeyword('');
+        this.sharedService.setContactId(null);
 
         this.router.navigate(['/erreur-404']); // Redirection en cas d'erreur
         return of(false); // Empêche la navigation par défaut

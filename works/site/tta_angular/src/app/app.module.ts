@@ -31,6 +31,7 @@ import { SearchFilterPipe } from './pipes/search-filter/search-filter.pipe';
 import { IdFilterPipe } from './pipes/id-filter/id-filter.pipe';
 import { TopArtisanTestComponent } from './components/tests/top-artisan-test/top-artisan-test.component';
 import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
+import { ContactArtisanComponent } from './components/contact-artisan/contact-artisan.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { RatingStarsComponent } from './components/rating-stars/rating-stars.com
     SearchFilterPipe,
     IdFilterPipe,
     TopArtisanTestComponent,
-    RatingStarsComponent
+    RatingStarsComponent,
+    ContactArtisanComponent
   ],
   imports: [
     CommonModule,

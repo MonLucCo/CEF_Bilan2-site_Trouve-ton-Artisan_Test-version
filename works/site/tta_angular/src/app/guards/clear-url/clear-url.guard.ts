@@ -23,6 +23,7 @@ export const clearUrlGuard: CanActivateFn = (route, state) => {
     sharedService.setContextMode('erreur'); // Nouveau contexte pour le mode erreur
     sharedService.setCategory(null); // Réinitialise la catégorie
     sharedService.setKeyword(''); // Réinitialise les mots-clés
+    sharedService.setContactId(null); // Réinitialise l'identifiant de contact
     // Ne modifie pas FiltredMode ni SearchMode
     return true;
   }
@@ -33,6 +34,7 @@ export const clearUrlGuard: CanActivateFn = (route, state) => {
     sharedService.setContextMode('list'); // Contexte liste par défaut pour l'accueil
     sharedService.setCategory(null); // Réinitialise la catégorie
     sharedService.setKeyword(''); // Réinitialise les mots-clés
+    sharedService.setContactId(null); // Réinitialise l'identifiant de contact
     // Ne modifie pas FiltredMode ni SearchMode
     return true;
   }

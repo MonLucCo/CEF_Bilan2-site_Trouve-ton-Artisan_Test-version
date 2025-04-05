@@ -1,1 +1,12 @@
-<p>contact-page works!</p>
+<div class="card d-flex flex-row gap-2">
+    <div class="container col-6">
+        <app-fiche-artisan *ngIf="selectedArtisan" [artisan]="selectedArtisan">
+        </app-fiche-artisan>
+        <app-contact-artisan *ngIf="selectedContact" [contact]="selectedContact"
+            (emailValidityChange)="onEmailValidityChange($event)">
+        </app-contact-artisan>
+    </div>
+    <div class="container col-6">
+        <app-contact-form *ngIf="isEmailValid"></app-contact-form>
+    </div>
+</div>

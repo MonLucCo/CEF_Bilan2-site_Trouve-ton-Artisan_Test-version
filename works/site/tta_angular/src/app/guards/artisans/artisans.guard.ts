@@ -50,6 +50,7 @@ export const artisansGuard: CanActivateFn = (route, state) => {
     console.log("[artisansGuard] Contexte 'Contact' détecté et validé.");
     sharedService.setContextMode('contact'); // Mise à jour du mode de contexte
     sharedService.setKeyword(''); // Réinitialise le mot-clé pour éviter des conflits
+    sharedService.setContactId(contactId); // Affecte l'identiant de contact
     router.navigate(['/artisans/contact', contactId]);
     return false;
   }
@@ -57,6 +58,7 @@ export const artisansGuard: CanActivateFn = (route, state) => {
   // **Contexte liste**
   if (isListContext) {
     sharedService.setContextMode('list'); // Mise à jour du mode de contexte
+    sharedService.setContactId(null); // Réinitialise l'identifiant de contact 
     sharedService.setCategory(category || null);
     sharedService.setKeyword(keyword || '');
 
@@ -81,6 +83,7 @@ export const artisansGuard: CanActivateFn = (route, state) => {
   sharedService.setContextMode('list'); // Définit le mode de contexte par défaut
   sharedService.setCategory(null); // Réinitialise la catégorie
   sharedService.setKeyword(''); // Réinitialise les mots-clés
+  sharedService.setContactId(null); // Réinitialise l'identifiant de contact
   sharedService.setFiltredMode('searchOnly'); // Mode par défaut lors de la redirection
   router.navigate(['/accueil']);
   return false;

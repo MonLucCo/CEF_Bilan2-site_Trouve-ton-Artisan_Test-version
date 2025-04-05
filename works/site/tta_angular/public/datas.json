@@ -202,5 +202,17 @@
 		"website": "https://sup-hair.fr",
 		"category": "Services",
 		"top": false
+	},
+	{
+		"id": "18",
+		"name": "C'est une erreur",
+		"specialty": "Coiffeur",
+		"note": "4.1",
+		"location": "Romans-sur-Isère",
+		"about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ",
+		"email": "sup-hair-gmail.com",
+		"website": "https://sup-hair.fr",
+		"category": "Services",
+		"top": false
 	}
 ]

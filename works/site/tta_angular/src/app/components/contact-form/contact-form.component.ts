@@ -18,7 +18,7 @@ export class ContactFormComponent {
       name: ['', Validators.required],
       subject: ['', Validators.required],
       message: ['', Validators.required]
-    })
+    });
   }
 
   onSubmit() {
@@ -26,14 +26,17 @@ export class ContactFormComponent {
       this.emailService.sendEmail(this.contactForm.value).subscribe({
         next: () => {
           this.successMessage = 'Email envoyé avec succès !';
+          this.errorMessage = '';
           this.contactForm.reset();
         },
         error: () => {
+          this.successMessage = '';
           this.errorMessage = 'Une erreur s\'est produite lors de l\'envoi.';
         }
       });
     } else {
       this.errorMessage = 'Veuillez remplir tous les champs.';
+      this.successMessage = '';
     }
   }
 }

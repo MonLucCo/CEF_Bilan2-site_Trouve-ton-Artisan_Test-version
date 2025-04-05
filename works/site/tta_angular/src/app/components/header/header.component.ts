@@ -98,12 +98,15 @@ export class HeaderComponent implements OnInit {
   private syncFromUrl(): void {
     const currentCategory = this.route.snapshot.queryParamMap.get('categorie');
     const currentKeyword = this.route.snapshot.queryParamMap.get('recherche');
+    const currentContactId = this.route.snapshot.queryParamMap.get('contact');
 
     this.sharedService.setCategory(currentCategory);
     this.sharedService.setKeyword(currentKeyword || '');
+    this.sharedService.setContactId(currentContactId || null);
     console.log('[Header]-[syncFromUrl] : Synchronisé depuis l’URL', {
       categorie: currentCategory,
       recherche: currentKeyword,
+      contact: currentContactId,
     });
   }
 
