@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable, of } from 'rxjs';
 import { catchError, map, startWith, tap } from 'rxjs/operators';
 import { Artisan } from '../../models/artisan.models';
 import { ArtisanCard } from '../../models/artisan-card.models';
@@ -8,6 +8,10 @@ import { ContactCard } from '../../models/contact-card.models';
 import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toContactCard } from '../../utils/to-contact-card.utils';
 import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
+import { topFilter } from '../../pipes/top-filter/top-filter.pipe';
+import { searchFilter } from '../../pipes/search-filter/search-filter.pipe';
+import { categoryFilter } from '../../pipes/category-filter/category-filter.pipe';
+import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
 
 /**
  * Service pour gérer les données des artisans (résumés) et des contacts (détails).
@@ -55,7 +59,8 @@ export class ArtisanService {
    * Ce fichier sert de source principale pour charger les artisans, leurs contacts et les catégories.
    * La récupération est effectuée via `HttpClient`.
    */
-  private dataUrl = '/datas.json';
+  private readonly dataUrl: string = '/datas.json';
+
 
 
   /**
@@ -126,97 +131,205 @@ export class ArtisanService {
   public categories$: Observable<string[]> = this._categoriesSubject.asObservable();
 
   /**
-   * Initialise le service en chargeant les artisans, les contacts et les catégories.
+   * État d'initialisation du service ArtisanService.
    * 
-   * @param http - Service `HttpClient` utilisé pour effectuer les requêtes HTTP.
-   * 
+   * @private
+   * @property _isInitialized - Indique si le service a été correctement initialisé.
+   * @property _initializePromise - Contient la promesse liée à l'initialisation asynchrone.
    * @remarks
-   * Les appels aux méthodes privées `loadArtisans`, `loadContacts`, et `loadCategories` s'effectuent dès l'initialisation.
-   * Cela garantit que tous les flux exposés par le service contiennent des valeurs dès leur abonnement.
+   * Ces variables garantissent que l'initialisation n'est exécutée qu'une seule fois, 
+   * même si plusieurs appels à `initialize()` sont effectués.
+   */
+  private _isInitialized = false;
+  private _initializePromise!: Promise<void>; // Désactivation des vérifications strictes de TypeScript : la propriété sera initialisée avant emploi.
+  /**
+ * Initialise le service ArtisanService.
+ * 
+ * @returns Promise<void> - Une promesse résolue une fois que toutes les données (artisans, contacts, catégories) ont été chargées.
+ * @remarks
+ * - Si le service est déjà initialisé, la méthode retourne la promesse existante.
+ * - Utilise les méthodes privées `loadArtisans`, `loadContacts`, et `loadCategories` pour charger les données nécessaires.
+ * - Destinée à être utilisée avec Angular APP_INITIALIZER pour garantir que l'application démarre uniquement 
+ * lorsque l'initialisation du service est terminée.
+ */
+  initialize(): Promise<void> {
+    if (this._isInitialized) {
+      console.warn('[ArtisanService] Initialisation déjà effectuée.');
+      return this._initializePromise; // Retourne la même promesse pour les appels répétés
+    }
+
+    console.log('[ArtisanService] Initialisation en cours...');
+    this._initializePromise = Promise.all([
+      this.loadArtisans(),
+      this.loadContacts(),
+      this.loadCategories(),
+    ])
+      .then(() => {
+        console.log('[ArtisanService] Initialisation réussie.');
+        this._isInitialized = true;
+      })
+      .catch((error) => {
+        console.error('[ArtisanService] Erreur pendant l\'initialisation.', error);
+      })
+
+    return this._initializePromise;
+  }
+
+  /**
+   * Constructeur du service ArtisanService.
+   * 
+   * @param http - Instance de `HttpClient` utilisée pour effectuer les requêtes HTTP.
+   * @remarks
+   * - Initialise le service en appelant la méthode `initialize()`.
+   * - Garantit que les données des artisans, des contacts, et des catégories sont disponibles 
+   * dès le démarrage de l'application.
    */
   constructor(private http: HttpClient) {
-    this.loadArtisans();
-    this.loadContacts();
-    this.loadCategories();
+    if (!this._initializePromise) { // Vérifie si la promesse est déjà définie
+      this._initializePromise = this.initialize();
+    }
   }
 
   /**
-   * Charge les données des artisans et met à jour `_artisansSubject`.
-   * 
-   * @remarks
-   * - Les données sont récupérées via `getDatasArtisans()` et transformées en `ArtisanCard`.
-   * - Toute erreur survenue lors du chargement est capturée et loguée via `console.error`.
+   * Charge les données des artisans depuis la source et met à jour `_artisansSubject`.
    * 
    * @private
+   * @returns Promise<boolean> - Retourne `true` si le chargement est réussi, `false` en cas d'échec.
+   * @remarks
+   * - Les données sont transformées en `ArtisanCard` via `toArtisanCard`.
+   * - En cas d'erreur, `_artisansSubject` est mis à jour avec un tableau vide et l'erreur est loguée.
+   * - Cette méthode est utilisée par `initialize()` et `reloadDatas()` pour actualiser les artisans.
    */
-  private loadArtisans(): void {
-    this.getDatasArtisans().pipe(
-      map((artisans) => artisans.map(toArtisanCard)), // Transforme en ArtisanCard
-      tap((artisans) => this._artisansSubject.next(artisans)), // Met à jour `_artisansSubject`
-      catchError((error) => {
-        console.error('[ArtisanService] : Erreur lors du chargement des artisans.', error);
-        return of([]); // Retourne un tableau vide si erreur
-      })
-    ).subscribe(); // Nécessaire uniquement pour déclencher l'exécution.
+  private async loadArtisans(): Promise<boolean> {
+    try {
+      await firstValueFrom(
+        this.getDatasArtisans().pipe(
+          map((artisans) => artisans.map(toArtisanCard)),
+          tap((artisans) => this._artisansSubject.next(artisans)), // Met à jour le BehaviorSubject
+          catchError((error) => {
+            console.error('[ArtisanService] Erreur lors du chargement des artisans.', error);
+            this._artisansSubject.next([]); // Tableau vide si erreur
+            return of([]); // Évite l'interruption du flux
+          })
+        )
+      );
+      console.log('[ArtisanService] Chargement des artisans terminé.');
+      return true; // Succès
+    } catch (error) {
+      console.error('[ArtisanService] Erreur dans le chargement des artisans (loadArtisans).', error);
+      return false; // Échec
+    }
   }
 
   /**
-   * Charge les données de contact des artisans et met à jour `_contactsSubject`.
-   * 
-   * @remarks
-   * - Les contacts sont transformés en objets `ContactCard`.
-   * - Une erreur lors du chargement est capturée et un tableau vide est renvoyé.
-   * 
-   * @private
-   */
-  private loadContacts(): void {
-    this.getDatasArtisans().pipe(
-      map((artisans) => artisans.map(toContactCard)), // Transforme en ContactCard
-      tap((contacts) => this._contactsSubject.next(contacts)), // Met à jour `_contactsSubject`
-      catchError((error) => {
-        console.error('[ArtisanService] : Erreur lors du chargement des contacts.', error);
-        return of([]); // Retourne un tableau vide si erreur
-      })
-    ).subscribe();
+ * Charge les données de contact des artisans depuis la source et met à jour `_contactsSubject`.
+ * 
+ * @private
+ * @returns Promise<boolean> - Retourne `true` si le chargement est réussi, `false` en cas d'échec.
+ * @remarks
+ * - Les données sont transformées en `ContactCard` via `toContactCard`.
+ * - En cas d'erreur, `_contactsSubject` est mis à jour avec un tableau vide et l'erreur est loguée.
+ * - Cette méthode est utilisée par `initialize()` et `reloadDatas()` pour actualiser les contacts.
+ */
+  private async loadContacts(): Promise<boolean> {
+    try {
+      await firstValueFrom(
+        this.getDatasArtisans().pipe(
+          map((artisans) => artisans.map(toContactCard)),
+          tap((contacts) => this._contactsSubject.next(contacts)), // Met à jour le BehaviorSubject
+          catchError((error) => {
+            console.error('[ArtisanService] Erreur lors du chargement des contacts.', error);
+            this._contactsSubject.next([]); // Tableau vide si erreur
+            return of([]); // Évite l'interruption du flux
+          })
+        )
+      );
+      console.log('[ArtisanService] Chargement des contacts terminé.');
+      return true; // Succès
+    } catch (error) {
+      console.error('[ArtisanService] Erreur dans le chargement des contacts (loadContacts).', error);
+      return false; // Échec
+    }
   }
 
   /**
-   * Extrait les catégories uniques des artisans et met à jour `_categoriesSubject`.
-   * 
-   * @remarks
-   * - Les catégories sont déduites des données des artisans via une opération `Set` pour éviter les doublons.
-   * - Une erreur lors du chargement est capturée et un tableau vide est renvoyé.
-   * 
-   * @private
-   */
-  private loadCategories(): void {
-    this.getDatasArtisans().pipe(
-      map((artisans) =>
-        Array.from(new Set(artisans.map((artisan) => artisan.ranking.category)))
-      ), // Extrait les catégories uniques
-      tap((categories) => {
-        console.log('[ArtisanService]-[loadCategories] : Catégories chargées :', categories);
-        this._categoriesSubject.next(categories)
-      }), // Met à jour `_categoriesSubject`
-      catchError((error) => {
-        console.error('[ArtisanService]-[loadCategories] : Erreur lors du chargement des catégories.', error);
-        return of([]); // Retourne un tableau vide si erreur
-      })
-    ).subscribe();
+ * Charge les catégories uniques des artisans depuis la source et met à jour `_categoriesSubject`.
+ * 
+ * @private
+ * @returns Promise<boolean> - Retourne `true` si le chargement est réussi, `false` en cas d'échec.
+ * @remarks
+ * - Les catégories sont déduites des données des artisans en éliminant les doublons.
+ * - En cas d'erreur, `_categoriesSubject` est mis à jour avec un tableau vide et l'erreur est loguée.
+ * - Cette méthode est utilisée par `initialize()` et `reloadDatas()` pour actualiser les catégories.
+ */
+  private async loadCategories(): Promise<boolean> {
+    try {
+      await firstValueFrom(
+        this.getDatasArtisans().pipe(
+          map((artisans) =>
+            Array.from(new Set(artisans.map((artisan) => artisan.ranking.category)))
+          ),
+          tap((categories) => {
+            this._categoriesSubject.next(categories);
+            console.log('[ArtisanService] Catégories chargées :', categories);
+          }),
+          catchError((error) => {
+            console.error('[ArtisanService] Erreur lors du chargement des catégories.', error);
+            this._categoriesSubject.next([]);  // Tableau vide si erreur
+            return of([]); // Évite l'interruption du flux
+          })
+        )
+      );
+      console.log('[ArtisanService] Chargement des catégories terminé.');
+      return true; // Succès
+    } catch (error) {
+      console.error('[ArtisanService] Erreur dans le chargement des catégories (loadCategories).', error);
+      return false; // Échec
+    }
   }
 
   /**
    * Recharge toutes les données artisans, contacts, et catégories.
-   * Méthode publique permettant de recharger les données manuellement.
+   * 
+   * @returns Promise<void> - Une promesse résolue une fois que toutes les données ont été rechargées.
+   * @remarks
+   * - Cette méthode appelle les fonctions asynchrones `loadArtisans`, `loadContacts`, et `loadCategories`.
+   * - Les résultats de chaque chargement sont logués individuellement pour faciliter le diagnostic.
+   * - Utilisable dans des cas de rechargement manuel des données ou après un changement dans la source.
+   *
+   * @example
+   * **Rechargement manuel des données :**
+   * ```typescript
+   * this.artisanService.reloadDatas().then(() => {
+   *   console.log('Données rechargées avec succès.');
+   * });
+   * ```
    */
-  reloadDatas(): void {
-    this.loadArtisans();
-    this.loadContacts();
-    this.loadCategories();
+  async reloadDatas(): Promise<void> {
+    console.log('[ArtisanService] Rechargement des données en cours...');
+    const artisansLoaded = await this.loadArtisans();
+    const contactsLoaded = await this.loadContacts();
+    const categoriesLoaded = await this.loadCategories();
+
+    if (!artisansLoaded || !contactsLoaded || !categoriesLoaded) {
+      console.warn('[ArtisanService] Certaines données n\'ont pas pu être rechargées.',
+        {
+          artisansLoaded: artisansLoaded,
+          contactsLoaded: contactsLoaded,
+          categoriesLoaded: categoriesLoaded,
+        });
+    } else {
+      console.log('[ArtisanService] Rechargement des données terminé avec succès.',
+        {
+          artisansLoaded: artisansLoaded,
+          contactsLoaded: contactsLoaded,
+          categoriesLoaded: categoriesLoaded,
+        });
+    }
   }
 
   /**
-   * Recharge toutes les données (artisans, contacts et catégories).
+   * Recharge toutes les données à partir de la source de données.
    * 
    * @remarks
    * Appelle les méthodes internes `loadArtisans`, `loadContacts`, et `loadCategories` pour rafraîchir les flux réactifs.
@@ -265,7 +378,7 @@ export class ArtisanService {
   getArtisansByCategory(category: string): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.filter((artisan) => artisan.category === category))
+      map((artisans) => categoryFilter(artisans, category))
     );
   }
 
@@ -282,7 +395,7 @@ export class ArtisanService {
   getArtisanById(id: string): Observable<ArtisanCard | undefined> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.find((artisan) => artisan.id === id))
+      map((artisans) => idFilter(artisans, id))
     );
   }
 
@@ -299,7 +412,7 @@ export class ArtisanService {
   getContactById(id: string): Observable<ContactCard | undefined> {
     return this.contacts$.pipe(
       startWith([]),
-      map((contacts) => contacts.find((contact) => contact.id === id))
+      map((contacts) => idFilter(contacts, id))
     );
   }
 
@@ -317,13 +430,7 @@ export class ArtisanService {
   searchArtisans(keyword: string): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) =>
-        artisans.filter((artisan) =>
-          artisan.name.toLowerCase().includes(keyword.toLowerCase()) ||
-          artisan.specialty.toLowerCase().includes(keyword.toLowerCase()) ||
-          artisan.location.toLowerCase().includes(keyword.toLowerCase())
-        )
-      )
+      map((artisans) => searchFilter(artisans, keyword))
     );
   }
 
@@ -339,7 +446,7 @@ export class ArtisanService {
   getArtisanByTop(): Observable<ArtisanCard[]> {
     return this.artisans$.pipe(
       startWith([]),
-      map((artisans) => artisans.filter((artisan) => artisan.top === true))
+      map((artisans) => topFilter(artisans))
     );
   }
 
@@ -356,26 +463,63 @@ export class ArtisanService {
   }
 
   /**
- * Vérifie si la catégorie donnée est valide.
- * 
- * Cette méthode utilise un flux réactif (`categories$`) contenant la liste des catégories valides pour 
- * vérifier si la catégorie passée en paramètre est incluse dans cette liste. 
- * Retourne un `Observable<boolean>` qui émet :
- * - `true` si la catégorie est valide,
- * - `false` sinon.
- * 
- * @param category - La catégorie à vérifier.
- * @returns `Observable<boolean>` indiquant la validité de la catégorie.
- * 
- * @remarks
- * - Cette méthode est idéale pour valider dynamiquement une catégorie dans des composants ou des Guards.
- * - En cas de mise à jour de `categories$`, la logique restera réactive.
- * 
- * @see `categories$` pour la liste des catégories valides.
- */
+   * Vérifie si la catégorie donnée est valide.
+   * 
+   * Cette méthode utilise un flux réactif (`categories$`) contenant la liste des catégories valides pour 
+   * vérifier si la catégorie passée en paramètre est incluse dans cette liste. 
+   * Retourne un `Observable<boolean>` qui émet :
+   * - `true` si la catégorie est valide,
+   * - `false` sinon.
+   * 
+   * @param category - La catégorie à vérifier.
+   * @returns `Observable<boolean>` indiquant la validité de la catégorie.
+   * 
+   * @remarks
+   * - Cette méthode est idéale pour valider dynamiquement une catégorie dans des composants ou des Guards.
+   * - En cas de mise à jour de `categories$`, la logique restera réactive.
+   * 
+   * @see `categories$` pour la liste des catégories valides.
+   */
   isValidCategory(category: string): Observable<boolean> {
     return this.categories$.pipe(
-      map((validcategories) => validcategories.includes(category))
+      map((validcategories) => validcategories.includes(category)),
     );
   }
+
+  /**
+   * Liste des identifiants uniques des contacts.
+   * 
+   * Cette variable privée est dérivée dynamiquement de `contacts$`.
+   * Elle est utilisée pour valider un identifiant de contact via `isValidContact`.
+   * 
+   * @see `contacts$` pour la liste des contacts.
+   * @see `isValidContact()` pour valider un identifiant.
+   */
+  private _contactsIds$: Observable<Set<string>> = this.contacts$.pipe(
+    map(contacts => new Set(contacts.map(contact => contact.id))) // Transforme en Set d'IDs uniques
+  );
+
+  /**
+   * Vérifie si l'identifiant fourni correspond à un contact valide.
+   * 
+   * Cette méthode utilise un flux réactif pour vérifier si l'identifiant 
+   * existe dans la liste des identifiants de contacts valides.
+   * 
+   * @param id - L'identifiant de contact à valider.
+   * @returns Un `Observable<boolean>` qui émet :
+   * - `true` si l'identifiant est valide.
+   * - `false` sinon.
+   * 
+   * @remarks
+   * - Idéal pour une utilisation dans des Guards ou des composants nécessitant une validation dynamique.
+   * 
+   * @see `_contactsIds$` pour la liste des identifiants dérivés.
+   * @see `contacts$` pour les données brutes des contacts.
+   */
+  public isValidContact(id: string): Observable<boolean> {
+    return this._contactsIds$.pipe(
+      map(contactIds => contactIds.has(id)), // Vérifie si l'ID existe dans le Set
+    );
+  }
+
 }

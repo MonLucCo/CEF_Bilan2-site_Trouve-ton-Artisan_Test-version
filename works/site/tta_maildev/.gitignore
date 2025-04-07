@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environnement
+.env
+
+# Temporaire
+*.tmp
+*.temp
+
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE/Éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Npm cache
+.npm/
+
+# MailDev fichiers temporaires
+maildev-*
+
+# Ignorer tout fichier généré par le système ou des outils
+coverage/
+dist/

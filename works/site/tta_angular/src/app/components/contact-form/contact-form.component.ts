@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email/email.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -9,31 +10,46 @@ import { EmailService } from '../../services/email/email.service';
   styleUrl: './contact-form.component.scss'
 })
 export class ContactFormComponent {
+  @Input() artisanEmail!: string; // Email de l'artisan reçu depuis ContactPage
   contactForm: FormGroup;
   successMessage: string = '';
   errorMessage: string = '';
+  isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private emailService: EmailService) {
+  constructor(private fb: FormBuilder, private emailService: EmailService, private router: Router) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', Validators.required]
-    })
+    });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.contactForm.valid) {
-      this.emailService.sendEmail(this.contactForm.value).subscribe({
+      const observer = {
         next: () => {
+          console.log("[ContactForm]-[onSubmit] Email envoyé avec succès à MailDev");
           this.successMessage = 'Email envoyé avec succès !';
-          this.contactForm.reset();
+          this.errorMessage = '';
+          this.isSubmitted = true;
         },
-        error: () => {
-          this.errorMessage = 'Une erreur s\'est produite lors de l\'envoi.';
-        }
-      });
+        error: (error: any) => {
+          console.error("[ContactForm]-[onSubmit] Erreur lors de l'envoi de l'email", error);
+          this.errorMessage = 'Message non envoyé ! Erreur de transmission.';
+          this.successMessage = '';
+        },
+      };
+
+      this.emailService.sendEmailWithApiMailDev(this.artisanEmail, this.contactForm.value).subscribe(observer);
     } else {
+      console.error('[ContactForm]-[onSubmit] Formulaire invalide');
       this.errorMessage = 'Veuillez remplir tous les champs.';
+      this.successMessage = '';
     }
+  }
+
+  returnHome(): void {
+    this.router.navigate(['/']);
   }
 }

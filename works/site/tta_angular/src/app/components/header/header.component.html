@@ -3,31 +3,40 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- Logo du site-->
-            <div class="d-flex flex-column col-3">
+            <div class="d-flex flex-column col-2 gap-2">
                 <a class="navbar-brand" href="/">Trouve Ton Artisan</a>
-                <button (click)="onTraceAction()">Top Trace Action !</button>
+                <button (click)="onTraceAction()">Top Trace Action ! ({{ topActionCounter }})</button>
+                <button (click)="onToggleTestMode()">{{getTestModeButtonText()}}</button>
             </div>
 
             <!-- Boutons de navigation -->
-            <div class="d-flex flex-row gap-3 col-5 justify-content-around">
+            <div class="d-flex flex-row gap-3 col-6 justify-content-around">
                 <ul class="nav-list d-flex flex-column gap-2">
                     <li><a routerLink="/accueil" routerLinkActive="active">Accueil</a></li>
-                    <li><a routerLink="/liste-artisans" routerLinkActive="active">Artisans</a></li>
-                    <li><a routerLink="/fiche-artisan" routerLinkActive="active">Détails</a></li>
+                    <li><a routerLink="/artisans" routerLinkActive="active">Artisans</a></li>
+                    <li><a routerLink="/artisans/contact/12" routerLinkActive="active">Contact</a></li>
                     <li><a routerLink="/erreur-404" routerLinkActive="active">Erreur 404</a></li>
                     <li><a routerLink="/erreur-route" routerLinkActive="active">Erreur route !</a></li>
                 </ul>
                 <ul class="nav-list d-flex flex-column gap-2">
-                    <!-- <li><button (click)="onCategoryChange('Bâtiment')">Bâtiment</button></li>
-                    <li><button (click)="onCategoryChange('Services')">Services</button></li>
-                    <li><button (click)="onCategoryChange('Fabrication')">Fabrication</button></li>
-                    <li><button (click)="onCategoryChange('Alimentation')">Alimentation</button></li>
-                    <li><button (click)="onCategoryChange('ErreurCatégorie...')">Erreur catégorie !</button></li> -->
                     <li><a [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a></li>
                     <li><a [routerLink]="['/categorie', 'Services']">Services</a></li>
                     <li><a [routerLink]="['/categorie', 'Fabrication']">Fabrication</a></li>
                     <li><a [routerLink]="['/categorie', 'Alimentation']">Alimentation</a></li>
                     <li><a [routerLink]="['/categorie', 'ErreurCatégorie...']">Erreur catégorie !</a></li>
+                </ul>
+                <ul class="nav-list d-flex flex-column gap-2">
+                    <!-- Liens de test pour artisans avec paramètres -->
+                    <li><a [routerLink]="['/artisans']" [queryParams]="{ categorie: 'Services', recherche: 'p' }"
+                            routerLinkActive="active">Requête avec catégorie et recherche</a></li>
+                    <li><a [routerLink]="['/artisans']" [queryParams]="{ categorie: 'Services' }"
+                            routerLinkActive="active">Requête avec catégorie</a></li>
+                    <li><a [routerLink]="['/artisans']" [queryParams]="{ recherche: 'p' }"
+                            routerLinkActive="active">Requête avec recherche seule</a></li>
+                    <li><a [routerLink]="['/artisans']" [queryParams]="{ contact: '5' }"
+                            routerLinkActive="active">Requête contact ok</a></li>
+                    <li><a [routerLink]="['/artisans']" [queryParams]="{ contact: '18' }"
+                            routerLinkActive="active">Requête contact Nok</a></li>
                 </ul>
             </div>
 

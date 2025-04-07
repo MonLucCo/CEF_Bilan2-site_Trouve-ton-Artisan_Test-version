@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,12 +17,22 @@ import { FilterByCategoryPipe } from './pipes/filter-by-category/filter-by-categ
 import { SearchPipe } from './pipes/search/search.pipe';
 import { TopArtisansPipe } from './pipes/top-artisans/top-artisans.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http';
 import { TopArtisansComponent } from './components/top-artisans/top-artisans.component';
 import { CategoryArtisansComponent } from './components/category-artisans/category-artisans.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
-
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { ArtisanService } from './services/artisan/artisan.service';
+import { provideAppInitializer } from '@angular/core';
+import { FicheArtisanComponent } from './components/fiche-artisan/fiche-artisan.component';
+import { TopFilterPipe } from './pipes/top-filter/top-filter.pipe';
+import { CategoryFilterPipe } from './pipes/category-filter/category-filter.pipe';
+import { SearchFilterPipe } from './pipes/search-filter/search-filter.pipe';
+import { IdFilterPipe } from './pipes/id-filter/id-filter.pipe';
+import { TopArtisanTestComponent } from './components/tests/top-artisan-test/top-artisan-test.component';
+import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
+import { ContactArtisanComponent } from './components/contact-artisan/contact-artisan.component';
+import { ApiMaildevTestComponent } from './components/tests/api-maildev-test/api-maildev-test.component';
 
 @NgModule({
   declarations: [
@@ -40,18 +51,32 @@ import { SearchArtisansComponent } from './components/search-artisans/search-art
     TopArtisansComponent,
     CategoryArtisansComponent,
     SearchBarComponent,
-    SearchArtisansComponent
+    SearchArtisansComponent,
+    ContactPageComponent,
+    FicheArtisanComponent,
+    TopFilterPipe,
+    CategoryFilterPipe,
+    SearchFilterPipe,
+    IdFilterPipe,
+    TopArtisanTestComponent,
+    RatingStarsComponent,
+    ContactArtisanComponent,
+    ApiMaildevTestComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     ReactiveFormsModule, // Ajout pour la réactivité du formulaire
     FormsModule,         // Nécessaire pour que [(ngModel)] fonctionne (emploi dans SearchBar)
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    provideHttpClient() // Méthode pour configurer HttpClient (> Angular 15)
+    provideHttpClient(), // Remplace HttpClientModule
+    provideAppInitializer(() => {
+      const artisanService = inject(ArtisanService); // Injection d'ArtisanService via Angular
+      return artisanService.initialize(); // Appelle la méthode d'initialisation
+    }),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

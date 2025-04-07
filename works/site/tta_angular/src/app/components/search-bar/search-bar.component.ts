@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
+import { take } from 'rxjs';
 
 /**
  * Composant de barre de recherche avec gestion de catégorie.
@@ -11,7 +11,7 @@ import { SharedService } from '../../services/shared/shared.service';
   selector: 'app-search-bar',
   standalone: false,
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss'
+  styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
   @Input() modeOnRealTimeSearch: boolean = false; // Mode de recherche (instantanée ou avec validation)
@@ -22,31 +22,37 @@ export class SearchBarComponent implements OnInit {
   categoryActive: boolean = true; // Indique si la catégorie est activée
   placeholder: string = 'Rechercher...'; // Placeholder du champ de recherche
 
-
-  constructor(private sharedService: SharedService, private router: Router) { }
+  constructor(private sharedService: SharedService) { }
 
   /**
-   * Initialise le composant et s'abonne aux changements de catégorie depuis le SharedService.
+   * Initialise le composant et s'abonne aux changements de catégorie et de mode de recherche depuis SharedService.
    */
   ngOnInit(): void {
+    // let isInitialized = false;
+
+    // Initialisation unique du mot-clé via take(1)
+    this.sharedService.currentKeyword$.pipe(take(1)).subscribe((keyword) => {
+      this.keyword = keyword; // Initialise le champ de recherche
+      console.log('[SearchBar]-[Abonnement] : Mot-clé initialisé avec :', keyword);
+    });
+
     // Abonnement aux changements de catégorie
     this.sharedService.currentCategory$.subscribe((category) => {
       this.category = category; // Met à jour localement la catégorie
       this.categoryActive = true; // Réinitialise l'activation de la catégorie
-      this.triggerSearch();
-      console.log('[SearchBar]-[ngOnInit] : Mise à jour liste et Catégorie par SearchBar :', this.category);
+      console.log('[SearchBar]-[Abonnement] : Mise à jour catégorie :', category);
     });
 
-    // Abonnement aux changments de mode de recherche
-    this; this.sharedService.currentSearchMode$.subscribe((mode) => {
+    // Abonnement aux changements de mode de recherche
+    this.sharedService.currentSearchMode$.subscribe((mode) => {
       this.modeOnRealTimeSearch = mode === 'validateOff'; // Active/Désactive la recherche instantanée
       this.placeholder = mode === 'validateOn'
         ? 'Recherche avec validation !'
-        : 'Recherche instantanée !'; // Met à jour le placeholder
-      console.log('[SearchBar]-[ngOnInit] : Récupération du mode courant de recherche dans SearchBar :', mode);
-      console.log('[SearchBar]-[ngOnInit] : Mode de recherche (temps réel) mise à jour dans SearchBar :', this.modeOnRealTimeSearch);
-      console.log('[SearchBar]-[ngOnInit] : PlaceHolder mis à jour dans SearchBar :', this.placeholder);
+        : 'Recherche instantanée !';
+      console.log('[SearchBar]-[Abonnement] : Mise à jour mode de recherche :', mode);
     });
+
+    // isInitialized = true; // Initialisation terminée
   }
 
   /**
@@ -59,18 +65,17 @@ export class SearchBarComponent implements OnInit {
   }
 
   /**
-   * Méthode pour déclencher une recherche en fonction du mot-clé et de la catégorie active.
+   * Méthode pour déclencher une recherche et mettre à jour les données dans SharedService.
    */
   triggerSearch(): void {
-    this.search.emit({
+    const trimmedKeyword = this.keyword.trim();
+    this.sharedService.setKeyword(trimmedKeyword);
+    this.sharedService.setCategory(this.categoryActive ? this.category : null);
+
+    console.log('[SearchBar] : Recherche déclenchée avec mot-clé et catégorie :', {
       category: this.categoryActive ? this.category : null,
-      keyword: this.keyword.trim(),
+      keyword: trimmedKeyword,
     });
-    console.log('[SearchBar]-[triggerSearch] : Recherche déclenchée avec mot-clé et catégorie :', {
-      category: this.category,
-      keyword: this.keyword.trim(),
-    });
-    this.updateUrl();
   }
 
   /**
@@ -82,32 +87,12 @@ export class SearchBarComponent implements OnInit {
   }
 
   /**
-   * Méthode pour réinitialiser le champ de recherche.
+   * Réinitialise le champ de recherche.
    */
   resetSearchField(): void {
     this.keyword = ''; // Réinitialise le mot-clé
-    if (this.sharedService.getCategory()) {
-      this.categoryActive = true; // Réactive la catégorie
-    }
+    this.categoryActive = true; // Réactive la catégorie par défaut
     this.triggerSearch(); // Relance une recherche avec le mot-clé vide et la catégorie
-  }
-
-  /**
-   * Met à jour l'URL selon l'état actuel (catégorie et mot-clé).
-   */
-  updateUrl(): void {
-    const queryParams: any = {};
-    if (this.categoryActive && this.category) {
-      queryParams['category'] = this.category;
-    }
-    if (this.keyword.trim()) {
-      queryParams['keyword'] = this.keyword.trim();
-    }
-
-    if (!this.category && !this.keyword.trim()) {
-      this.router.navigate(['/liste-artisans']); // Basculer sur '/liste-artisans'
-    } else {
-      this.router.navigate(['/recherche'], { queryParams });
-    }
+    console.log('[SearchBar] : Champ de recherche réinitialisé.');
   }
 }

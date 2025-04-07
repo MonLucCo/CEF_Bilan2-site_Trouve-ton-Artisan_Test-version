@@ -1,0 +1,31 @@
+<div class="card d-flex flex-row shadow-sm mb-3 col-6">
+    <div class="card-body">
+        <!-- Titre avec description -->
+        <div class="card-title text-primary">
+            <p>contact-artisan works!</p>
+            <h5>{{ contact.about }}</h5>
+        </div>
+
+        <!-- Adresse e-mail -->
+        <p class="card-text" *ngIf="isEmailValid">
+            <strong>E-mail : </strong>
+            <a [href]="'mailto:' + contact.email" class="link-primary">
+                {{ contact.email }}
+            </a>
+        </p>
+        <p class="card-text text-danger" *ngIf="!isEmailValid">
+            Adresse email incorrecte : contact par email impossible !
+        </p>
+
+        <!-- Site web (affiché uniquement s'il existe) -->
+        <p class="card-text" *ngIf="contact.website">
+            <strong>Site web : </strong>
+            <a [href]="contact.website" target="_blank" class="link-primary">
+                {{ contact.website }}
+            </a>
+        </p>
+        <p class="card-text text-secondary" *ngIf="!contact.website">
+            Site web non disponible.
+        </p>
+    </div>
+</div>

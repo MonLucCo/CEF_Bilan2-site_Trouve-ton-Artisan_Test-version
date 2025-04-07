@@ -1,34 +1,82 @@
-<div>
-    <h2>Formulaire de Contact</h2>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-        <div>
-            <label for="name">Nom :</label>
-            <input id="name" type="text" formControlName="name" placeholder="Entrez votre nom" />
-            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
-                Le nom est obligatoire.
-            </div>
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">
+        <i class="fas fa-envelope"></i> Formulaire de Contact
+    </h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!isSubmitted; else submittedTemplate">
+        <!-- Nom -->
+        <div class="form-group mb-3">
+            <label for="name" class="form-label">
+                <i class="fas fa-user"></i> Nom :
+            </label>
+            <input id="name" type="text" formControlName="name" class="form-control" placeholder="Entrez votre nom" />
+            <small *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> Le nom est obligatoire.
+            </small>
         </div>
 
-        <div>
-            <label for="subject">Objet :</label>
-            <input id="subject" type="text" formControlName="subject" placeholder="Entrez l'objet du message" />
-            <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
-                L'objet est obligatoire.
-            </div>
+        <!-- Email -->
+        <div class="form-group mb-3">
+            <label for="email" class="form-label">
+                <i class="fas fa-envelope"></i> Email :
+            </label>
+            <input id="email" type="email" formControlName="email" class="form-control"
+                placeholder="Entrez votre email" />
+            <small *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> L'email est obligatoire.
+            </small>
+            <small *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> L'adresse email n'est pas valide.
+            </small>
         </div>
 
-        <div>
-            <label for="message">Message :</label>
-            <textarea id="message" formControlName="message" placeholder="Écrivez votre message ici"
-                rows="5"></textarea>
-            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
-                Le message est obligatoire.
-            </div>
+        <!-- Objet -->
+        <div class="form-group mb-3">
+            <label for="subject" class="form-label">
+                <i class="fas fa-tag"></i> Objet :
+            </label>
+            <input id="subject" type="text" formControlName="subject" class="form-control"
+                placeholder="Entrez l'objet du message" />
+            <small *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> L'objet est obligatoire.
+            </small>
         </div>
 
-        <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
+        <!-- Message -->
+        <div class="form-group mb-3">
+            <label for="message" class="form-label">
+                <i class="fas fa-comment-dots"></i> Message :
+            </label>
+            <textarea id="message" formControlName="message" class="form-control" rows="5"
+                placeholder="Écrivez votre message ici"></textarea>
+            <small *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> Le message est obligatoire.
+            </small>
+        </div>
+
+        <!-- Bouton envoyer -->
+        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">
+            <i class="fas fa-paper-plane"></i> Envoyer
+        </button>
     </form>
 
-    <p *ngIf="successMessage">{{ successMessage }}</p>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    <!-- Template après soumission -->
+    <ng-template #submittedTemplate>
+        <div class="text-center mt-4">
+            <p class="text-success">
+                <i class="fas fa-check-circle"></i> {{ successMessage }}
+            </p>
+            <button class="btn btn-secondary" (click)="returnHome()">
+                <i class="fas fa-home"></i> Retour à l'accueil
+            </button>
+        </div>
+    </ng-template>
+
+    <!-- Message d'erreur -->
+    <p *ngIf="errorMessage" class="text-danger mt-3">
+        <i class="fas fa-times-circle"></i> {{ errorMessage }}
+    </p>
 </div>
