@@ -14,6 +14,23 @@
             </small>
         </div>
 
+        <!-- Email -->
+        <div class="form-group mb-3">
+            <label for="email" class="form-label">
+                <i class="fas fa-envelope"></i> Email :
+            </label>
+            <input id="email" type="email" formControlName="email" class="form-control"
+                placeholder="Entrez votre email" />
+            <small *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> L'email est obligatoire.
+            </small>
+            <small *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched"
+                class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> L'adresse email n'est pas valide.
+            </small>
+        </div>
+
         <!-- Objet -->
         <div class="form-group mb-3">
             <label for="subject" class="form-label">

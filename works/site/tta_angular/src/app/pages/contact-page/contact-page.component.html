@@ -7,6 +7,7 @@
         </app-contact-artisan>
     </div>
     <div class="container col-6">
-        <app-contact-form *ngIf="isEmailValid"></app-contact-form>
+        <app-contact-form *ngIf="isEmailValid && selectedContact?.email"
+            [artisanEmail]="selectedContact?.email || ''"></app-contact-form>
     </div>
 </div>
