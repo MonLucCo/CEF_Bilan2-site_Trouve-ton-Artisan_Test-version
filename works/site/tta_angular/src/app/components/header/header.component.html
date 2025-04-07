@@ -3,9 +3,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- Logo du site-->
-            <div class="d-flex flex-column col-2">
+            <div class="d-flex flex-column col-2 gap-2">
                 <a class="navbar-brand" href="/">Trouve Ton Artisan</a>
-                <button (click)="onTraceAction()">Top Trace Action !</button>
+                <button (click)="onTraceAction()">Top Trace Action ! ({{ topActionCounter }})</button>
+                <button (click)="onToggleTestMode()">{{getTestModeButtonText()}}</button>
             </div>
 
             <!-- Boutons de navigation -->

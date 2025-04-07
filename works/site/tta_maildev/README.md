@@ -28,12 +28,92 @@ MailDev capture les emails et les rend accessibles via une interface web convivi
 
 ---
 
-## Fonctionnalités
+Voici une proposition de markdown clair pour les chapitres **Technologies** et **Fonctionnalités du serveur**, avec l'ajout des URL et des ports dans la section "Fonctionnalités du serveur".
 
-- **Serveur SMTP** : Simule un serveur SMTP sur localhost.
-- **Interface Web** : Visualisation des emails reçus via **MailDev** (<http://localhost:1080>).
-- **API HTTP** : Envoi d'emails via une API REST exposée à <http://localhost:3000/send-email>.
-- **Support CORS** : Compatible avec les requêtes provenant de clients front-end (comme Angular).
+---
+
+## **Technologies**
+
+Ce projet utilise les outils et bibliothèques suivants :
+
+- **[Express](https://expressjs.com/)** : Framework minimaliste pour construire l'API backend.
+- **[Nodemailer](https://nodemailer.com/)** : Librairie pour envoyer des emails via SMTP dans un environnement Node.js.
+- **[MailDev](https://github.com/maildev/maildev)** : Serveur SMTP simulé pour capturer et afficher les emails via une interface web.
+- **[cors](https://www.npmjs.com/package/cors)** : Middleware permettant de gérer les requêtes Cross-Origin Resource Sharing (CORS) pour un accès fluide depuis le frontend.
+
+---
+
+## **Fonctionnalités du serveur**
+
+Le backend `server-smtp.js` propose des services accessibles via différentes API HTTP et ports. Voici les détails :
+
+### **1. Envoi d'emails**
+
+- **URL** : `POST http://localhost:3000/send-email`
+- **Port utilisé** : 3000
+- **Description** : Permet d'envoyer un email via SMTP en utilisant **Nodemailer**. Les emails envoyés sont capturés par **MailDev**.
+- **Exemple de corps de requête** :
+
+  ```json
+  {
+    "from": "sender@example.com",
+    "to": "recipient@example.com",
+    "subject": "Test Email",
+    "body": "Ceci est un test d'email depuis tta_maildev."
+  }
+  ```
+
+- **Réponse** :
+  - Succès (200) : `{"message": "[server] Email envoyé avec succès"}`
+  - Échec (500) : `{"message": "[server] Erreur lors de l'envoi de l'email"}`
+
+---
+
+### **2. Récupération de tous les emails capturés**
+
+- **URL** : `GET http://localhost:3000/get-emails`
+- **Port utilisé** : 3000
+- **Description** : Retourne la liste complète des emails capturés par **MailDev**.
+- **Réponse** :
+  - Succès (200) : Renvoie un tableau JSON contenant les informations sur les emails.
+  - Exemple de réponse :
+
+    ```json
+    [
+      {
+        "from": "sender@example.com",
+        "to": "recipient@example.com",
+        "subject": "Test Email",
+        "body": "Ceci est un test."
+      }
+    ]
+    ```
+
+---
+
+### **3. Suppression de tous les emails capturés**
+
+- **URL** : `DELETE http://localhost:3000/delete-emails`
+- **Port utilisé** : 3000
+- **Description** : Supprime tous les emails capturés par **MailDev**.
+- **Réponse** :
+  - Succès (200) : `{"message": "[server] Tous les emails ont été supprimés avec succès"}`
+  - Échec (500) : `{"message": "[server] Erreur lors de la suppression des emails"}`
+
+---
+
+### **4. Serveur SMTP simulé**
+
+- **Port utilisé** : 1025
+- **Description** : **MailDev** capture les emails envoyés via ce port pour les afficher dans l'interface web. Ce service est utilisé par **Nodemailer** pour la transmission des emails.
+
+---
+
+### **5. Interface web MailDev**
+
+- **URL** : `http://localhost:1080`
+- **Port utilisé** : 1080
+- **Description** : Interface web conviviale permettant de visualiser et tester les emails capturés.
 
 ---
 
@@ -157,7 +237,17 @@ const SMTP_PORT = process.env.SMTP_PORT || 1025;
 
 ## Contribuer
 
-Aucune contribution n'est attendue pour ce projet d'étude réalisé dans le cadre d'une formation _développeur web et web mobile_ avec le CEF.
+Bien sûr ! Vous pouvez avoir une section engageante tout en précisant qu'il s'agit d'un projet éducatif ou d'étude, sans ouverture explicite aux contributions. Voici une suggestion pour le chapitre **Contribuer** adaptée à votre contexte :
+
+---
+
+## **Contribuer**
+
+Ce projet, **tta_maildev**, a été développé dans le cadre d'une formation en développement web et web mobile avec le CEF. Il a pour objectif principal de démontrer et valider des compétences dans la gestion d'emails via un serveur backend dédié, en intégration avec un client Angular.
+
+Les évolutions futures de ce projet ne sont pas prévues après son rendu, mais il reste disponible pour être étudié et adapté dans d'autres contextes éducatifs ou professionnels.
+
+Merci pour votre intérêt pour ce projet et pour avoir pris le temps de l'explorer ! 😊
 
 ---
 

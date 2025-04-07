@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email/email.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -13,8 +14,9 @@ export class ContactFormComponent {
   contactForm: FormGroup;
   successMessage: string = '';
   errorMessage: string = '';
+  isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private emailService: EmailService) {
+  constructor(private fb: FormBuilder, private emailService: EmailService, private router: Router) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,7 +32,7 @@ export class ContactFormComponent {
           console.log("[ContactForm]-[onSubmit] Email envoyé avec succès à MailDev");
           this.successMessage = 'Email envoyé avec succès !';
           this.errorMessage = '';
-          this.contactForm.reset(); // Réinitialise le formulaire
+          this.isSubmitted = true;
         },
         error: (error: any) => {
           console.error("[ContactForm]-[onSubmit] Erreur lors de l'envoi de l'email", error);
@@ -47,4 +49,7 @@ export class ContactFormComponent {
     }
   }
 
+  returnHome(): void {
+    this.router.navigate(['/']);
+  }
 }

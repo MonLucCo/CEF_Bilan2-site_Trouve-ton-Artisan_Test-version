@@ -2,7 +2,7 @@
     <h2 class="text-primary mb-4">
         <i class="fas fa-envelope"></i> Formulaire de Contact
     </h2>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!isSubmitted; else submittedTemplate">
         <!-- Nom -->
         <div class="form-group mb-3">
             <label for="name" class="form-label">
@@ -63,10 +63,19 @@
         </button>
     </form>
 
-    <!-- Messages de succès et d'erreur -->
-    <p *ngIf="successMessage" class="text-success mt-3">
-        <i class="fas fa-check-circle"></i> {{ successMessage }}
-    </p>
+    <!-- Template après soumission -->
+    <ng-template #submittedTemplate>
+        <div class="text-center mt-4">
+            <p class="text-success">
+                <i class="fas fa-check-circle"></i> {{ successMessage }}
+            </p>
+            <button class="btn btn-secondary" (click)="returnHome()">
+                <i class="fas fa-home"></i> Retour à l'accueil
+            </button>
+        </div>
+    </ng-template>
+
+    <!-- Message d'erreur -->
     <p *ngIf="errorMessage" class="text-danger mt-3">
         <i class="fas fa-times-circle"></i> {{ errorMessage }}
     </p>

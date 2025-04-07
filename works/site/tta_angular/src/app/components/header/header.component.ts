@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
 
@@ -12,10 +12,14 @@ import { SharedService } from '../../services/shared/shared.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleTestMode = new EventEmitter<void>(); // Émetteur d'événement
+  testMode: boolean = false; // Etat du mode test
+
   category: string | null = null; // Catégorie active dans le header
   keyword: string = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
-  topAction: boolean = false; // Permet de tracer le top d'une action
+  topActionCounter: number = 0; // Compteur pour tracer le top d'une action
+
   private isUpdatingUrl = false; // Drapeau pour contrôler les mises à jour
 
   constructor(
@@ -138,7 +142,23 @@ export class HeaderComponent implements OnInit {
    * Méthode pour trace de 'début ou de fin d'action
    */
   onTraceAction(): void {
-    this.topAction = !this.topAction;
-    console.log('[Header]-[onTraceAction] : Top de la trace', this.topAction);
+    this.topActionCounter++;
+    console.log('[Header]-[onTraceAction] : Top de la trace', this.topActionCounter);
+  }
+
+  /**
+   * Active ou désactive le mode test et informe l'AppComponent.
+   */
+  onToggleTestMode(): void {
+    this.testMode = !this.testMode;
+    this.toggleTestMode.emit(); // Emet un événement
+    console.log('[Header]-[toggleTestMode] : Mode test activé :', this.testMode);
+  }
+
+  /**
+   * Renvoie le texte du bouton selon l'état du mode test.
+   */
+  getTestModeButtonText(): string {
+    return this.testMode ? 'Désactiver Test' : 'Activer Test';
   }
 }

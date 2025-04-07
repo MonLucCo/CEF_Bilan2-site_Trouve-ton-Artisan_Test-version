@@ -1,9 +1,7 @@
 <div class="rating-stars">
     <ng-container *ngFor="let star of stars">
-        <i class="fas" [ngClass]="{
-           'fa-star': star === 'full',
-           'fa-star-half-alt': star === 'half',
-           'fa-star-o': star === 'empty'
-         }" style="color: #0074c7;"></i>
+        <i [class.fa-solid]="star === 'full' || star === 'half'" [class.fa-regular]="star === 'empty'"
+            [class.fa-star]="star === 'full' || star === 'empty'" [class.fa-star-half-stroke]="star === 'half'"
+            style="color: #0074c7;"></i>
     </ng-container>
 </div>

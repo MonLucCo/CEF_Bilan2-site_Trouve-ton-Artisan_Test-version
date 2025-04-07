@@ -32,6 +32,7 @@ import { IdFilterPipe } from './pipes/id-filter/id-filter.pipe';
 import { TopArtisanTestComponent } from './components/tests/top-artisan-test/top-artisan-test.component';
 import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
 import { ContactArtisanComponent } from './components/contact-artisan/contact-artisan.component';
+import { ApiMaildevTestComponent } from './components/tests/api-maildev-test/api-maildev-test.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ContactArtisanComponent } from './components/contact-artisan/contact-ar
     IdFilterPipe,
     TopArtisanTestComponent,
     RatingStarsComponent,
-    ContactArtisanComponent
+    ContactArtisanComponent,
+    ApiMaildevTestComponent
   ],
   imports: [
     CommonModule,
