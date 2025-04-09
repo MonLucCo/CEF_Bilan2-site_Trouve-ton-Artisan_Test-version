@@ -63,7 +63,7 @@ export const artisansGuard: CanActivateFn = (route, state) => {
     sharedService.setKeyword(keyword || '');
 
     if (category && keyword) {
-      console.log('[artisansGuard] Contexte Liste avec Catégorie et Recherche détecté.');
+      console.log('[artisansGuard] Contexte Liste avec Catégorie et Recherche détecté.', { categorie: category, recherche: keyword });
       sharedService.setFiltredMode('fullFiltred'); // Mode combiné
       router.navigate(['/artisans/categorie', category], { queryParams: { recherche: keyword } });
     } else if (category) {

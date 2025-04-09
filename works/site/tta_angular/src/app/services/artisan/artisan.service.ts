@@ -33,6 +33,7 @@ import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
  * - `getArtisansByCategory(category: string)` : Filtre les artisans par catégorie.
  * - `getArtisanById(id: string)` : Retourne un artisan spécifique par son identifiant.
  * - `getContactById(id: string)` : Récupère les détails de contact d'un artisan par son identifiant.
+ * - `getArtisansByCategoryAndSearch(category: string, keyword: string): Observable<ArtisanCard[]>` : Filtre les artisans par catégorie et mot-clé.
  * - `searchArtisans(keyword: string)` : Recherche les artisans selon un mot-clé.
  * - `getArtisanByTop()` : Retourne les artisans ayant le statut "top".
  * - `getAllCategories()` : Retourne les catégories uniques des artisans.
@@ -379,6 +380,20 @@ export class ArtisanService {
     return this.artisans$.pipe(
       startWith([]),
       map((artisans) => categoryFilter(artisans, category))
+    );
+  }
+
+  /**
+   * Recherche combinée par catégorie et mot-clé.
+   * @param category La catégorie pour filtrer les artisans.
+   * @param keyword Le mot-clé pour rechercher les artisans.
+   * @returns Observable de la liste filtrée des artisans.
+   */
+  getArtisansByCategoryAndSearch(category: string, keyword: string): Observable<ArtisanCard[]> {
+    // Charger les artisans par catégorie
+    return this.getArtisansByCategory(category).pipe(
+      // Appliquer le filtre par mot-clé
+      map((artisans) => searchFilter(artisans, keyword))
     );
   }
 

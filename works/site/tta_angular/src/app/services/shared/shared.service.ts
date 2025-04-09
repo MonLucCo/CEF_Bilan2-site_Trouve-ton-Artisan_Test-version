@@ -27,11 +27,12 @@ import { BehaviorSubject } from 'rxjs';
  *   - `setContactId(id: string | null): void` : Définit l'identifiant du contact sélectionné.
  *   - `getContactId() : string | null` : Récupère l'identifiant du contact sélectionné.
  */
+
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  // Gestion de la catégorie active
+  // Gestion de la catégorie (active) utilisée pour les URLs
   private _categorySubject = new BehaviorSubject<string | null>(null);
   currentCategory$ = this._categorySubject.asObservable();
 
@@ -105,7 +106,6 @@ export class SharedService {
 
     // Émettre uniquement si le mode est différent
     this.changeValue(this._filtredModeSubject, newMode);
-    // console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
   }
 
   /**

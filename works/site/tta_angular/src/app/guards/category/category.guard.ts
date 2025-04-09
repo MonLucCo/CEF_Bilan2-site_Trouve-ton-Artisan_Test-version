@@ -20,12 +20,14 @@ export class CategoryGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     console.log("[CategoryGuard] Appel du Guard à partir de l'url :", { stateUrl: state.url });
 
-    // Extraction de la catégorie via `paramMap` ou `queryParamMap`
+    // Extraction de la catégorie et de la recherche via `paramMap` ou `queryParamMap`
     const category = route.queryParamMap.get('categorie') || route.paramMap.get('category');
+    const keyword = route.queryParamMap.get('recherche') || '';
 
     console.log('[CategoryGuard] Tentative de navigation avec catégorie :', {
       stateUrl: state.url,
       extractedCategory: category,
+      extractedKeyword: keyword,
     });
 
     // Vérifier si la catégorie est absente ou invalide
@@ -63,8 +65,7 @@ export class CategoryGuard implements CanActivate {
         // Mise à jour du contexte et des données pour un succès
         this.sharedService.setContextMode('list'); // Contexte liste
         this.sharedService.setCategory(category); // Mise à jour de la catégorie
-        this.sharedService.setKeyword(''); // Réinitialise les mots-clés (aucun mot-clé pour le contexte catégorie)
-        this.sharedService.setFiltredMode('categoryOnly'); // Mode filtré par catégorie
+        this.sharedService.setKeyword(keyword.trim()); // Mise à jour de la recherche
         this.sharedService.setContactId(null); // Réinitialise l'identifiant de contact
 
         return true; // Autorise la navigation

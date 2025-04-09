@@ -1,12 +1,12 @@
 <div class="input-group">
     <!-- Bouton lié à la catégorie sélectionnée -->
-    <div *ngIf="category" class="input-group-prepend">
+    <div *ngIf="categoryMemory" class="input-group-prepend">
         <div class="btn-group">
             <!-- Case à cocher pour activer/désactiver la catégorie -->
             <button class="btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
                 [disabled]="!keyword.trim()">
                 <input type="checkbox" [checked]="categoryActive" />
-                <span>{{ category }}</span>
+                <span>{{ categoryMemory }}</span>
             </button>
         </div>
     </div>

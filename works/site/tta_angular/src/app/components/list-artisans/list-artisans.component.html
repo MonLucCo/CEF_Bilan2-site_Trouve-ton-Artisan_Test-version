@@ -1,0 +1,17 @@
+<div *ngIf="isLoading; else artisansList">
+    <p>Chargement des artisans...</p>
+</div>
+
+<ng-template #artisansList>
+    <p>list-artisans works!</p>
+
+    <div *ngIf="artisans.length > 0; else noResults">
+        <div class="artisan-container d-flex flex-wrap gap-3">
+            <app-fiche-artisan *ngFor="let artisan of artisans" [artisan]="artisan"></app-fiche-artisan>
+        </div>
+    </div>
+
+    <ng-template #noResults>
+        <p>Aucun artisan trouvé pour votre recherche.</p>
+    </ng-template>
+</ng-template>

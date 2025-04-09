@@ -83,6 +83,9 @@ export class HeaderComponent implements OnInit {
   onSearch(event: { category: string | null; keyword: string }): void {
     this.sharedService.setCategory(event.category); // Mise à jour de la catégorie
     this.sharedService.setKeyword(event.keyword); // Mise à jour du mot-clé
+
+    // Mise à jour de l'URL via la méthode centralisée
+    this.updateUrlIfNeeded(event);
     console.log('[Header]-[onSearch] : Événement de recherche traité :', event);
   }
 
@@ -117,10 +120,16 @@ export class HeaderComponent implements OnInit {
   /**
  * Vérifie si les paramètres d'URL doivent être mis à jour, pour éviter les boucles infinies.
  */
-  private updateUrlIfNeeded(): void {
+  private updateUrlIfNeeded(event?: { category: string | null; keyword: string }): void {
     const queryParams: any = {};
-    if (this.category) queryParams['categorie'] = this.category.trim();
-    if (this.keyword) queryParams['recherche'] = this.keyword.trim();
+
+    console.log("[Header]-[UpdateUrlIfNeeded] : Valeur de l'event", event);
+
+    const category = event?.category ?? this.category; // Utilise la catégorie de l'événement ou celle locale
+    const keyword = event?.keyword ?? this.keyword; // Utilise le mot-clé de l'événement ou celui local
+
+    if (category) queryParams['categorie'] = category.trim();
+    if (keyword) queryParams['recherche'] = keyword.trim();
 
     // Compare les paramètres actuels et ceux souhaités
     const currentCategory = this.route.snapshot.queryParamMap.get('categorie');
@@ -130,13 +139,16 @@ export class HeaderComponent implements OnInit {
       currentCategory !== queryParams['categorie'] ||
       currentKeyword !== queryParams['recherche']
     ) {
-      this.isUpdatingUrl = true; // Active le drapeau pour prévenir les boucles
+      this.isUpdatingUrl = true; // Active le drapeau pour éviter les boucles
       this.router.navigate(['/artisans'], { queryParams }).finally(() => {
         this.isUpdatingUrl = false; // Réinitialise le drapeau après la mise à jour
       });
       console.log('[Header]-[UpdateUrlIfNeeded] : URL mise à jour avec paramètres :', queryParams);
+    } else {
+      console.log('[Header]-[UpdateUrlIfNeeded] : Aucune mise à jour nécessaire, l\'URL est déjà correcte.');
     }
   }
+
 
   /**
    * Méthode pour trace de 'début ou de fin d'action
