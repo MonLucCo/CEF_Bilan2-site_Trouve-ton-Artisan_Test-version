@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { ContactCard } from '../../models/contact-card.models';
+import { ContactCard } from '../../models/artisan-service.models';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
+import { OptionalString } from '../../models/shared-service.models';
 
 /**
  * Composant du Header affichant le menu et interagissant avec la catégorie active via SharedService.
@@ -15,8 +16,8 @@ export class HeaderComponent implements OnInit {
   @Output() toggleTestMode = new EventEmitter<void>(); // Émetteur d'événement
   testMode: boolean = false; // Etat du mode test
 
-  category: string | null = null; // Catégorie active dans le header
-  keyword: string = ''; // Mot-clé actuel
+  category: OptionalString = null; // Catégorie active dans le header
+  keyword: OptionalString = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
   topActionCounter: number = 0; // Compteur pour tracer le top d'une action
 
@@ -120,7 +121,7 @@ export class HeaderComponent implements OnInit {
   /**
  * Vérifie si les paramètres d'URL doivent être mis à jour, pour éviter les boucles infinies.
  */
-  private updateUrlIfNeeded(event?: { category: string | null; keyword: string }): void {
+  private updateUrlIfNeeded(event?: { category: OptionalString; keyword: OptionalString }): void {
     const queryParams: any = {};
 
     console.log("[Header]-[UpdateUrlIfNeeded] : Valeur de l'event", event);

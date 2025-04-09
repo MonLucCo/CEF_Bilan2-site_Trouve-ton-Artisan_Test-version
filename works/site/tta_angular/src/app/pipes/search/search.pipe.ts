@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Artisan } from '../../models/artisan.models';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { Artisan, ArtisanCard } from '../../models/artisan-service.models';
 import { transformToArtisan, transformToArtisanCard } from '../../utils/data-transform.utils';
 
 /**

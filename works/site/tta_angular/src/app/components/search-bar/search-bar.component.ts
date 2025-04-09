@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedService } from '../../services/shared/shared.service';
 import { take } from 'rxjs';
+import { OptionalString } from '../../models/shared-service.models';
 
 /**
  * Composant de barre de recherche avec gestion de catégorie.
@@ -17,9 +18,9 @@ export class SearchBarComponent implements OnInit {
   @Input() modeOnRealTimeSearch: boolean = false; // Mode de recherche (instantanée ou avec validation)
   @Output() search = new EventEmitter<{ category: string | null; keyword: string }>(); // Événement émis pour lancer la recherche
 
-  category: string | null = null; // Catégorie actuellement visible dans la barre
-  keyword: string = ''; // Mot-clé actuel
-  categoryMemory: string | null = null; // Catégorie "en mémoire" pour la gestion locale
+  category: OptionalString = null; // Catégorie actuellement visible dans la barre
+  keyword: OptionalString = ''; // Mot-clé actuel
+  categoryMemory: OptionalString = null; // Catégorie "en mémoire" pour la gestion locale
   categoryActive: boolean = true; // État de l'activation/désactivation de la catégorie
   placeholder: string = 'Rechercher...';
 
@@ -29,7 +30,22 @@ export class SearchBarComponent implements OnInit {
    * Initialise le composant et s'abonne aux changements de catégorie et de mode de recherche depuis SharedService.
    */
   ngOnInit(): void {
-    // Initialisation de la catégorie en mémoire
+    // Gestion du changement de contexte via currentContextMode$
+    this.sharedService.currentContextMode$.subscribe((contextMode) => {
+      if (contextMode !== 'list') {
+        // Réinitialiser complètement les champs dans les autres contextes
+        this.category = null;
+        this.categoryMemory = null;
+        this.categoryActive = false;
+        this.keyword = '';
+        console.log('[SearchBar] : Contexte changé vers', contextMode, '- réinitialisation complète de SearchBar.');
+      } else {
+        // Pas de réinitialisation complète, car en mode liste
+        console.log('[SearchBar] : Mode contexte liste activé, pas de réinitialisation complète.');
+      }
+    });
+
+    // Synchronisation des catégories via currentCategory$
     this.sharedService.currentCategory$.subscribe((category) => {
       if (category !== null) {
         // Actualiser la mémoire uniquement si la catégorie est non nulle
@@ -39,14 +55,16 @@ export class SearchBarComponent implements OnInit {
       // Mettre à jour l'état local
       this.category = category;
       this.categoryActive = category !== null; // Activer ou désactiver le bouton selon la catégorie
+      console.log('[SearchBar] : Catégorie synchronisée :', category);
     });
 
-    // Initialisation du mot-clé
-    this.sharedService.currentKeyword$.pipe(take(1)).subscribe((keyword) => {
-      this.keyword = keyword;
+    // Synchronisation des mots-clés via currentKeyword$
+    this.sharedService.currentKeyword$.subscribe((keyword) => {
+      this.keyword = keyword; // Mettre à jour l'état local
+      console.log('[SearchBar] : Mot-clé synchronisé :', keyword);
     });
 
-    // Abonnement aux changements de mode de recherche
+    // Abonnement aux changements de mode de recherche via currentSearchMode$
     this.sharedService.currentSearchMode$.subscribe((mode) => {
       this.modeOnRealTimeSearch = mode === 'validateOff'; // Active/Désactive la recherche instantanée
       this.placeholder = mode === 'validateOn'
@@ -66,10 +84,20 @@ export class SearchBarComponent implements OnInit {
   }
 
   /**
+   * Méthode utilitaire pour vérifier si un mot-clé est vide ou null.
+   */
+  isKeywordValid(): boolean {
+    return this.keyword ? this.keyword.trim().length > 0 : false;
+  }
+
+  /**
    * Méthode pour déclencher une recherche et mettre à jour les données dans SharedService.
    */
   triggerSearch(): void {
-    const trimmedKeyword = this.keyword.trim();
+    if (this.keyword === null) {
+      console.error("[SearchBar]-[triggerSearch] Un mot-clé ne peut être 'null'. Il sera traité comme une chaîne vide.")
+    }
+    const trimmedKeyword = this.keyword ? this.keyword.trim() : ''; // Traiter le cas où keyword est null
 
     // Mettre à jour le mot-clé dans SharedService
     this.sharedService.setKeyword(trimmedKeyword);
@@ -88,8 +116,6 @@ export class SearchBarComponent implements OnInit {
 
     console.log("[triggerSearch] emission de l'événement ", { category: this.categoryActive ? this.categoryMemory : null, keyword: trimmedKeyword });
   }
-
-
 
   /**
    * Active ou désactive la catégorie sans l'effacer.

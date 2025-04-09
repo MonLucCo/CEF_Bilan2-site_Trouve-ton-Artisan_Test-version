@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, combineLatest, switchMap, map, takeUntil } from 'rxjs';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
 import { SharedService } from '../../services/shared/shared.service';
 

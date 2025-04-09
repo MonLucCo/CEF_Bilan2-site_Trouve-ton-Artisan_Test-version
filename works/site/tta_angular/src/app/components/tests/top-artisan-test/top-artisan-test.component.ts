@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtisanCard } from '../../../models/artisan-card.models';
+import { ArtisanCard } from '../../../models/artisan-service.models';
 import { ArtisanService } from '../../../services/artisan/artisan.service';
 
 @Component({

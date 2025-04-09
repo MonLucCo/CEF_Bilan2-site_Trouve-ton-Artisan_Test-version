@@ -1,5 +1,4 @@
-import { Artisan } from "../models/artisan.models";
-import { ContactCard } from "../models/contact-card.models";
+import { Artisan, ContactCard } from "../models/artisan-service.models";
 
 /**
  * Fonction utilitaire pour transformer un artisan complet en une fiche de contact d'artisan (ContactCard).

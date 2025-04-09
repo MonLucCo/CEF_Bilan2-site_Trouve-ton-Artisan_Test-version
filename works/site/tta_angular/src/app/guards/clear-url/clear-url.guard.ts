@@ -31,7 +31,7 @@ export const clearUrlGuard: CanActivateFn = (route, state) => {
   // Gestion spécifique pour la route `/accueil`
   if (state.url === '/accueil') {
     console.log('[clearUrlGuard] Contexte d\'accueil détecté. Mise à jour des données de SharedService.');
-    sharedService.setContextMode('list'); // Contexte liste par défaut pour l'accueil
+    sharedService.setContextMode('accueil'); // Contexte liste par défaut pour l'accueil
     sharedService.setCategory(null); // Réinitialise la catégorie
     sharedService.setKeyword(''); // Réinitialise les mots-clés
     sharedService.setContactId(null); // Réinitialise l'identifiant de contact

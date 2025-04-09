@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
 import { BehaviorSubject, catchError, map, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 

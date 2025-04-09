@@ -1,4 +1,4 @@
-import { ArtisanContact } from "../models/artisan-contact.models";
+import { ArtisanContact } from "../models/artisan-service.models";
 
 /**
  * Transforme les données brutes en une structure `Contact` de l'Artisan.

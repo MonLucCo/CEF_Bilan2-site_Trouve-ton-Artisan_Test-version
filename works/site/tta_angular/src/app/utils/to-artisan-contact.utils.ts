@@ -1,5 +1,4 @@
-import { Artisan } from '../models/artisan.models';
-import { ArtisanContact } from '../models/artisan-contact.models';
+import { Artisan, ArtisanContact } from '../models/artisan-service.models';
 
 /**
  * Fonction utilitaire pour transformer un artisan complet en détail de l'artisan (InformationArtisan).

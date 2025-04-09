@@ -1,4 +1,4 @@
-import { ArtisanProfile } from "../models/artisan-profile.models";
+import { ArtisanProfile } from "../models/artisan-service.models";
 
 /**
  * Transforme les données brutes en une structure `Profile` de l'Artisan.

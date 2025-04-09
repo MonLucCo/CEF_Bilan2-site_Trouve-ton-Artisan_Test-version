@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, Observable, of } from 'rxjs';
 import { catchError, map, startWith, tap } from 'rxjs/operators';
-import { Artisan } from '../../models/artisan.models';
-import { ArtisanCard } from '../../models/artisan-card.models';
-import { ContactCard } from '../../models/contact-card.models';
 import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toContactCard } from '../../utils/to-contact-card.utils';
 import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
@@ -12,6 +9,7 @@ import { topFilter } from '../../pipes/top-filter/top-filter.pipe';
 import { searchFilter } from '../../pipes/search-filter/search-filter.pipe';
 import { categoryFilter } from '../../pipes/category-filter/category-filter.pipe';
 import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
+import { Artisan, ArtisanCard, ContactCard } from '../../models/artisan-service.models';
 
 /**
  * Service pour gérer les données des artisans (résumés) et des contacts (détails).
