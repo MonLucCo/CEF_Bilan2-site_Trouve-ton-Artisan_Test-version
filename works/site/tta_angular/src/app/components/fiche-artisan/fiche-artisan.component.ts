@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 import { SharedService } from '../../services/shared/shared.service';
 
 @Component({

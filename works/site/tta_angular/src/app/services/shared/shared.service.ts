@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ContextMode, FiltredMode, OptionalString, SearchMode } from '../../models/shared-service.models';
 
 /**
  * Service partagé permettant de gérer les états globaux au sein de l'application.
@@ -15,44 +16,45 @@ import { BehaviorSubject } from 'rxjs';
  * 
  * - **Méthodes** :
  *   - `resetFiltredMode(): void` : Réinitialise le mode de filtrage et tous les états associés.
- *   - `getFiltredMode(): 'searchOnly' | 'categoryOnly' | 'fullFiltred' | null` : Récupère le le mode de filtrage actif de manière synchrone.
- *   - `setCategory(category: string | null): void` : Définit la catégorie active.
- *   - `getCategory(): string | null` : Récupère la catégorie active de manière synchrone.
- *   - `setKeyword(keyword: string): void` : Définit la chaîne de caractères saisie dans le champ de recherche actif.
- *   - `getKeyword(): string` : Récupère la chaîne de recherche actuelle de manière synchrone.
- *   - `setSearchMode(mode: 'validateOn' | 'validateOff'): void` : Définit le mode de recherche actif.
- *   - `getSearchMode(): 'validateOn' | 'validateOff'` : Récupère le mode de recherche actif de manière synchrone.
- *   - `setContextMode(mode: 'list' | 'contact' | 'erreur'): void` : Définit le mode d'affichage actif.
- *   - `getContextMode(): 'list' | 'contact' | 'erreur'` : Récupère le mode d'affichage souhaité de manière synchrone.
- *   - `setContactId(id: string | null): void` : Définit l'identifiant du contact sélectionné.
- *   - `getContactId() : string | null` : Récupère l'identifiant du contact sélectionné.
+ *   - `getFiltredMode(): FiltredMode : Récupère le le mode de filtrage actif de manière synchrone.
+ *   - `setCategory(category: OptionalString): void` : Définit la catégorie active.
+ *   - `getCategory(): OptionalString` : Récupère la catégorie active de manière synchrone.
+ *   - `setKeyword(keyword: OptionalString): void` : Définit la chaîne de caractères saisie dans le champ de recherche actif.
+ *   - `getKeyword(): OptionalString` : Récupère la chaîne de recherche actuelle de manière synchrone.
+ *   - `setSearchMode(mode: SearchMode): void` : Définit le mode de recherche actif.
+ *   - `getSearchMode(): SearchMode` : Récupère le mode de recherche actif de manière synchrone.
+ *   - `setContextMode(mode: ContextMode): void` : Définit le mode d'affichage actif.
+ *   - `getContextMode(): ContextMode` : Récupère le mode d'affichage souhaité de manière synchrone.
+ *   - `setContactId(id: OptionalString): void` : Définit l'identifiant du contact sélectionné.
+ *   - `getContactId() : OptionalString` : Récupère l'identifiant du contact sélectionné.
  */
+
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  // Gestion de la catégorie active
-  private _categorySubject = new BehaviorSubject<string | null>(null);
+  // Gestion de la catégorie (active) utilisée pour les URLs
+  private _categorySubject = new BehaviorSubject<OptionalString>(null);
   currentCategory$ = this._categorySubject.asObservable();
 
-  // Gestion du mode de saisie des mots-clés (validateOn ou validateOff)
-  private _searchModeSubject = new BehaviorSubject<'validateOn' | 'validateOff'>('validateOn');
+  // Gestion du mode de saisie des mots-clés
+  private _searchModeSubject = new BehaviorSubject<SearchMode>('validateOn');
   currentSearchMode$ = this._searchModeSubject.asObservable();
 
-  // Gestion du mode de filtrage {searchOnly, categoryOnly, fullFiltred, contactOnly ou null}
-  private _filtredModeSubject = new BehaviorSubject<'searchOnly' | 'categoryOnly' | 'fullFiltred' | null>(null);
+  // Gestion du mode de filtrage
+  private _filtredModeSubject = new BehaviorSubject<FiltredMode>(null);
   currentFiltredMode$ = this._filtredModeSubject.asObservable();
 
   // Gestion du mode d'affichage {list, contact, erreur}
-  private _contextModeSubject = new BehaviorSubject<'list' | 'contact' | 'erreur'>('list');
+  private _contextModeSubject = new BehaviorSubject<ContextMode>('accueil');
   currentContextMode$ = this._contextModeSubject.asObservable();
 
   // Gestion des mots-clés saisis dans le champ de recherche
-  private _keywordSubject = new BehaviorSubject<string>('');
+  private _keywordSubject = new BehaviorSubject<OptionalString>('');
   currentKeyword$ = this._keywordSubject.asObservable();
 
   // Gestion de l'identifiant du contact sélectionné
-  private currentContactIdSubject = new BehaviorSubject<string | null>(null);
+  private currentContactIdSubject = new BehaviorSubject<OptionalString>(null);
   currentContactId$ = this.currentContactIdSubject.asObservable();
 
   /**
@@ -105,7 +107,6 @@ export class SharedService {
 
     // Émettre uniquement si le mode est différent
     this.changeValue(this._filtredModeSubject, newMode);
-    // console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
   }
 
   /**
@@ -120,9 +121,9 @@ export class SharedService {
 
   /**
    * Définit le mode de filtrage actif.
-   * @param mode - Le mode de filtrage à définir ('searchOnly', 'categoryOnly', 'fullFiltred')
+   * @param mode - Le mode de filtrage à définir dans la liste FiltredMode
    */
-  setFiltredMode(mode: 'searchOnly' | 'categoryOnly' | 'fullFiltred'): void {
+  setFiltredMode(mode: FiltredMode): void {
     this.changeValue(this._filtredModeSubject, mode);
     // console.log('[SharedService] : Mode de filtrage mis à jour :', this._filtredModeSubject.getValue());
   }
@@ -131,7 +132,11 @@ export class SharedService {
    * Définit la catégorie active.
    * @param category - La catégorie à définir (null si aucune catégorie)
    */
-  setCategory(category: string | null): void {
+  setCategory(category: OptionalString): void {
+    if (category === '') {
+      console.error("[] Une chaîne vide ne peut pas être une catégorie.");
+      return;
+    }
     this.changeValue(this._categorySubject, category, () => this.updateFiltredMode()); // Si modification, recalcule le mode
     // console.log('[SharedService] : Catégorie active mise à jour :', this._categorySubject.getValue());
   }
@@ -140,41 +145,43 @@ export class SharedService {
    * Récupère la catégorie active de manière synchrone.
    * @returns - La catégorie active ou null
    */
-  getCategory(): string | null {
+  getCategory(): OptionalString {
     return this._categorySubject.getValue();
   }
 
   /**
    * Définit la chaîne de caractères saisie dans le champ de recherche.
-   * @param keyword - La chaîne de caractères à définir (string vide si aucun mot-clé)
+   * @param keyword - La chaîne de caractères à définir (vide si aucun mot-clé)
    */
-  setKeyword(keyword: string): void {
+  setKeyword(keyword: OptionalString): void {
+    if (keyword === null) {
+      console.error("[] Un mot-clé ne peut pas avoir une valeur 'null'.");
+      return;
+    }
     this.changeValue(this._keywordSubject, keyword.trim(), () => this.updateFiltredMode()); // Si modification, recalcule le mode
-    // console.log('[SharedService] : Mot-clé mis à jour :', this._keywordSubject.getValue());
   }
 
   /**
    * Récupère la chaîne de recherche actuelle de manière synchrone.
    * @returns - Le mot-clé actuel
    */
-  getKeyword(): string {
+  getKeyword(): OptionalString {
     return this._keywordSubject.getValue();
   }
 
   /**
    * Définit le mode de recherche actif.
-   * @param mode - Le mode de recherche à définir ('validateOn' ou 'validateOff')
+   * @param mode - Le mode de recherche à définir dans la liste de SearchMode
    */
-  setSearchMode(mode: 'validateOn' | 'validateOff'): void {
+  setSearchMode(mode: SearchMode): void {
     this.changeValue(this._searchModeSubject, mode);
-    // console.log('[SharedService] : Mode de recherche mis à jour :', this._searchModeSubject.getValue());
   }
 
   /**
    * Récupère le mode de recherche actif de manière synchrone.
    * @returns - Le mode de recherche actuel
    */
-  getSearchMode(): 'validateOn' | 'validateOff' {
+  getSearchMode(): SearchMode {
     return this._searchModeSubject.getValue();
   }
 
@@ -182,24 +189,23 @@ export class SharedService {
    * Récupère le mode de filtrage actif de manière synchrone.
    * @returns - Le mode de filtrage actuel ou null
    */
-  getFiltredMode(): 'searchOnly' | 'categoryOnly' | 'fullFiltred' | null {
+  getFiltredMode(): FiltredMode {
     return this._filtredModeSubject.getValue();
   }
 
   /**
    * Définit le mode d'affichage souhaité.
-   * @param mode - Le mode d'affichage à définir ('list' ou 'contact')
+   * @param mode - Le mode d'affichage à définir dans la liste de ContextMode
    */
-  setContextMode(mode: 'list' | 'contact' | 'erreur'): void {
+  setContextMode(mode: ContextMode): void {
     this.changeValue(this._contextModeSubject, mode);
-    // console.log("[SharedService] : Mode d'affichage mis à jour :", this._contextModeSubject.getValue());
   }
 
   /**
    * Récupère le mode d'affichage souhaité de manière synchrone.
    * @returns - Le mode d'affichage actuel
    */
-  getContextMode(): 'list' | 'contact' | 'erreur' {
+  getContextMode(): ContextMode {
     return this._contextModeSubject.getValue();
   }
 
@@ -207,7 +213,10 @@ export class SharedService {
    * Définit un nouvel ID pour le contact sélectionné.
    * @param id - Identifiant du contact, ou null pour réinitialiser.
    */
-  setContactId(id: string | null): void {
+  setContactId(id: OptionalString): void {
+    if (id === '') {
+      console.error(" Un identifiant (id) ne peut être vide")
+    }
     this.changeValue(this.currentContactIdSubject, id);
   }
 
@@ -215,7 +224,7 @@ export class SharedService {
    * Récupère l'ID actuel du contact (valeur synchronisée).
    * @returns ID du contact sélectionné, ou null si non défini.
    */
-  getContactId(): string | null {
+  getContactId(): OptionalString {
     return this.currentContactIdSubject.getValue();
   }
 }

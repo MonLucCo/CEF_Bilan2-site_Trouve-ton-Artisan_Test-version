@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
 
 @Component({

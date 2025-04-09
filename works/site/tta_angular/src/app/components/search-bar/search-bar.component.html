@@ -1,12 +1,12 @@
 <div class="input-group">
     <!-- Bouton lié à la catégorie sélectionnée -->
-    <div *ngIf="category" class="input-group-prepend">
+    <div *ngIf="categoryMemory" class="input-group-prepend">
         <div class="btn-group">
             <!-- Case à cocher pour activer/désactiver la catégorie -->
             <button class="btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
-                [disabled]="!keyword.trim()">
+                [disabled]="!isKeywordValid()">
                 <input type="checkbox" [checked]="categoryActive" />
-                <span>{{ category }}</span>
+                <span>{{ categoryMemory }}</span>
             </button>
         </div>
     </div>
@@ -24,13 +24,13 @@
     </ng-template>
 
     <!-- Bouton reset -->
-    <button class="btn btn-outline-secondary" (click)="resetSearchField()" [disabled]="!keyword.trim()">
+    <button class="btn btn-outline-secondary" (click)="resetSearchField()" [disabled]="!isKeywordValid()">
         <i class="fas fa-undo"></i> <!-- Icône de reset -->
     </button>
 
     <!-- Bouton de recherche -->
     <button class="btn btn-outline-primary" (click)="triggerSearch()"
-        [disabled]="modeOnRealTimeSearch || !keyword.trim()">
+        [disabled]="modeOnRealTimeSearch || !isKeywordValid()">
         <i class="fas fa-search"></i> <!-- Icône recherche (loupe) -->
     </button>
 </div>

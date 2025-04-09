@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ContactCard } from '../../models/contact-card.models';
-import { SharedService } from '../../services/shared/shared.service';
+import { ArtisanCard, ContactCard } from '../../models/artisan-service.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-contact-page',

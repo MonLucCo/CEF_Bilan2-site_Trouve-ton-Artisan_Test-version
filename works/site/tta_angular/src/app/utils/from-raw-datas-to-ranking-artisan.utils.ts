@@ -1,4 +1,4 @@
-import { ArtisanRanking } from "../models/artisan-ranking.models";
+import { ArtisanRanking } from "../models/artisan-service.models";
 
 /**
  * Transforme les données brutes en une structure `Ranking` de l'Artisan.

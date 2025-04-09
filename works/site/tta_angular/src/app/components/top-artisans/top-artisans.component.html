@@ -1,16 +1,18 @@
-<!-- Section affichant les artisans s'il y en a, ou un message alternatif dans le cas contraire. -->
-<div *ngIf="topArtisans$ | async as topArtisans; else noTopArtisans">
-    <h2>Top Artisans</h2>
-    <!-- Boucle pour afficher chaque artisan avec leurs détails. -->
-    <div *ngFor="let artisan of topArtisans" class="card top-artisan-card">
-        <h3>{{ artisan.name }} - Id : {{ artisan.id }}</h3>
-        <p>Note : {{ artisan.note.toFixed(1) }}</p> <!-- Affiche la note avec une décimale. -->
-        <p>Spécialité : {{ artisan.specialty }}</p>
-        <p>Localisation : {{ artisan.location }}</p>
+<div class="top-artisans-container">
+    <p>top-artisan works!</p>
+    <!-- Section affichant les artisans s'il y en a, ou un message alternatif dans le cas contraire. -->
+    <div *ngIf="topArtisans$ | async as topArtisans; else noTopArtisans">
+        <h2>Artisans au Top</h2>
+        <!-- Boucle pour afficher chaque artisan avec leurs détails. -->
+        <div class="d-flex gap-2">
+            <div *ngFor="let artisan of topArtisans" class="col-md-4">
+                <app-fiche-artisan [artisan]="artisan"></app-fiche-artisan>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Message affiché s'il n'y a aucun artisan dans la liste. -->
-<ng-template #noTopArtisans>
-    <p>Aucun artisan en haut du classement pour le moment.</p>
-</ng-template>
+    <!-- Message affiché s'il n'y a aucun artisan dans la liste. -->
+    <ng-template #noTopArtisans>
+        <p>Aucun artisan en haut du classement pour le moment.</p>
+    </ng-template>
+</div>

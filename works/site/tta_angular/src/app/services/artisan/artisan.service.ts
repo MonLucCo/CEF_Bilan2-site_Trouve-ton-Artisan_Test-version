@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, Observable, of } from 'rxjs';
 import { catchError, map, startWith, tap } from 'rxjs/operators';
-import { Artisan } from '../../models/artisan.models';
-import { ArtisanCard } from '../../models/artisan-card.models';
-import { ContactCard } from '../../models/contact-card.models';
 import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toContactCard } from '../../utils/to-contact-card.utils';
 import { fromRawToArtisan } from '../../utils/from-raw-datas-to-artisan.utils';
@@ -12,6 +9,7 @@ import { topFilter } from '../../pipes/top-filter/top-filter.pipe';
 import { searchFilter } from '../../pipes/search-filter/search-filter.pipe';
 import { categoryFilter } from '../../pipes/category-filter/category-filter.pipe';
 import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
+import { Artisan, ArtisanCard, ContactCard } from '../../models/artisan-service.models';
 
 /**
  * Service pour gérer les données des artisans (résumés) et des contacts (détails).
@@ -33,6 +31,7 @@ import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
  * - `getArtisansByCategory(category: string)` : Filtre les artisans par catégorie.
  * - `getArtisanById(id: string)` : Retourne un artisan spécifique par son identifiant.
  * - `getContactById(id: string)` : Récupère les détails de contact d'un artisan par son identifiant.
+ * - `getArtisansByCategoryAndSearch(category: string, keyword: string): Observable<ArtisanCard[]>` : Filtre les artisans par catégorie et mot-clé.
  * - `searchArtisans(keyword: string)` : Recherche les artisans selon un mot-clé.
  * - `getArtisanByTop()` : Retourne les artisans ayant le statut "top".
  * - `getAllCategories()` : Retourne les catégories uniques des artisans.
@@ -379,6 +378,20 @@ export class ArtisanService {
     return this.artisans$.pipe(
       startWith([]),
       map((artisans) => categoryFilter(artisans, category))
+    );
+  }
+
+  /**
+   * Recherche combinée par catégorie et mot-clé.
+   * @param category La catégorie pour filtrer les artisans.
+   * @param keyword Le mot-clé pour rechercher les artisans.
+   * @returns Observable de la liste filtrée des artisans.
+   */
+  getArtisansByCategoryAndSearch(category: string, keyword: string): Observable<ArtisanCard[]> {
+    // Charger les artisans par catégorie
+    return this.getArtisansByCategory(category).pipe(
+      // Appliquer le filtre par mot-clé
+      map((artisans) => searchFilter(artisans, keyword))
     );
   }
 

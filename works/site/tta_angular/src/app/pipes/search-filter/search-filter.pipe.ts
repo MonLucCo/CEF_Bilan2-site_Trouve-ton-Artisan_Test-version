@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 
 export function searchFilter(artisans: ArtisanCard[], keyword: string): ArtisanCard[] {
   return artisans.filter((artisan) =>

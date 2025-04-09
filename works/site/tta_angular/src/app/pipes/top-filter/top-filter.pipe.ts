@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ArtisanCard } from '../../models/artisan-card.models';
+import { ArtisanCard } from '../../models/artisan-service.models';
 
 export function topFilter(artisans: ArtisanCard[]): ArtisanCard[] {
   return artisans.filter((artisan) => artisan.top);

@@ -1,5 +1,4 @@
-import { Artisan } from '../models/artisan.models';
-import { ArtisanCard } from '../models/artisan-card.models';
+import { Artisan, ArtisanCard } from '../models/artisan-service.models';
 
 /**
  * Transforme un objet brut en modèle ArtisanCard.

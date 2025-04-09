@@ -1,4 +1,4 @@
-import { Artisan } from "../models/artisan.models";
+import { Artisan } from "../models/artisan-service.models";
 import { fromRawToContact } from "./from-raw-datas-to-contact-artisan.utils";
 import { fromRawToRanking } from "./from-raw-datas-to-ranking-artisan.utils";
 import { fromRawToProfile } from "./from-raw-datas-to-profile-artisan.utils";
