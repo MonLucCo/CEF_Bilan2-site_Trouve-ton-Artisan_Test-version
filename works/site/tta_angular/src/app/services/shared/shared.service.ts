@@ -214,8 +214,8 @@ export class SharedService {
    * @param id - Identifiant du contact, ou null pour réinitialiser.
    */
   setContactId(id: OptionalString): void {
-    if (id === '' || id === null) {
-      console.error(" Un identifiant (id) ne peut être ni vide, ni null ")
+    if (id === '') {
+      console.error(" Un identifiant (id) ne peut être vide")
     }
     this.changeValue(this.currentContactIdSubject, id);
   }

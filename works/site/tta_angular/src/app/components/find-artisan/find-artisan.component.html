@@ -1,0 +1,20 @@
+<p>find-artisan works!</p>
+<div class="accordion" id="findArtisanAccordion">
+    <div class="accordion-item" *ngFor="let step of steps; let i = index">
+        <!-- Titre de l'accordéon -->
+        <h2 class="accordion-header" id="heading{{ i }}">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+                <strong>Étape {{ step.number }} : {{ step.title }}</strong>
+            </button>
+        </h2>
+        <!-- Contenu de l'accordéon -->
+        <div id="collapse{{ i }}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
+            data-bs-parent="#findArtisanAccordion">
+            <div class="accordion-body">
+                <strong>{{ step.text }}</strong>
+                <p>{{ step.details }}</p>
+            </div>
+        </div>
+    </div>
+</div>

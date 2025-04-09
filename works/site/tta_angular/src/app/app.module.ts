@@ -34,6 +34,8 @@ import { RatingStarsComponent } from './components/rating-stars/rating-stars.com
 import { ContactArtisanComponent } from './components/contact-artisan/contact-artisan.component';
 import { ApiMaildevTestComponent } from './components/tests/api-maildev-test/api-maildev-test.component';
 import { ListArtisansComponent } from './components/list-artisans/list-artisans.component';
+import { FindArtisanComponent } from './components/find-artisan/find-artisan.component';
+import { FindArtisanTestComponent } from './components/tests/find-artisan-test/find-artisan-test.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { ListArtisansComponent } from './components/list-artisans/list-artisans.
     RatingStarsComponent,
     ContactArtisanComponent,
     ApiMaildevTestComponent,
-    ListArtisansComponent
+    ListArtisansComponent,
+    FindArtisanComponent,
+    FindArtisanTestComponent
   ],
   imports: [
     CommonModule,
