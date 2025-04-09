@@ -1,6 +1,6 @@
 # CEF_Bilan2-site_Trouve-ton-Artisan_Test-version
 
-Ce dépôt concerne le projet **Trouve ton Artisan** qui est une application web et web mobile développée dans le cadre d'un sujet d'étude _front-end_.
+Ce dépôt concerne le projet **Trouve Ton Artisan** qui est une application web et web mobile développée dans le cadre d'un sujet d'étude _front-end_.
 
 Ce projet vise l'établissement avec Angular ou React d'un site web dynamique selon les spécifications du CEF.
 
@@ -47,11 +47,15 @@ la structure du projet est la suivante :
 
 ## Contribuer
 
-Ce projet ne prévoit pas de contribution.
+Ce projet, **Trouve Ton Artisan**, a été développé dans le cadre d'une formation en développement web et web mobile avec le CEF. Il a pour objectif principal de démontrer et valider des compétences dans la gestion d'emails via un serveur backend dédié, en intégration avec un client Angular.
+
+Les évolutions futures de ce projet ne sont pas prévues après son rendu, mais il reste disponible pour être étudié et adapté dans d'autres contextes éducatifs ou professionnels.
+
+Merci pour votre intérêt pour ce projet et pour avoir pris le temps de l'explorer ! 😊
 
 ## Licence
 
-Rédaction réservée.
+Ce projet est sous licence **MIT**.
 
 ## Contact
 
