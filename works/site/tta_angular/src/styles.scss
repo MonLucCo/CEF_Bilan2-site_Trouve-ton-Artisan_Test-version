@@ -1,1 +1,125 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Graphik';
+    src: url('../src/app/assets/fonts/Graphik Family/Graphik-Regular-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('../src/app/assets/fonts/Graphik Family/Graphik-Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('../src/app/assets/fonts/Graphik Family/Graphik-RegularItalic-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('../src/app/assets/fonts/Graphik Family/Graphik-ExtraLight-Trial.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('../src/app/assets/fonts/Graphik Family/Graphik-Black-Trial.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+// Palette de couleurs
+$white: #ffffff; // Blanc
+$black: #000000; // Noir
+$light-blue: #f1f8fc; // Bleu clair
+$primary-blue: #0074c7; // Bleu principal
+$dark-blue: #00497c; // Bleu foncé
+$dark-gray: #384050; // Gris foncé
+$accent-red: #cd2c2e; // Rouge accent
+$accent-green: #82b864; // Vert accent
+
+// Application des polices dans le projet
+html,
+body,
+p {
+    font-family: 'Graphik';
+    font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn {
+    font-family: 'Graphik';
+    font-weight: bold;
+}
+
+blockquote,
+.description {
+    font-family: 'Graphik';
+    font-style: italic;
+}
+
+.small-text {
+    font-family: 'Graphik';
+    font-weight: 200;
+}
+
+.hero-title {
+    font-family: 'Graphik';
+    font-weight: 900;
+}
+
+// Application pour Bootstrap
+.navbar,
+.btn,
+.form-control {
+    font-family: 'Graphik', sans-serif !important;
+}
+
+// Application de la palette des couleurs dans le projet
+body {
+    color: $dark-gray; // Texte principal
+    background-color: $light-blue; // Couleur de fond
+}
+
+h1,
+h2 {
+    color: $primary-blue; // Titres principaux
+}
+
+.hero-title {
+    color: $dark-blue; // Accentuation importante
+}
+
+.btn-primary {
+    background-color: $primary-blue;
+    color: $white;
+
+    &:hover {
+        background-color: $dark-blue;
+    }
+}
+
+.btn-accent {
+    background-color: $accent-red;
+    color: $white;
+
+    &:hover {
+        background-color: $dark-blue;
+    }
+}
+
+.card {
+    border: 1px solid $primary-blue;
+    background-color: $light-blue;
+}

@@ -1,0 +1,36 @@
+:root {
+    /* Palette de couleurs personnalisée */
+    --bs-primary: #0074c7;
+    /* Bleu principal */
+    --bs-secondary: #384050;
+    /* Gris foncé */
+    --bs-success: #82b864;
+    /* Vert accent */
+    --bs-danger: #cd2c2e;
+    /* Rouge accent */
+    --bs-info: #f1f8fc;
+    /* Bleu clair */
+    --bs-light: #ffffff;
+    /* Blanc */
+    --bs-dark: #000000;
+    /* Noir */
+}
+
+/* Optionnel : Ajustez des composants spécifiques si nécessaire */
+.btn-primary {
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+}
+
+.btn-primary:hover {
+    background-color: #00497c;
+    /* Bleu foncé */
+}
+
+.bg-primary {
+    background-color: var(--bs-primary);
+}
+
+.text-primary {
+    color: var(--bs-primary);
+}

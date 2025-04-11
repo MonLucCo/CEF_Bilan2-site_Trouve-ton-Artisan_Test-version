@@ -1,18 +1,22 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SharedService } from '../../services/shared/shared.service';
-import { OptionalString } from '../../models/shared-service.models';
+import { Router, ActivatedRoute } from '@angular/router';
+import { OptionalString } from '../../../models/shared-service.models';
+import { SharedService } from '../../../services/shared/shared.service';
 
 /**
  * Composant du Header affichant le menu et interagissant avec la catégorie active via SharedService.
  */
+
 @Component({
-  selector: 'app-header',
+  selector: 'app-test-header',
   standalone: false,
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  templateUrl: './test-header.component.html',
+  styleUrl: './test-header.component.scss'
 })
-export class HeaderComponent implements OnInit {
+export class TestHeaderComponent implements OnInit {
+  @Output() toggleTestMode = new EventEmitter<void>(); // Émetteur d'événement
+  testMode: boolean = false; // Etat du mode test
+
   category: OptionalString = null; // Catégorie active dans le header
   keyword: OptionalString = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
@@ -56,6 +60,23 @@ export class HeaderComponent implements OnInit {
     const searchMode = mode === 'validate' ? 'validateOn' : 'validateOff';
     this.sharedService.setSearchMode(searchMode);
     console.log('[Header]-[onModeChange] : Mode de recherche changé :', searchMode);
+  }
+
+  /**
+ * Met à jour l'URL en fonction des catégories et mots-clés.
+ */
+  private updateUrl(): void {
+    const queryParams: any = {};
+
+    if (this.category) {
+      queryParams['categorie'] = this.category.trim();
+    }
+    if (this.keyword) {
+      queryParams['recherche'] = this.keyword.trim();
+    }
+
+    this.router.navigate(['/artisans'], { queryParams });
+    console.log('[Header]-[updateUrl] : URL mise à jour avec paramètres :', queryParams);
   }
 
   /**
@@ -128,5 +149,30 @@ export class HeaderComponent implements OnInit {
     } else {
       console.log('[Header]-[UpdateUrlIfNeeded] : Aucune mise à jour nécessaire, l\'URL est déjà correcte.');
     }
+  }
+
+
+  /**
+   * Méthode pour trace de 'début ou de fin d'action
+   */
+  onTraceAction(): void {
+    this.topActionCounter++;
+    console.log('[Header]-[onTraceAction] : Top de la trace', this.topActionCounter);
+  }
+
+  /**
+   * Active ou désactive le mode test et informe l'AppComponent.
+   */
+  onToggleTestMode(): void {
+    this.testMode = !this.testMode;
+    this.toggleTestMode.emit(); // Emet un événement
+    console.log('[Header]-[toggleTestMode] : Mode test activé :', this.testMode);
+  }
+
+  /**
+   * Renvoie le texte du bouton selon l'état du mode test.
+   */
+  getTestModeButtonText(): string {
+    return this.testMode ? 'Désactiver Test' : 'Activer Test';
   }
 }

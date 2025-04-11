@@ -58,7 +58,7 @@ export class ArtisanService {
    * Ce fichier sert de source principale pour charger les artisans, leurs contacts et les catégories.
    * La récupération est effectuée via `HttpClient`.
    */
-  private readonly dataUrl: string = '/datas.json';
+  private readonly dataUrl: string = '/datas/datas.json';
 
 
 
