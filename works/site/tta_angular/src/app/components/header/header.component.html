@@ -1,46 +1,53 @@
 <header class="app-header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg text-uppercase">
+        <div class="container ">
             <!-- Logo -->
-            <a class="navbar-brand d-flex align-items-center" routerLink="/accueil">
-                <img class="logo" src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" width="130" height="60"
-                    class="d-inline-block align-text-top">
+            <a class="navbar-brand" routerLink="/accueil">
+                <img class="logo object-fit-cover my-3 py-2" src="images/logos/LogoTTA.svg"
+                    alt="Logo Trouve Ton Artisan" width="200" height="60">
             </a>
 
-            <!-- Bouton Hamburger (menu mobile) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="mt-4">
+                <!-- Bouton Hamburger (menu mobile/tablette) -->
+                <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- Menu de navigation -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" routerLink="/" routerLinkActive="active"
-                            aria-current="page">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/categorie', 'Services']">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
-                    </li>
-                </ul>
-            </div>
+                <!-- Menu de navigation -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/" routerLinkActive="active" aria-current="page">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Services']">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <!-- Composant de barre de recherche -->
-            <div class="search-bar col-4">
-                <!-- Instance de SearchBar avec la loupe -->
-                <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
-                </app-search-bar>
             </div>
         </div>
     </nav>
+    <!-- Ligne de séparation -->
+    <hr class="separate w-75 mx-auto">
+    <!-- Barre de recherche -->
+    <div class="search-bar mt-0 mb-3 text-center">
+        <div class="col-10 mx-auto">
+            <!-- Instance de SearchBar avec la loupe -->
+            <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
+            </app-search-bar>
+        </div>
+    </div>
+
 </header>
