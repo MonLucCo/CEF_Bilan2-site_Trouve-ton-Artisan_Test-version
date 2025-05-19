@@ -65,7 +65,7 @@
         <!-- Ligne 4 : Signature -->
         <div class="row py-3 d-flex align-items-center">
             <div class="col-md-6 d-flex align-items-center justify-content-start">
-                <div *ngIf="showTools" class="d-flex">
+                <div *ngIf="showTools" class="d-flex align-items-center">
                     <!-- Switch Bootstrap pour Search Mode -->
                     <div class="form-check form-switch mx-2">
                         <input class="form-check-input" type="checkbox" id="currentSearchModeSwitch"
@@ -78,6 +78,11 @@
                         <input class="form-check-input" type="checkbox" id="toolsMailDevTestingSwitch"
                             [checked]="showTestComponent" (change)="toggleShowTestComponent()">
                         <label class="form-check-label" for="toolsMailDevTestingSwitch">MailDev</label>
+                    </div>
+
+                    <!-- Bouton générateur d'erreur (Page Erreur-404) -->
+                    <div>
+                        <a routerLink="/erreur-404" class="btn btn-secondary">Page 404</a>
                     </div>
                 </div>
             </div>
