@@ -64,8 +64,8 @@
 
         <!-- Ligne 4 : Signature -->
         <div class="row py-3 d-flex align-items-center">
-            <div class="col-md-6 d-flex align-items-center justify-content-start">
-                <div *ngIf="showTools" class="d-flex align-items-center">
+            <div class="col-md-8 d-flex align-items-center justify-content-start">
+                <div *ngIf="showTools" class="d-flex align-items-center gap-2">
                     <!-- Switch Bootstrap pour Search Mode -->
                     <div class="form-check form-switch mx-2">
                         <input class="form-check-input" type="checkbox" id="currentSearchModeSwitch"
@@ -84,9 +84,19 @@
                     <div>
                         <a routerLink="/erreur-404" class="btn btn-secondary">Page 404</a>
                     </div>
+
+                    <!-- Bouton générateur contact (Page Contact/9) -->
+                    <div>
+                        <a routerLink="/contact/9" class="btn btn-secondary">Contact 9</a>
+                    </div>
+
+                    <!-- Bouton générateur contact (Page Contact/14) -->
+                    <div>
+                        <a routerLink="/contact/14" class="btn btn-secondary">Contact 14</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 text-end">
+            <div class="col-md-4 text-end">
                 <button class="btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()">
                     ⚡️ Propulsé par PerLucCo &copy; <span class="text-danger">&hearts;</span>
                 </button>

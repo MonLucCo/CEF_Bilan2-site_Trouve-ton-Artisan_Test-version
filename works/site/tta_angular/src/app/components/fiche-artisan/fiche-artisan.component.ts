@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArtisanCard } from '../../models/artisan-service.models';
 import { SharedService } from '../../services/shared/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fiche-artisan',
@@ -12,7 +13,7 @@ export class FicheArtisanComponent implements OnInit {
   @Input() artisan!: ArtisanCard;
   isClickable: boolean = false;
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, private router: Router) { }
 
   ngOnInit(): void {
     // Détermine la cliquabilité selon le ContextMode
@@ -27,7 +28,7 @@ export class FicheArtisanComponent implements OnInit {
   onCardClick(): void {
     if (this.isClickable) {
       console.log('[FicheArtisan] : Artisan cliqué avec ID :', this.artisan.id);
-      // Navigation ou traitement supplémentaire ici
+      // this.router.navigate(['/contact', this.artisan.id]);  // Redirection vers la page de contact
     }
   }
 }
