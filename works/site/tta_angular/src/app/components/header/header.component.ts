@@ -102,6 +102,20 @@ export class HeaderComponent implements OnInit {
  * Vérifie si les paramètres d'URL doivent être mis à jour, pour éviter les boucles infinies.
  */
   private updateUrlIfNeeded(event?: { category: OptionalString; keyword: OptionalString }): void {
+    // const currentContextMode = this.sharedService.getContextMode(); // Récupère le mode d'affichage actuel
+    // const currentContactId = this.sharedService.getContactId(); // Récupère l'ID du contact sélectionné
+
+    // if (currentContextMode === 'contact' || currentContactId) {
+    //   console.log('[Header]-[UpdateUrlIfNeeded] : Mode Contact détecté ou contact actif, pas de mise à jour d\'URL.');
+    //   return; // Stoppe l'exécution pour éviter la redirection indésirable
+    // }
+
+    // Si l'événement est indéfini ou vide, on ignore l'update
+    if (!event || (!event.category && !event.keyword)) {
+      console.log('[Header]-[UpdateUrlIfNeeded] : Aucun changement utile détecté, mise à jour ignorée.');
+      return;
+    }
+
     const queryParams: any = {};
 
     console.log("[Header]-[UpdateUrlIfNeeded] : Valeur de l'event", event);
