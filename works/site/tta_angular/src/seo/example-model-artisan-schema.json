@@ -1,0 +1,29 @@
+[
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "[Nom de l'artisan]",
+        "description": "[Courte présentation de l'artisan, ses compétences]",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "[Ville]",
+            "addressCountry": "FR"
+        },
+        "telephone": "[Numéro de téléphone]",
+        "email": "[Adresse email]",
+        "url": "[Site web ou page sociale]",
+        "keywords": [
+            "[Spécialité]",
+            "[Secteur d'activité]"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "[Service principal proposé]"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "[Note moyenne]",
+            "reviewCount": "[Nombre d'avis]"
+        }
+    }
+]

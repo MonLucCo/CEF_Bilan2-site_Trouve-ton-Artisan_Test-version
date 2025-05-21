@@ -36,6 +36,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/datas",
+                "output": "/datas"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/seo",
+                "output": "/seo"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/styles",
+                "output": "/styles"
               }
             ],
             "styles": [

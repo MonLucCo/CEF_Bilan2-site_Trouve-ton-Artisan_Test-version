@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin/
+Allow: /
+Sitemap: https://www.trouve-ton-artisan.com/sitemap.xml
