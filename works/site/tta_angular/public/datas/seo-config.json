@@ -8,5 +8,6 @@
         "Angular",
         "SEO"
     ],
-    "author": "Trouve Ton Artisan"
+    "author": "Trouve Ton Artisan",
+    "robots": "index, follow"
 }
