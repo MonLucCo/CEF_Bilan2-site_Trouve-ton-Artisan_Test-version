@@ -49,14 +49,29 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/styles",
+                "input": "src/app/assets/styles",
                 "output": "/styles"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/assets/fonts/fontawesome/css",
+                "output": "/fonts/fontawesome/css"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/assets/fonts/fontawesome/webfonts",
+                "output": "/fonts/fontawesome/webfonts"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app/assets/fonts/fontawesome/css/all.min.css",
+              "src/app/assets/styles/bootstrap.min.css",
+              "src/app/assets/styles/custom-bootstrap.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/assets/styles/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {

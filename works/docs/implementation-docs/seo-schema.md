@@ -48,7 +48,7 @@ Le code des scripts liés au SEO utilise **un chargement asynchrone** des param�
 
 ## Fichiers **JSON Modifiables**
 
-Tous les paramètres SEO sont **centralisés** dans des fichiers JSON situés dans `/public/datas/`. 
+Tous les paramètres SEO sont **centralisés** dans des fichiers JSON situés dans `/public/datas/`.
 
 **Fichiers JSON importants** :
 
