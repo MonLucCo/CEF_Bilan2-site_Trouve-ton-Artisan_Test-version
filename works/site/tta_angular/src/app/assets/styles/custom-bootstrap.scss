@@ -1,36 +1,76 @@
-:root {
-    /* Palette de couleurs personnalisée */
-    --bs-primary: #0074c7;
-    /* Bleu principal */
-    --bs-secondary: #384050;
-    /* Gris foncé */
-    --bs-success: #82b864;
-    /* Vert accent */
-    --bs-danger: #cd2c2e;
-    /* Rouge accent */
-    --bs-info: #f1f8fc;
-    /* Bleu clair */
-    --bs-light: #ffffff;
-    /* Blanc */
-    --bs-dark: #000000;
-    /* Noir */
+// :root {
+//     /* Palette de couleurs personnalisée */
+//     --bs-primary: #0074c7;
+//     /* Bleu principal */
+//     --bs-secondary: #384050;
+//     /* Gris foncé */
+//     --bs-success: #82b864;
+//     /* Vert accent */
+//     --bs-danger: #cd2c2e;
+//     /* Rouge accent */
+//     --bs-info: #f1f8fc;
+//     /* Bleu clair */
+//     --bs-light: #ffffff;
+//     /* Blanc */
+//     --bs-dark: #000000;
+//     /* Noir */
+// }
+
+// /* Optionnel : Ajustez des composants spécifiques si nécessaire */
+// .btn-primary {
+//     background-color: var(--bs-primary);
+//     color: var(--bs-light);
+// }
+
+// .btn-primary:hover {
+//     background-color: #00497c;
+//     /* Bleu foncé */
+// }
+
+// .bg-primary {
+//     background-color: var(--bs-primary);
+// }
+
+// .text-primary {
+//     color: var(--bs-primary);
+// }
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('/fonts/Graphik Family/Graphik-Regular-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/* Optionnel : Ajustez des composants spécifiques si nécessaire */
-.btn-primary {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
+@font-face {
+    font-family: 'Graphik';
+    src: url('/fonts/Graphik Family/Graphik-Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
 }
 
-.btn-primary:hover {
-    background-color: #00497c;
-    /* Bleu foncé */
-}
+$font-family-base: 'Graphik', sans-serif;
 
-.bg-primary {
-    background-color: var(--bs-primary);
-}
+$primary: #0074c7;
+$secondary: #00497c;
+$light: #f1f8fc;
+$dark: #384050;
 
-.text-primary {
-    color: var(--bs-primary);
-}
+$danger: #cd2c2e; // Accentuation rouge
+$success: #82b864; // Accentuation verte
+
+$body-color: #000; // Couleur du texte par défaut
+$body-bg: #ffffff; // Fond blanc
+
+// Variables personnalisées
+$font-family-base: 'Graphik', sans-serif;
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "light": $light,
+    "dark": $dark,
+    "danger": $danger,
+    "success": $success
+);
+
+@import "bootstrap/scss/bootstrap"; // Recompile Bootstrap avec les nouvelles couleurs

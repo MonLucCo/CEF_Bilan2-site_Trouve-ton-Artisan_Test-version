@@ -54,6 +54,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "src/app/assets/fonts/Graphik Family",
+                "output": "/fonts/Graphik Family"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/app/assets/fonts/fontawesome/css",
                 "output": "/fonts/fontawesome/css"
               },
@@ -66,12 +71,9 @@
             "styles": [
               "src/styles.scss",
               "src/app/assets/fonts/fontawesome/css/all.min.css",
-              "src/app/assets/styles/bootstrap.min.css",
               "src/app/assets/styles/custom-bootstrap.scss"
             ],
-            "scripts": [
-              "src/app/assets/styles/bootstrap.bundle.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

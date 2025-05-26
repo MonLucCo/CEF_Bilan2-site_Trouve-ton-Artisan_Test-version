@@ -20,7 +20,8 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 
    - étapes pratiques d'implémentation de l'[application de passerelle (Email API)](./implementation-docs/email-gateway-http-smtp.md)
    - objectifs et implémentation du [SEO Dynamique et Schémas de référencement](./implementation-docs/seo-schema.md)
-   - objectifs et implémentation de [Bootsrtap et Font Awesome](./implementation-docs/boostrap-fontAwesome-integrationFromCDN.md)
+   - objectifs et implémentation de [Bootstrap et Font Awesome](./implementation-docs/boostrap-fontAwesome-integrationFromCDN.md)
+   - intégration et [customisation de Bootstrap](./implementation-docs/customisation-bootstrap.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -40,6 +41,7 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 │   ├── email-gateway-http-smtp.md    -------------------> # Détails techniques de la passerelle HTTP-SMTP
 │   ├── seo-schema.md    --------------------------------> # Détails techniques du SEO **dynamique** et des schémas de référencement
 │   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails techniques du SEO **dynamique** et des schémas de référencement
+│   ├── customisation-bootstrap.md    -------------------> # Détails techniques de l'intégration de l'identitié du projet dans Bootstrap
 ```
 
 ---
