@@ -22,6 +22,7 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
    - objectifs et implémentation du [SEO Dynamique et Schémas de référencement](./implementation-docs/seo-schema.md)
    - objectifs et implémentation de [Bootstrap et Font Awesome](./implementation-docs/boostrap-fontAwesome-integrationFromCDN.md)
    - intégration et [customisation de Bootstrap](./implementation-docs/customisation-bootstrap.md)
+   - [personnalisation centralisée et optimisée des styles](./implementation-docs/styles-personnalise-bootstrap-fontAwesome.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -42,6 +43,7 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 │   ├── seo-schema.md    --------------------------------> # Détails techniques du SEO **dynamique** et des schémas de référencement
 │   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails techniques du SEO **dynamique** et des schémas de référencement
 │   ├── customisation-bootstrap.md    -------------------> # Détails techniques de l'intégration de l'identitié du projet dans Bootstrap
+│   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails techniques de la personnalisation des styles du projet
 ```
 
 ---

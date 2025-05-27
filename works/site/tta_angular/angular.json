@@ -55,7 +55,7 @@
               {
                 "glob": "**/*",
                 "input": "src/app/assets/fonts/Graphik Family",
-                "output": "/fonts/Graphik Family"
+                "output": "/fonts/graphik"
               },
               {
                 "glob": "**/*",

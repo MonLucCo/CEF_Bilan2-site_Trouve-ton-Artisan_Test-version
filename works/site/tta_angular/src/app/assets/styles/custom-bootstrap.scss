@@ -1,69 +1,31 @@
-// :root {
-//     /* Palette de couleurs personnalisée */
-//     --bs-primary: #0074c7;
-//     /* Bleu principal */
-//     --bs-secondary: #384050;
-//     /* Gris foncé */
-//     --bs-success: #82b864;
-//     /* Vert accent */
-//     --bs-danger: #cd2c2e;
-//     /* Rouge accent */
-//     --bs-info: #f1f8fc;
-//     /* Bleu clair */
-//     --bs-light: #ffffff;
-//     /* Blanc */
-//     --bs-dark: #000000;
-//     /* Noir */
-// }
+// Import de Bootstrap SCSS (node_modules)
+@use "bootstrap/scss/bootstrap" as *;
 
-// /* Optionnel : Ajustez des composants spécifiques si nécessaire */
-// .btn-primary {
-//     background-color: var(--bs-primary);
-//     color: var(--bs-light);
-// }
-
-// .btn-primary:hover {
-//     background-color: #00497c;
-//     /* Bleu foncé */
-// }
-
-// .bg-primary {
-//     background-color: var(--bs-primary);
-// }
-
-// .text-primary {
-//     color: var(--bs-primary);
-// }
-
+// Déclaration des polices Graphik
 @font-face {
     font-family: 'Graphik';
-    src: url('/fonts/Graphik Family/Graphik-Regular-Trial.otf') format('opentype');
+    src: url('/fonts/graphik/Graphik-Regular-Trial.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('/fonts/Graphik Family/Graphik-Bold-Trial.otf') format('opentype');
+    src: url('/fonts/graphik/Graphik-Bold-Trial.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
 
+// Variables couleurs et polices Bootstrap
 $font-family-base: 'Graphik', sans-serif;
 
 $primary: #0074c7;
 $secondary: #00497c;
 $light: #f1f8fc;
 $dark: #384050;
+$danger: #cd2c2e;
+$success: #82b864;
 
-$danger: #cd2c2e; // Accentuation rouge
-$success: #82b864; // Accentuation verte
-
-$body-color: #000; // Couleur du texte par défaut
-$body-bg: #ffffff; // Fond blanc
-
-// Variables personnalisées
-$font-family-base: 'Graphik', sans-serif;
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
@@ -73,4 +35,41 @@ $theme-colors: (
     "success": $success
 );
 
-@import "bootstrap/scss/bootstrap"; // Recompile Bootstrap avec les nouvelles couleurs
+// Personnalisation des typographies
+html,
+body,
+p {
+    font-family: $font-family-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-base;
+    font-weight: bold;
+}
+
+// Personnalisation des boutons Bootstrap
+.btn-primary {
+    background-color: $primary;
+    color: white;
+
+    &:hover {
+        // background-color: darken($primary, 10%); // Code déprécié dans Sass 3.0.0
+        background-color: color-adjust($primary, -10%);
+    }
+}
+
+.btn-danger {
+    background-color: $danger;
+    color: white;
+
+    &:hover {
+        // background-color: darken($danger, 10%); // Code déprécié dans Sass 3.0.0
+        background-color: color-adjust($danger, -10%);
+
+    }
+}
