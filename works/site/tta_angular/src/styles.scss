@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+  // Font Awesome (installation locale)
+  @use "./app/assets/fonts/fontawesome/css/all.min.css";
+
+  // Bootstrap (installation et personnalisation locale)
+  @use "./app/assets/styles/custom-bootstrap.scss";

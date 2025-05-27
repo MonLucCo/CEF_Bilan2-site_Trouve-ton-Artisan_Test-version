@@ -114,7 +114,7 @@ export class SearchBarComponent implements OnInit {
     // Émettre l'événement de recherche avec catégorie et mot-clé pour relancer le filtrage
     this.search.emit({ category: this.categoryActive ? this.categoryMemory : null, keyword: trimmedKeyword });
 
-    console.log("[triggerSearch] emission de l'événement ", { category: this.categoryActive ? this.categoryMemory : null, keyword: trimmedKeyword });
+    console.log("[SearchBar]-[triggerSearch] emission de l'événement ", { category: this.categoryActive ? this.categoryMemory : null, keyword: trimmedKeyword });
   }
 
   /**

@@ -1,65 +1,53 @@
 <header class="app-header">
-    <p>header works!</p>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <!-- Logo du site-->
-            <div class="d-flex flex-column col-2 gap-2">
-                <a class="navbar-brand" href="/">Trouve Ton Artisan</a>
-                <button (click)="onTraceAction()">Top Trace Action ! ({{ topActionCounter }})</button>
-                <button (click)="onToggleTestMode()">{{getTestModeButtonText()}}</button>
-            </div>
+    <nav class="navbar navbar-expand-lg text-uppercase">
+        <div class="container ">
+            <!-- Logo -->
+            <a class="navbar-brand" routerLink="/accueil">
+                <img class="logo object-fit-cover my-3 py-2" src="images/logos/LogoTTA.svg"
+                    alt="Logo Trouve Ton Artisan" width="200" height="60">
+            </a>
 
-            <!-- Boutons de navigation -->
-            <div class="d-flex flex-row gap-3 col-6 justify-content-around">
-                <ul class="nav-list d-flex flex-column gap-2">
-                    <li><a routerLink="/" routerLinkActive="active">Accueil</a></li>
-                    <li><a routerLink="/artisans" routerLinkActive="active">Artisans</a></li>
-                    <li><a routerLink="/artisans/contact/12" routerLinkActive="active">Contact</a></li>
-                    <li><a routerLink="/erreur-404" routerLinkActive="active">Erreur 404</a></li>
-                    <li><a routerLink="/erreur-route" routerLinkActive="active">Erreur route !</a></li>
-                </ul>
-                <ul class="nav-list d-flex flex-column gap-2">
-                    <li><a [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a></li>
-                    <li><a [routerLink]="['/categorie', 'Services']">Services</a></li>
-                    <li><a [routerLink]="['/categorie', 'Fabrication']">Fabrication</a></li>
-                    <li><a [routerLink]="['/categorie', 'Alimentation']">Alimentation</a></li>
-                    <li><a [routerLink]="['/categorie', 'ErreurCatégorie...']">Erreur catégorie !</a></li>
-                </ul>
-                <ul class="nav-list d-flex flex-column gap-2">
-                    <!-- Liens de test pour artisans avec paramètres -->
-                    <li><a [routerLink]="['/artisans']" [queryParams]="{ categorie: 'Services', recherche: 'p' }"
-                            routerLinkActive="active">Requête avec catégorie et recherche</a></li>
-                    <li><a [routerLink]="['/artisans']" [queryParams]="{ categorie: 'Services' }"
-                            routerLinkActive="active">Requête avec catégorie</a></li>
-                    <li><a [routerLink]="['/artisans']" [queryParams]="{ recherche: 'p' }"
-                            routerLinkActive="active">Requête avec recherche seule</a></li>
-                    <li><a [routerLink]="['/artisans']" [queryParams]="{ contact: '5' }"
-                            routerLinkActive="active">Requête contact ok</a></li>
-                    <li><a [routerLink]="['/artisans']" [queryParams]="{ contact: '18' }"
-                            routerLinkActive="active">Requête contact Nok</a></li>
-                </ul>
-            </div>
+            <div class="mt-4">
+                <!-- Bouton Hamburger (menu mobile/tablette) -->
+                <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- Composant de barre de recherche -->
-            <div class="search-bar col-4">
-                <!-- Bouton radio pour choisir le mode de recherche -->
-                <div class="d-flex align-items-center me-3">
-                    <div class="form-check me-2">
-                        <input class="form-check-input" type="radio" id="modeValidate" name="searchMode"
-                            value="validate" [(ngModel)]="mode" (change)="onModeChange('validate')" />
-                        <label class="form-check-label" for="modeValidate">Avec validation</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" id="modeRealtime" name="searchMode"
-                            value="realtime" [(ngModel)]="mode" (change)="onModeChange('realtime')" />
-                        <label class="form-check-label" for="modeRealtime">Instantané</label>
-                    </div>
+                <!-- Menu de navigation -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/" routerLinkActive="active" aria-current="page">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Services']">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Instance de SearchBar avec la loupe -->
-                <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
-                </app-search-bar>
             </div>
         </div>
     </nav>
+    <!-- Ligne de séparation -->
+    <hr class="separate w-75 mx-auto">
+    <!-- Barre de recherche -->
+    <div class="search-bar mt-0 mb-3 text-center">
+        <div class="col-10 mx-auto">
+            <!-- Instance de SearchBar avec la loupe -->
+            <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
+            </app-search-bar>
+        </div>
+    </div>
+
 </header>

@@ -19,6 +19,10 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 3. Pour l'**implémentation technique** de l'application de la passerelle HTTP-SMTP :
 
    - étapes pratiques d'implémentation de l'[application de passerelle (Email API)](./implementation-docs/email-gateway-http-smtp.md)
+   - objectifs et implémentation du [SEO Dynamique et Schémas de référencement](./implementation-docs/seo-schema.md)
+   - objectifs et implémentation de [Bootstrap et Font Awesome](./implementation-docs/boostrap-fontAwesome-integrationFromCDN.md)
+   - intégration et [customisation de Bootstrap](./implementation-docs/customisation-bootstrap.md)
+   - [personnalisation centralisée et optimisée des styles](./implementation-docs/styles-personnalise-bootstrap-fontAwesome.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -34,8 +38,12 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 │   ├── choix-technologique-application-api-http-smtp.md    -> # Choix technologique de la passerelle HTTP-SMTP
 │   ├── email-gateway-concept.md    -------------------------> # Concept et justification de la passerelle HTTP-SMTP
 │
-├── implementation-docs/    ------------> # Réalisation et implémentation technique
-│   ├── email-gateway-http-smtp.md    --> # Détails techniques de la passerelle HTTP-SMTP
+├── implementation-docs/    -----------------------------> # Réalisation et implémentation technique
+│   ├── email-gateway-http-smtp.md    -------------------> # Détails techniques de la passerelle HTTP-SMTP
+│   ├── seo-schema.md    --------------------------------> # Détails techniques du SEO **dynamique** et des schémas de référencement
+│   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails techniques du SEO **dynamique** et des schémas de référencement
+│   ├── customisation-bootstrap.md    -------------------> # Détails techniques de l'intégration de l'identitié du projet dans Bootstrap
+│   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails techniques de la personnalisation des styles du projet
 ```
 
 ---

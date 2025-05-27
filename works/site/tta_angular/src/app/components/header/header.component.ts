@@ -13,9 +13,6 @@ import { OptionalString } from '../../models/shared-service.models';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  @Output() toggleTestMode = new EventEmitter<void>(); // Émetteur d'événement
-  testMode: boolean = false; // Etat du mode test
-
   category: OptionalString = null; // Catégorie active dans le header
   keyword: OptionalString = ''; // Mot-clé actuel
   mode: string = 'validate'; // Mode de recherche sélectionné (par défaut : avec validation par loupe)
@@ -62,23 +59,6 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
- * Met à jour l'URL en fonction des catégories et mots-clés.
- */
-  private updateUrl(): void {
-    const queryParams: any = {};
-
-    if (this.category) {
-      queryParams['categorie'] = this.category.trim();
-    }
-    if (this.keyword) {
-      queryParams['recherche'] = this.keyword.trim();
-    }
-
-    this.router.navigate(['/artisans'], { queryParams });
-    console.log('[Header]-[updateUrl] : URL mise à jour avec paramètres :', queryParams);
-  }
-
-  /**
    * Méthode appelée lorsque la barre de recherche émet un événement.
    */
   onSearch(event: { category: string | null; keyword: string }): void {
@@ -122,6 +102,20 @@ export class HeaderComponent implements OnInit {
  * Vérifie si les paramètres d'URL doivent être mis à jour, pour éviter les boucles infinies.
  */
   private updateUrlIfNeeded(event?: { category: OptionalString; keyword: OptionalString }): void {
+    // const currentContextMode = this.sharedService.getContextMode(); // Récupère le mode d'affichage actuel
+    // const currentContactId = this.sharedService.getContactId(); // Récupère l'ID du contact sélectionné
+
+    // if (currentContextMode === 'contact' || currentContactId) {
+    //   console.log('[Header]-[UpdateUrlIfNeeded] : Mode Contact détecté ou contact actif, pas de mise à jour d\'URL.');
+    //   return; // Stoppe l'exécution pour éviter la redirection indésirable
+    // }
+
+    // Si l'événement est indéfini ou vide, on ignore l'update
+    if (!event || (!event.category && !event.keyword)) {
+      console.log('[Header]-[UpdateUrlIfNeeded] : Aucun changement utile détecté, mise à jour ignorée.');
+      return;
+    }
+
     const queryParams: any = {};
 
     console.log("[Header]-[UpdateUrlIfNeeded] : Valeur de l'event", event);
@@ -148,30 +142,5 @@ export class HeaderComponent implements OnInit {
     } else {
       console.log('[Header]-[UpdateUrlIfNeeded] : Aucune mise à jour nécessaire, l\'URL est déjà correcte.');
     }
-  }
-
-
-  /**
-   * Méthode pour trace de 'début ou de fin d'action
-   */
-  onTraceAction(): void {
-    this.topActionCounter++;
-    console.log('[Header]-[onTraceAction] : Top de la trace', this.topActionCounter);
-  }
-
-  /**
-   * Active ou désactive le mode test et informe l'AppComponent.
-   */
-  onToggleTestMode(): void {
-    this.testMode = !this.testMode;
-    this.toggleTestMode.emit(); // Emet un événement
-    console.log('[Header]-[toggleTestMode] : Mode test activé :', this.testMode);
-  }
-
-  /**
-   * Renvoie le texte du bouton selon l'état du mode test.
-   */
-  getTestModeButtonText(): string {
-    return this.testMode ? 'Désactiver Test' : 'Activer Test';
   }
 }

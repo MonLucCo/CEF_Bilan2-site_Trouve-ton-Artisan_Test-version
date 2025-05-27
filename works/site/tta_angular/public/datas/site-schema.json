@@ -1,0 +1,13 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Trouve Ton Artisan",
+    "url": "https://www.trouve-ton-artisan.com",
+    "description": "Plateforme de formation pour développer un site d'artisan.",
+    "logo": "https://www.trouve-ton-artisan.com/images/logo.jpg",
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@trouve-ton-artisan.com",
+        "contactType": "support"
+    }
+}

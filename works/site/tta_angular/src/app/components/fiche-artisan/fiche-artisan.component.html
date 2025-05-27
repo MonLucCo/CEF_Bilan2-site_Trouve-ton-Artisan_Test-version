@@ -1,26 +1,31 @@
 <div class="card artisan-card mb-3 shadow-sm" [class.clickable]="isClickable" style="max-width: 300px;"
     (click)="onCardClick()">
-    <div class="card-header bg-light text-center">
-        <div class="card-title">
-            <h3>
-                {{ artisan.name }}
-            </h3>
-            <span *ngIf="artisan.top" class="me-2 text-light-emphasis">
-                <i class="fas fa-medal"></i>
-            </span>
+    <a [routerLink]="['/contact', artisan.id]" class="text-decoration-none">
+        <div class="card-header bg-light text-center">
+            <div class="card-title">
+                <h3>
 
+                    {{ artisan.name }}
+
+                </h3>
+                <span *ngIf="artisan.top" class="me-2 text-light-emphasis">
+                    <i class="fas fa-medal"></i>
+                </span>
+
+            </div>
         </div>
-    </div>
 
-    <div class="card-body">
-        <p class="card-text d-flex gap-2 align-items-center justify-content-center">
-            <!-- Bloc d'étoiles sur la même ligne que la note -->
-            <app-rating-stars [note]="artisan.note" class="me-2"></app-rating-stars>
-            <span>{{ artisan.note | number:'1.1-1' }} / 5</span>
-        </p>
-        <p class="card-text"><strong>Spécialité :</strong> {{ artisan.specialty }}</p>
-        <p class="card-text"><strong>Localisation :</strong> {{ artisan.location }}</p>
+        <div class="card-body">
+            <p class="card-text d-flex gap-2 align-items-center justify-content-center">
+                <!-- Bloc d'étoiles sur la même ligne que la note -->
+                <app-rating-stars [note]="artisan.note" class="me-2"></app-rating-stars>
+                <span>{{ artisan.note | number:'1.1-1' }} / 5</span>
+            </p>
+            <p class="card-text"><strong>Spécialité :</strong> {{ artisan.specialty }}</p>
+            <p class="card-text"><strong>Localisation :</strong> {{ artisan.location }}</p>
 
-        <p class="card-text"><strong>Catégorie :</strong> {{ artisan.category }} - Id : {{artisan.id}}</p>
-    </div>
+            <!-- A supprimer lors de la finalisation - Utilité pour le développement -->
+            <p class="card-text"><strong>Catégorie :</strong> {{ artisan.category }} - Id : {{artisan.id}}</p>
+        </div>
+    </a>
 </div>

@@ -1,5 +1,4 @@
 <div class="top-artisans-container">
-    <p>top-artisan works!</p>
     <!-- Section affichant les artisans s'il y en a, ou un message alternatif dans le cas contraire. -->
     <div *ngIf="topArtisans$ | async as topArtisans; else noTopArtisans">
         <h2>Artisans au Top</h2>

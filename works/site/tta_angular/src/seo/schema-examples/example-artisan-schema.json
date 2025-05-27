@@ -1,0 +1,158 @@
+[
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Vallis Bellemare",
+        "description": "Plombier spécialisé dans l'installation et la réparation de systèmes de plomberie.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Vienne",
+            "addressCountry": "FR"
+        },
+        "email": "v.bellemare@gmail.com",
+        "url": "https://plomberie-bellemare.com",
+        "keywords": [
+            "Plombier",
+            "Bâtiment"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Services de plomberie"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4",
+            "reviewCount": "10"
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Amitee Lécuyer",
+        "description": "Couturier spécialiste des créations sur-mesure et des réparations textiles.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Annecy",
+            "addressCountry": "FR"
+        },
+        "email": "a.amitee@hotmail.com",
+        "url": "https://lecuyer-couture.com",
+        "keywords": [
+            "Couturier",
+            "Fabrication"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Créations sur-mesure et réparation textile"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "15"
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Leala Dennis",
+        "description": "Coiffeur spécialisé dans la coiffure et le soin capillaire personnalisé.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Chambéry",
+            "addressCountry": "FR"
+        },
+        "email": "l.dennos@hotmail.fr",
+        "url": "https://coiffure-leala-chambery.fr",
+        "keywords": [
+            "Coiffeur",
+            "Services"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Coiffure et soins capillaires"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.8",
+            "reviewCount": "8"
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Chocolaterie Labbé",
+        "description": "Spécialiste en chocolaterie artisanale et confiseries fines.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Grenoble",
+            "addressCountry": "FR"
+        },
+        "email": "chocolaterie-labbe@gmail.com",
+        "url": "https://chocolaterie-labbe.fr",
+        "keywords": [
+            "Chocolatier",
+            "Alimentation"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Chocolats et confiseries artisanales"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "25"
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Claude Quinn",
+        "description": "Bijoutier créateur de pièces uniques et personnalisées.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Aix-les-bains",
+            "addressCountry": "FR"
+        },
+        "email": "claude.quinn@gmail.com",
+        "url": "",
+        "keywords": [
+            "Bijoutier",
+            "Fabrication"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Création de bijoux personnalisés"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.2",
+            "reviewCount": "12"
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Valérie Laderoute",
+        "description": "Toiletteur spécialisé dans le soin et l'entretien des animaux domestiques.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Valence",
+            "addressCountry": "FR"
+        },
+        "email": "v-laredoute@gmail.com",
+        "url": "",
+        "keywords": [
+            "Toiletteur",
+            "Services"
+        ],
+        "makesOffer": {
+            "@type": "Offer",
+            "name": "Toilettage et soins pour animaux"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "18"
+        }
+    }
+]

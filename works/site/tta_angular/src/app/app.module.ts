@@ -36,6 +36,16 @@ import { ApiMaildevTestComponent } from './components/tests/api-maildev-test/api
 import { ListArtisansComponent } from './components/list-artisans/list-artisans.component';
 import { FindArtisanComponent } from './components/find-artisan/find-artisan.component';
 import { FindArtisanTestComponent } from './components/tests/find-artisan-test/find-artisan-test.component';
+import { TestHeaderComponent } from './components/tests/test-header/test-header.component';
+import { TestFooterComponent } from './components/tests/test-footer/test-footer.component';
+import { MentionsLegalesComponent } from './legals/mentions-legales/mentions-legales.component';
+import { DonneesPersonnellesComponent } from './legals/donnees-personnelles/donnees-personnelles.component';
+import { AccessibiliteComponent } from './legals/accessibilite/accessibilite.component';
+import { MarchesPublicsComponent } from './legals/marches-publics/marches-publics.component';
+import { ContactsComponent } from './legals/contacts/contacts.component';
+import { PolitiqueCookiesComponent } from './legals/politique-cookies/politique-cookies.component';
+import { GestionCookiesComponent } from './legals/gestion-cookies/gestion-cookies.component';
+import { ConstructionComponent } from './legals/construction/construction.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +77,17 @@ import { FindArtisanTestComponent } from './components/tests/find-artisan-test/f
     ApiMaildevTestComponent,
     ListArtisansComponent,
     FindArtisanComponent,
-    FindArtisanTestComponent
+    FindArtisanTestComponent,
+    TestHeaderComponent,
+    TestFooterComponent,
+    MentionsLegalesComponent,
+    DonneesPersonnellesComponent,
+    AccessibiliteComponent,
+    MarchesPublicsComponent,
+    ContactsComponent,
+    PolitiqueCookiesComponent,
+    GestionCookiesComponent,
+    ConstructionComponent
   ],
   imports: [
     CommonModule,

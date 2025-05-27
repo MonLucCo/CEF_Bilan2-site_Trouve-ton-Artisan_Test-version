@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /datas/
+Disallow: /images/
+Disallow: /contact/
+Disallow: /recherche/
+Allow: /
+Sitemap: https://www.trouve-ton-artisan.com/sitemap.xml

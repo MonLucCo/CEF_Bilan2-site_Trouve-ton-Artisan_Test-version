@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ArtisansPageComponent } from './pages/artisans-page/artisans-page.component';
-import { ArtisanContactPageComponent } from './pages/artisan-contact-page/artisan-contact-page.component';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
-import { CategoryArtisansComponent } from './components/category-artisans/category-artisans.component';
-import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
 import { CategoryGuard } from './guards/category/category.guard';
 import { SearchGuard } from './guards/search/search.guard';
 import { ContactGuard } from './guards/contact/contact.guard';
 import { artisansGuard } from './guards/artisans/artisans.guard';
-import { contactRedirectGuard } from './guards/contact-redirect/contact-redirect.guard';
-import { testRouteGuard } from './guards/test-route/test-route.guard';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
-import { entryGuard } from './guards/entry/entry.guard';
 import { clearUrlGuard } from './guards/clear-url/clear-url.guard';
+import { AccessibiliteComponent } from './legals/accessibilite/accessibilite.component';
+import { ContactsComponent } from './legals/contacts/contacts.component';
+import { DonneesPersonnellesComponent } from './legals/donnees-personnelles/donnees-personnelles.component';
+import { GestionCookiesComponent } from './legals/gestion-cookies/gestion-cookies.component';
+import { MarchesPublicsComponent } from './legals/marches-publics/marches-publics.component';
+import { MentionsLegalesComponent } from './legals/mentions-legales/mentions-legales.component';
+import { PolitiqueCookiesComponent } from './legals/politique-cookies/politique-cookies.component';
 
 export const routes: Routes = [
   // Route d'accueil
@@ -29,6 +30,20 @@ export const routes: Routes = [
   { path: 'artisans/contact/:id', component: ContactPageComponent, canActivate: [ContactGuard] },
   { path: 'artisans/recherche/:keyword', component: ArtisansPageComponent, canActivate: [SearchGuard] },
   { path: 'artisans/categorie/:category', component: ArtisansPageComponent, canActivate: [CategoryGuard] },
+
+  // Pages légales
+  {
+    path: 'legal',
+    children: [
+      { path: 'mentions-legales', component: MentionsLegalesComponent },
+      { path: 'donnees-personnelles', component: DonneesPersonnellesComponent },
+      { path: 'accessibilite', component: AccessibiliteComponent },
+      { path: 'marches-publics', component: MarchesPublicsComponent },
+      { path: 'contacts', component: ContactsComponent },
+      { path: 'politique-cookies', component: PolitiqueCookiesComponent },
+      { path: 'gestion-cookies', component: GestionCookiesComponent },
+    ],
+  },
 
   // Redirections conviviales
   {
