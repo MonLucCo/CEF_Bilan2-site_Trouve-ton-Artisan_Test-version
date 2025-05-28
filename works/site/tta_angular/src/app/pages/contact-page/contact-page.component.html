@@ -1,13 +1,27 @@
-<div class="card d-flex flex-row gap-2">
-    <div class="container col-6">
-        <app-fiche-artisan *ngIf="selectedArtisan" [artisan]="selectedArtisan">
-        </app-fiche-artisan>
-        <app-contact-artisan *ngIf="selectedContact" [contact]="selectedContact"
-            (emailValidityChange)="onEmailValidityChange($event)">
-        </app-contact-artisan>
-    </div>
-    <div class="container col-6">
-        <app-contact-form *ngIf="isEmailValid && selectedContact?.email"
-            [artisanEmail]="selectedContact?.email || ''"></app-contact-form>
-    </div>
+<div class="contact-content container d-flex flex-column gap-3 mx-3">
+    <app-title [text]="'Présentation détaillée'" [level]="1" [icon]="'fas fa-address-card'"
+        [description]="'La présentation complète des informations disponibles.'">
+    </app-title>
+
+    <section class="card-content container-fluid my-2 p-4">
+        <app-title [text]="'Fiche de contact'" [level]="2" [icon]="'fa-file-alt'"
+            [description]="'Vous pouvez utiliser le formulaire pour transmettre un message de contact.'">
+        </app-title>
+
+        <!-- Mise en page flexible -->
+        <div class="row">
+            <!-- Colonne 1 : fiche artisan + contact artisan -->
+            <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+                <app-fiche-artisan *ngIf="selectedArtisan" [artisan]="selectedArtisan"></app-fiche-artisan>
+                <app-contact-artisan *ngIf="selectedContact" [contact]="selectedContact"
+                    (emailValidityChange)="onEmailValidityChange($event)"></app-contact-artisan>
+            </div>
+
+            <!-- Colonne 2 : formulaire de contact -->
+            <div class="col-12 col-md-6">
+                <app-contact-form *ngIf="isEmailValid && selectedContact?.email"
+                    [artisanEmail]="selectedContact?.email || ''"></app-contact-form>
+            </div>
+        </div>
+    </section>
 </div>

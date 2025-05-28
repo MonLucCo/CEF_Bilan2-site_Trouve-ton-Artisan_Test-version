@@ -1,46 +1,44 @@
-<header class="app-header">
-    <nav class="navbar navbar-expand-lg text-uppercase">
-        <div class="container ">
-            <!-- Logo -->
-            <a class="navbar-brand" routerLink="/accueil">
-                <img class="logo object-fit-cover my-3 py-2" src="images/logos/LogoTTA.svg"
-                    alt="Logo Trouve Ton Artisan" width="200" height="60">
+<header class="app-header bg-light shadow-sm py-2">
+    <nav class="navbar navbar-expand-lg text-uppercase pb-0">
+        <div class="container d-flex justify-content-between justify-content-lg-evenly align-items-center">
+            <!-- Logo aligné au centre verticalement -->
+            <a class="navbar-brand d-flex align-items-center p-0 flex-grow-1" routerLink="/accueil">
+                <img class="logo object-fit-cover me-3" src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan"
+                    width="300" height="70">
             </a>
 
-            <div class="mt-4">
-                <!-- Bouton Hamburger (menu mobile/tablette) -->
-                <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <!-- Bouton Hamburger (menu mobile/tablette) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Menu de navigation -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/" routerLinkActive="active" aria-current="page">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/categorie', 'Services']">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
-                        </li>
-                    </ul>
-                </div>
-
+            <!-- Menu de navigation -->
+            <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-xl-3 gap-md-2 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" routerLink="/" routerLinkActive="active"
+                            aria-current="page">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Services']">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
     <!-- Ligne de séparation -->
-    <hr class="separate w-75 mx-auto">
+    <hr class="separate w-75 mx-auto mt-0">
+
     <!-- Barre de recherche -->
     <div class="search-bar mt-0 mb-3 text-center">
         <div class="col-10 mx-auto">
@@ -49,5 +47,4 @@
             </app-search-bar>
         </div>
     </div>
-
 </header>

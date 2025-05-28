@@ -1,21 +1,22 @@
-<footer class="footer">
-    <div class="container p-4">
-
+<footer class="footer container p-0 m-0">
+    <div class="footer-top container bg-primary-subtle">
         <!-- Ligne 1 : Logo et adresse -->
         <div class="row align-items-center py-3">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center flex-wrap">
                 <div class="col-12 col-md-6">
                     <img src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" class="me-3"
                         style="height: 150px;">
                 </div>
-                <div class="card col-12 col-md-6">
-                    <div class="card-header">Lyon</div>
-                    <div class="card-body">
-                        <p class="mb-0">101 cours Charlemagne</p>
-                        <p class="mb-0">CS 20033</p>
-                        <p class="mb-0">69269 Lyon CEDEX 02</p>
-                        <p class="mb-0">France</p>
-                        <a href="tel:+33426734000" class="text-decoration-none">+33 (0)4 26 73 40 00</a>
+                <div class="col-12 col-md-6">
+                    <div class="card w-100">
+                        <div class="card-header">Lyon</div>
+                        <div class="card-body">
+                            <p class="mb-0">101 cours Charlemagne</p>
+                            <p class="mb-0">CS 20033</p>
+                            <p class="mb-0">69269 Lyon CEDEX 02</p>
+                            <p class="mb-0">France</p>
+                            <a href="tel:+33426734000" class="text-decoration-none">+33 (0)4 26 73 40 00</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,11 +30,13 @@
             <div class="col">
                 <ul class="list-unstyled d-flex flex-wrap justify-content-center">
                     <li class="mx-2"><a [routerLink]="['/legal', 'mentions-legales']">Mentions légales</a></li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'donnees-personnelles']">Données personnelles</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'donnees-personnelles']">Données personnelles</a>
+                    </li>
                     <li class="mx-2"><a [routerLink]="['/legal', 'accessibilite']">Accessibilité</a> </li>
                     <li class="mx-2"><a [routerLink]="['/legal', 'marches-publics']">Marchés publics</a></li>
                     <li class="mx-2"><a [routerLink]="['/legal', 'contacts']">Contacts</a></li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'politique-cookies']">Politique des cookies</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'politique-cookies']">Politique des cookies</a>
+                    </li>
                     <li class="mx-2"><a [routerLink]="['/legal', 'gestion-cookies']">Gestion des cookies</a></li>
                 </ul>
             </div>
@@ -61,53 +64,50 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Ligne 4 : Signature -->
-        <div class="row py-3 d-flex align-items-center">
-            <div class="col-md-8 d-flex align-items-center justify-content-start">
-                <div *ngIf="showTools" class="d-flex align-items-center gap-2">
-                    <!-- Switch Bootstrap pour Search Mode -->
-                    <div class="form-check form-switch mx-2">
-                        <input class="form-check-input" type="checkbox" id="currentSearchModeSwitch"
-                            [checked]="isValidateMode" (change)="toggleSearchMode()">
-                        <label class="form-check-label" for="currentSearchModeSwitch">Saisie instantanée</label>
-                    </div>
-
-                    <!-- Switch Bootstrap pour MailDev -->
-                    <div class="form-check form-switch mx-2">
-                        <input class="form-check-input" type="checkbox" id="toolsMailDevTestingSwitch"
-                            [checked]="showTestComponent" (change)="toggleShowTestComponent()">
-                        <label class="form-check-label" for="toolsMailDevTestingSwitch">MailDev</label>
-                    </div>
-
-                    <!-- Bouton générateur d'erreur (Page Erreur-404) -->
-                    <div>
-                        <a routerLink="/erreur-404" class="btn btn-secondary">Page 404</a>
-                    </div>
-
-                    <!-- Bouton générateur contact (Page Contact/9) -->
-                    <div>
-                        <a routerLink="/contact/9" class="btn btn-secondary">Contact 9</a>
-                    </div>
-
-                    <!-- Bouton générateur contact (Page Contact/14) -->
-                    <div>
-                        <a routerLink="/contact/14" class="btn btn-secondary">Contact 14</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-end">
-                <button class="btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()">
+    <div class="footer-bottom container bg-secondary-subtle py-3 d-flex flex-column">
+        <!-- Ligne 4 : Signature et outils -->
+        <div class="tools-block d-flex flex-column">
+            <div class="sign-block text-end">
+                <button class="sign-content btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()">
                     ⚡️ Propulsé par PerLucCo &copy; <span class="text-danger">&hearts;</span>
                 </button>
+            </div>
+            <div *ngIf="showTools"
+                class="tools-content d-flex flex-wrap align-items-center justify-content-center gap-2 mt-3">
+                <!-- Switch Bootstrap pour Search Mode -->
+                <div class="form-check form-switch mx-2">
+                    <input class="form-check-input" type="checkbox" id="currentSearchModeSwitch"
+                        [checked]="isValidateMode" (change)="toggleSearchMode()">
+                    <label class="form-check-label" for="currentSearchModeSwitch">Saisie instantanée</label>
+                </div>
+
+                <!-- Switch Bootstrap pour MailDev -->
+                <div class="form-check form-switch mx-2">
+                    <input class="form-check-input" type="checkbox" id="toolsMailDevTestingSwitch"
+                        [checked]="showTestComponent" (change)="toggleShowTestComponent()">
+                    <label class="form-check-label" for="toolsMailDevTestingSwitch">MailDev</label>
+                </div>
+
+                <!-- Bouton générateur d'erreur (Page Erreur-404) -->
+                <div>
+                    <a routerLink="/erreur-404" class="btn btn-secondary">Page 404</a>
+                </div>
+
+                <!-- Bouton générateur contact (Page Contact/9) -->
+                <div>
+                    <a routerLink="/contact/9" class="btn btn-secondary">Contact 9</a>
+                </div>
+
+                <!-- Bouton générateur contact (Page Contact/14) -->
+                <div>
+                    <a routerLink="/contact/14" class="btn btn-secondary">Contact 14</a>
+                </div>
             </div>
         </div>
 
         <!-- Ligne 5 : MailDev -->
-        <div class="row bg-light py-3">
-            <div class="col">
-                <app-api-maildev-test *ngIf="showTestComponent && showTools"></app-api-maildev-test>
-            </div>
-        </div>
+        <app-api-maildev-test *ngIf="showTestComponent && showTools"></app-api-maildev-test>
     </div>
 </footer>

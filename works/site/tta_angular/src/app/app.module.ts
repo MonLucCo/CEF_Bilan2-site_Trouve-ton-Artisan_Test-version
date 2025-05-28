@@ -46,6 +46,7 @@ import { ContactsComponent } from './legals/contacts/contacts.component';
 import { PolitiqueCookiesComponent } from './legals/politique-cookies/politique-cookies.component';
 import { GestionCookiesComponent } from './legals/gestion-cookies/gestion-cookies.component';
 import { ConstructionComponent } from './legals/construction/construction.component';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { ConstructionComponent } from './legals/construction/construction.compon
     ContactsComponent,
     PolitiqueCookiesComponent,
     GestionCookiesComponent,
-    ConstructionComponent
+    ConstructionComponent,
+    TitleComponent
   ],
   imports: [
     CommonModule,
