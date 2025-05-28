@@ -1,7 +1,4 @@
-// Import de Bootstrap SCSS (node_modules)
-@use "bootstrap/scss/bootstrap" as *;
-
-// Déclaration des polices Graphik
+// 1️⃣ Importation des polices Graphik
 @font-face {
     font-family: 'Graphik';
     src: url('/fonts/graphik/Graphik-Regular-Trial.otf') format('opentype');
@@ -16,7 +13,7 @@
     font-style: normal;
 }
 
-// Variables couleurs et polices Bootstrap
+// 2️⃣ Définition des variables de couleurs et typographies
 $font-family-base: 'Graphik', sans-serif;
 
 $primary: #0074c7;
@@ -26,6 +23,7 @@ $dark: #384050;
 $danger: #cd2c2e;
 $success: #82b864;
 
+// 3️⃣ Définition des couleurs Bootstrap AVANT d’importer Bootstrap
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
@@ -35,7 +33,16 @@ $theme-colors: (
     "success": $success
 );
 
-// Personnalisation des typographies
+// 4️⃣ Importation de Bootstrap avec `@import` au lieu de `@use`
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// **Fusion avec Bootstrap pour prendre en compte les couleurs**
+$theme-colors: map-merge($theme-colors, $theme-colors);
+
+@import "bootstrap/scss/bootstrap";
+
+// 5️⃣ Personnalisation des typographies
 html,
 body,
 p {
@@ -52,14 +59,13 @@ h6 {
     font-weight: bold;
 }
 
-// Personnalisation des boutons Bootstrap
+// 6️⃣ Personnalisation des boutons Bootstrap
 .btn-primary {
     background-color: $primary;
     color: white;
 
     &:hover {
-        // background-color: darken($primary, 10%); // Code déprécié dans Sass 3.0.0
-        background-color: color-adjust($primary, -10%);
+        background-color: adjust-color($primary, $lightness: -10%) !important;
     }
 }
 
@@ -68,8 +74,6 @@ h6 {
     color: white;
 
     &:hover {
-        // background-color: darken($danger, 10%); // Code déprécié dans Sass 3.0.0
-        background-color: color-adjust($danger, -10%);
-
+        background-color: adjust-color($danger, $lightness: -10%) !important;
     }
 }

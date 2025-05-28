@@ -193,11 +193,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-### Synthèse : pourquoi cette personnalisation ?
+### Pourquoi cette personnalisation avec `@use` ?
 
 - **Intégration propre des couleurs et typographies** dans `$theme-colors`.
 - **Utilisation de `@use` au lieu de `@import`**, selon les recommandations Sass.
 - **Migration vers `color-adjust()`** au lieu de `darken()`, évitant les warnings Sass.
+
+### Pourquoi utiliser `@import`plutôt que `@use` ?
+
+L'intégration de `@use` dans `custom-bootstrap.scss` **ne permet pas de modifier `$theme-colors`** de **Bootstrap**. En effet, les **variables Bootstrap** sont isolées dans des _namesspaces_, empêchant leur surcharge après importation. La solution `@import` reste fonctionnelle pour modifier `$theme-colors`, bien que Sass le déprécie pour préparer la version Sass3.0+.
+
+### Solution appliquée : Retour à `@import` pour la personnalisation des couleurs
+
+- **Avec `@import`, les variables sont chargées globalement et peuvent être modifiées après coup.**  
+- **Avec `@use`, Sass isole les modules, ce qui empêche de modifier `$theme-colors` après son importation.**.
+
+**Modification dans `custom-bootstrap.scss`**
+
+```scss
+// Importation des variables Bootstrap AVANT les couleurs personnalisées
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// Définition des couleurs personnalisées
+$primary: #0074c7;
+$secondary: #00497c;
+$light: #f1f8fc;
+$dark: #384050;
+$danger: #cd2c2e;
+$success: #82b864;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "light": $light,
+    "dark": $dark,
+    "danger": $danger,
+    "success": $success
+);
+
+// Importation de Bootstrap après modification des couleurs
+@import "bootstrap/scss/bootstrap";
+```
 
 ---
 
