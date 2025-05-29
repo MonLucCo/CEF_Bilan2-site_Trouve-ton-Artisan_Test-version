@@ -203,6 +203,13 @@ h1, h2, h3, h4, h5, h6 {
 
 L'intégration de `@use` dans `custom-bootstrap.scss` **ne permet pas de modifier `$theme-colors`** de **Bootstrap**. En effet, les **variables Bootstrap** sont isolées dans des _namesspaces_, empêchant leur surcharge après importation. La solution `@import` reste fonctionnelle pour modifier `$theme-colors`, bien que Sass le déprécie pour préparer la version Sass3.0+.
 
+### Synthèse : limitations de Bootstrap v5 avec Sass v3.0+
+
+**Bootstrap v5 n'est pas encore totalement compatible avec Sass v3.0+**. La transition vers `@use` et `@forward` n'est pas complètement mise en place dans Bootstrap. Les modifications des variables globales ne fonctionnent pas bien avec `@use`, ce qui oblige à conserver `@import`.
+
+Des références documentaires sur ce sujet sont disponibles dans le chapitre documentaire.
+**Pour éviter ces limitations, il est recommandé de continuer à utiliser `@import` jusqu'à la sortie de Bootstrap 6.**
+
 ### Solution appliquée : Retour à `@import` pour la personnalisation des couleurs
 
 - **Avec `@import`, les variables sont chargées globalement et peuvent être modifiées après coup.**  
@@ -245,3 +252,9 @@ $theme-colors: (
 - [Bootstrap Docs](https://getbootstrap.com/docs/5.0/getting-started/) – Documentation officielle Bootstrap.
 - [Sass Migration Guide](https://sass-lang.com/d/import) – Explication de `@import` → `@use`.  
 - [Angular CLI Configuration](https://angular.io/guide/workspace-config) – Gestion des styles via `angular.json`.  
+
+**Liens pour la problématique sur Sass et Bootstrap 5 :**
+
+- [Stack Overflow - Bootstrap 5 et Sass @use](https://stackoverflow.com/questions/70474960/bootstrap-5-doesnt-work-with-sass-use-and-forward) : Discussion sur les problèmes rencontrés avec `@use` et `@forward` dans Bootstrap 5.  
+- [Blog officiel de Bootstrap 5.3](https://getbootstrap.com/docs/5.3/customize/sass/#file-structure) : Mentionne en avertissement des avertissements liées à Node Sass, mais pas encore une transition complète vers `@use`.  
+- [Guide de migration vers Bootstrap v5](https://getbootstrap.com/docs/5.0/migration/) : Explication des changements et des limitations actuelles de Sass dans Bootstrap.  

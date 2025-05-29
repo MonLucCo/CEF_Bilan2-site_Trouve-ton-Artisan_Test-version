@@ -65,7 +65,7 @@ h6 {
     color: white;
 
     &:hover {
-        background-color: adjust-color($primary, $lightness: -10%) !important;
+        background-color: color-adjust($primary, -10%) !important;
     }
 }
 
@@ -74,6 +74,6 @@ h6 {
     color: white;
 
     &:hover {
-        background-color: adjust-color($danger, $lightness: -10%) !important;
+        background-color: color-adjust($danger, -10%) !important;
     }
 }
