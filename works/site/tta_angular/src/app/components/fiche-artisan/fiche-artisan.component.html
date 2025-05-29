@@ -1,13 +1,9 @@
-<div class="card artisan-card mb-3 shadow-sm" [class.clickable]="isClickable" style="max-width: 300px;"
-    (click)="onCardClick()">
+<div class="card artisan-card mb-3 shadow-sm" [class.clickable]="isClickable"
+    style="max-width: 500px; min-height: 300px;" (click)="onCardClick()">
     <a [routerLink]="['/contact', artisan.id]" class="text-decoration-none">
-        <div class="card-header bg-light text-center">
-            <div class="card-title">
-                <h3>
-
-                    {{ artisan.name }}
-
-                </h3>
+        <div class="card-header bg-light d-flex justify-content-center">
+            <div class="card-title text-center">
+                <app-title [text]="artisan.name" [level]="3"></app-title>
                 <span *ngIf="artisan.top" class="me-2 text-light-emphasis">
                     <i class="fas fa-medal"></i>
                 </span>
@@ -25,7 +21,7 @@
             <p class="card-text"><strong>Localisation :</strong> {{ artisan.location }}</p>
 
             <!-- A supprimer lors de la finalisation - Utilité pour le développement -->
-            <p class="card-text"><strong>Catégorie :</strong> {{ artisan.category }} - Id : {{artisan.id}}</p>
+            <!-- <p class="card-text"><strong>Catégorie :</strong> {{ artisan.category }} - Id : {{artisan.id}}</p> -->
         </div>
     </a>
 </div>

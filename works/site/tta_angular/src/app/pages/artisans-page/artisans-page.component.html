@@ -1,7 +1,6 @@
-<div>
-    <!-- A supprimer à la finalisation -->
-    <p>artisans-page works!</p>
-    <!-- <app-artisans-list></app-artisans-list> -->
-    <!-- <app-category-artisans></app-category-artisans> -->
+<div class="artisans-content container d-flex flex-column gap-3 mx-3">
+    <app-title [text]="'Liste des artisans de la Région'" [level]="1" [icon]="'fa-file-alt'"
+        [description]="'La région vous propose de sélectionner un artisan proche de chez vous !'">
+    </app-title>
     <app-list-artisans></app-list-artisans>
 </div>

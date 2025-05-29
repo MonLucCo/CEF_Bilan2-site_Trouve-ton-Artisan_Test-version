@@ -1,10 +1,7 @@
-<main class="container">
-    <!-- A retirer avant finalisation -->
-    <p>error404-page works!</p>
-
-    <h1 class="display-4 fw-bold text-danger">Erreur 404</h1>
-
-    <p class="lead mt-3">Cette page n'existe pas.<br>Elle n'a jamais franchi la ligne d'arrivée.</p>
+<section class="error-content container d-flex flex-column gap-3 mx-3">
+    <app-title [text]="'Erreur 404'" [level]="1" [icon]="'fa-tools'"
+        [description]="'Cette page est inconnue et ne peut pas franchir la ligne !'">
+    </app-title>
 
     <figure class="my-4">
         <img src="images/img/erreur404-visu.jpg" alt="Illustration Erreur 404" class="img-fluid rounded">
@@ -13,4 +10,4 @@
     <nav class="text-center mt-3">
         <a href="/" class="btn btn-primary btn-lg">Retourner à la page d'accueil</a>
     </nav>
-</main>
+</section>

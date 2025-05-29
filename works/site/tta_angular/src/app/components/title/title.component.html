@@ -1,0 +1,19 @@
+<div class="title-container d-flex flex-column align-items-start gap-3">
+
+    <div class="title-separator" [ngClass]="{'bg-danger': level === 1, 'bg-primary': level !== 1}"></div>
+
+    <!-- Titre dynamique avec balise HTML adaptée -->
+    <ng-container [ngSwitch]="level">
+        <h1 *ngSwitchCase="1" class="fw-bold text-primary d-flex align-items-center">
+            <i *ngIf="icon" class="ms-3 fas" [ngClass]="icon + ' me-4'"></i> {{ text }}
+        </h1>
+        <h2 *ngSwitchCase="2" class="fw-semibold text-primary d-flex align-items-center">
+            <i *ngIf="icon" class="ms-3 fas" [ngClass]="icon + ' me-3'"></i> {{ text }}
+        </h2>
+        <h3 *ngSwitchCase="3" class="fw-medium text-primary d-flex align-items-center">
+            <i *ngIf="icon" class="ms-3 fas" [ngClass]="icon + ' me-2'"></i> {{ text }}
+        </h3>
+    </ng-container>
+
+    <p *ngIf="description" class="text-dark ms-5 ps-5">{{ description }}</p>
+</div>

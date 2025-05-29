@@ -1,18 +1,22 @@
-<div *ngIf="isLoading; else artisansList">
-    <p>Chargement des artisans...</p>
-</div>
+<section class="container my-2 p-4">
+    <app-title [text]="'Sélection des artisans'" [level]="2" [icon]="'fas fa-folder-open'"
+        [description]="'Sélectionner directement la fiche de votre choix.'">
+    </app-title>
 
-<ng-template #artisansList>
-    <!-- A supprimer à la finalisation -->
-    <p>list-artisans works!</p>
-
-    <div *ngIf="artisans.length > 0; else noResults">
-        <div class="artisan-container d-flex flex-wrap gap-3">
-            <app-fiche-artisan *ngFor="let artisan of artisans" [artisan]="artisan"></app-fiche-artisan>
-        </div>
+    <div *ngIf="isLoading; else artisansList">
+        <p>Chargement des artisans...</p>
     </div>
 
-    <ng-template #noResults>
-        <p>Aucun artisan trouvé pour votre recherche.</p>
+    <ng-template #artisansList>
+        <div *ngIf="artisans.length > 0; else noResults">
+            <div class="artisan-container d-flex flex-wrap justify-content-evenly gap-1">
+                <app-fiche-artisan *ngFor="let artisan of artisans" [artisan]="artisan"
+                    class="col-12 col-md-6 col-lg-3"></app-fiche-artisan>
+            </div>
+        </div>
+
+        <ng-template #noResults>
+            <p>Aucun artisan trouvé pour votre recherche.</p>
+        </ng-template>
     </ng-template>
-</ng-template>
+</section>
