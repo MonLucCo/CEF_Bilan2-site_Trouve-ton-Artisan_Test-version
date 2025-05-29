@@ -44,11 +44,6 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/seo",
-                "output": "/seo"
-              },
-              {
-                "glob": "**/*",
                 "input": "src/app/assets/styles",
                 "output": "/styles"
               },

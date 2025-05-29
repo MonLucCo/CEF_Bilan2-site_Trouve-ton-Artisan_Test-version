@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeoService } from './services/seo/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tta_angular';
 
-  constructor() { }
+  // constructor() { }
+  constructor(private seoService: SeoService) {
+    seoService.loadSeoData();
+  }
 }

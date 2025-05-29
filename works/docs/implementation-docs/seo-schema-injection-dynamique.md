@@ -8,6 +8,16 @@
 
 ---
 
+## **Préambule**  
+
+La documentation du SEO est réalisée en deux parties documentaires car l'analyse et le codage ont dû être revus pour obtenir une qualité optimale du SEO.
+
+Ainsi ce document constitue la **Première version du SEO – Injection Dynamique**.
+
+La seconde partie concerne la version finale ([injection statique par un service SEO](./seo-schema-injection-statique.md)) de l'intégration du SEO dans le projet.
+
+---
+
 ## Objectifs du **SEO Dynamique**
 
 ### La mise en place d’un **SEO dynamique**
