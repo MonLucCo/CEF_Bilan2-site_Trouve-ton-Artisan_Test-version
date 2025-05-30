@@ -1,10 +1,13 @@
-<header class="app-header bg-light shadow-sm py-2">
-    <nav class="navbar navbar-expand-lg text-uppercase pb-0">
+<header class="app-header bg-light shadow-sm py-2" role="banner">
+    <!-- Titre caché pour l'accessibilité -->
+    <h2 id="site-navigation" class="visually-hidden">Menu principal</h2>
+
+    <nav class="navbar navbar-expand-lg text-uppercase pb-0" role="navigation">
         <div class="container d-flex justify-content-between justify-content-lg-evenly align-items-center">
             <!-- Logo aligné au centre verticalement -->
             <a class="navbar-brand d-flex align-items-center p-0 flex-grow-1" routerLink="/accueil">
                 <img class="logo object-fit-cover me-3" src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan"
-                    width="300" height="70">
+                    role="img" width="300" height="70">
             </a>
 
             <!-- Bouton Hamburger (menu mobile/tablette) -->
@@ -14,23 +17,27 @@
             </button>
 
             <!-- Menu de navigation -->
-            <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+            <div class="collapse navbar-collapse flex-grow-1" id="navbarNav" aria-labelledby="site-navigation">
                 <ul class="navbar-nav ms-auto gap-xl-3 gap-md-2 gap-1">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" routerLink="/" routerLinkActive="active"
-                            aria-current="page">Accueil</a>
+                        <a class="nav-link fw-bold" routerLink="/" routerLinkActive="active" aria-current="page"
+                            aria-label="Retour Accueil">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Bâtiment']">Bâtiment</a>
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Bâtiment']"
+                            aria-label="Catégorie Bâtiment">Bâtiment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Services']">Services</a>
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Services']"
+                            aria-label="Catégorie Services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Fabrication']">Fabrication</a>
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Fabrication']"
+                            aria-label="Catégorie Fabrication">Fabrication</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Alimentation']">Alimentation</a>
+                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Alimentation']"
+                            aria-label="Catégorie Alimentation">Alimentation</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +47,10 @@
     <hr class="separate w-75 mx-auto mt-0">
 
     <!-- Barre de recherche -->
-    <div class="search-bar mt-0 mb-3 text-center">
+    <div class="search-bar mt-0 mb-3 text-center" aria-labelledby="search-label">
+        <!-- Titre caché pour la navigation -->
+        <h2 id="search-label" class="visually-hidden">Recherche d’artisan</h2>
+
         <div class="col-10 mx-auto">
             <!-- Instance de SearchBar avec la loupe -->
             <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
