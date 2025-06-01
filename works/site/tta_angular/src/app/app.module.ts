@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core';
+import { inject, NgModule, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
@@ -23,7 +23,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SearchArtisansComponent } from './components/search-artisans/search-artisans.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ArtisanService } from './services/artisan/artisan.service';
-import { provideAppInitializer } from '@angular/core';
 import { FicheArtisanComponent } from './components/fiche-artisan/fiche-artisan.component';
 import { TopFilterPipe } from './pipes/top-filter/top-filter.pipe';
 import { CategoryFilterPipe } from './pipes/category-filter/category-filter.pipe';
@@ -47,6 +46,7 @@ import { PolitiqueCookiesComponent } from './legals/politique-cookies/politique-
 import { GestionCookiesComponent } from './legals/gestion-cookies/gestion-cookies.component';
 import { ConstructionComponent } from './legals/construction/construction.component';
 import { TitleComponent } from './components/title/title.component';
+import { firstValueFrom } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -100,9 +100,25 @@ import { TitleComponent } from './components/title/title.component';
   ],
   providers: [
     provideHttpClient(), // Remplace HttpClientModule
+    // provideAppInitializer(() => {
+    //   console.log('[AppModule]-[provideAppInitializer] : initialisation de l\'application');
+    //   const artisanService = inject(ArtisanService); // Injection d'ArtisanService via Angular
+    //   console.log('[AppModule]-[provideAppInitializer] : fin de l\'initialisation de l\'application')
+    //   return firstValueFrom(artisanService.getAllCategories());
+    // }),
+    // provideAppInitializer(() => {
+    //   console.log('[AppModule]-[provideAppInitializer] : initialisation de l\'application');
+    //   const artisanService = inject(ArtisanService); // Injection d'ArtisanService via Angular
+    //   // const myInitService = artisanService.initialize(); // Appelle la méthode d'initialisation
+    //   console.log('[AppModule]-[provideAppInitializer] : fin de l\'initialisation de l\'application')
+    //   return;
+    // }),
     provideAppInitializer(() => {
       const artisanService = inject(ArtisanService); // Injection d'ArtisanService via Angular
-      return artisanService.initialize(); // Appelle la méthode d'initialisation
+      console.log('[AppModule]-[provideAppInitializer] : initialisation de l\'application');
+      const myInitService = artisanService.initialize(); // Appelle la méthode d'initialisation
+      console.log('[AppModule]-[provideAppInitializer] : fin de l\'initialisation de l\'application')
+      return myInitService;
     }),
   ],
   bootstrap: [AppComponent],
