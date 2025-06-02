@@ -97,3 +97,25 @@ button:focus {
     outline: 2px solid $primary; // Bordure bleue pour une meilleure visibilité
     outline-offset: 2px; // Légère séparation pour rendre le contour plus clair
 }
+
+// 8️⃣ Styles spécifiques
+// Style des étoiles de notation
+.rating-stars {
+    display: inline-block;
+    font-size: 1.25rem;
+    color: $primary;
+
+    .fa-star-o {
+        color: $light;
+    }
+
+    .fas {
+        margin-right: 0.1rem;
+    }
+}
+
+// Style des liens au survol
+.nav-link:hover {
+    color: $primary;
+    text-decoration: underline;
+}
