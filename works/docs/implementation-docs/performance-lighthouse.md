@@ -8,16 +8,16 @@
 
 ---
 
-## Introduction
+## 1- Introduction
 
-### Utilisation du navigateur en mode normal et privé
+### 1-1. Utilisation du navigateur en mode normal et privé
 
 Lighthouse peut être exécuté en **mode normal** ou **mode privé** dans le navigateur.  
 
 ✅ **Mode normal** : Permet d’évaluer les performances en conditions réelles, avec l’impact des extensions et du cache.  
 ✅ **Mode privé** : Supprime l’influence des extensions et du cache pour identifier les **problèmes structurels** de l’application.  
 
-### Pourquoi privilégier le mode privé pour l’analyse des corrections ?
+### 1-2. Pourquoi privilégier le mode privé pour l’analyse des corrections ?
 
 Deux principales raisons sont retenues :
 
@@ -26,17 +26,17 @@ Deux principales raisons sont retenues :
 
 ---
 
-## Organisation de l’identification des corrections Lighthouse
+## 2- Organisation et identification des corrections Lighthouse
 
 Les corrections de performances sont menées en dernières, après les corrections du _SEO_, puis de l'_accessibilité_ et des _bonnes practiques_. Cette approche va du spécifique à la codification du projet jusqu'aux considérations relevant de l'environnement de **Angular**.
 
-### Analyse des résultats en mode privé pour Mobile & Desktop
+### 2-1. Analyse des résultats en mode privé pour Mobile & Desktop
 
 ✅ **Score Lighthouse Desktop : 59%**.
 ✅ **Score Lighthouse Mobile : 46%**.
 ✅ **Accessibilité, Best Practices, SEO : 100%**.
 
-### Méthodologie de correction de la performance
+### 2-2. Méthodologie de correction de la performance
 
 - Identifier les **problèmes détectés par Lighthouse**.
 - Regrouper les corrections en trois catégories :
@@ -44,40 +44,16 @@ Les corrections de performances sont menées en dernières, après les correctio
   - Optimisations **après le build**
   - **Indéterminées** (ajustables avant ou après le build).
 
----
+### 2-3. Référence des corrections d'amélioration
 
-## Identification des axes d’amélioration
-
-### Corrections avant le build (Optimisation du code & des ressources)
-
-✅ `PERF-01` **Ajout du `font-display: swap` pour éviter les retards de rendu des polices**.
-✅ `PERF-02` **Définition explicite des dimensions des images pour réduire le layout shift (CLS)**.
-✅ `PERF-03` **Minification des fichiers CSS et JS pour réduire leur taille**.
-✅ `PERF-04` **Compression des ressources texte (`gzip`, `brotli`) pour optimiser la charge réseau**.
-
-### Corrections après le build (Optimisation côté serveur & cache)
-
-✅ `PERF-05` **Activation des en-têtes de compression (`gzip`, `brotli`) sur le serveur**.
-✅ `PERF-06` **Mise en place d’un cache HTTP optimisé (`Cache-Control`, `Expires`)**.
-✅ `PERF-07` **Ajout des en-têtes de sécurité (`CSP`, `HSTS`, `X-Frame-Options`)**.
-✅ `PERF-08` **Test Lighthouse sur la version hébergée pour validation des optimisations**.
-
-### Corrections indéterminées (avant ou après le build)
-
-✅ `PERF-09` **Gestion des scripts bloquants (`async`, `defer`) pour accélérer le rendu**.
-✅ `PERF-10` **Optimisation des chaînes de requêtes critiques pour améliorer le TTFB**.
-✅ `PERF-11` **Réduction des tâches lourdes du `main-thread` identifiées dans Lighthouse**.
-
----
-
-## Approche par correction et amélioration constatée
+Le tableau ci-dessous est établi à partir de la première version des résultats des **tests de performances de Lighthouse**.
 
 | **Référence** | **Problème identifié** | **Impact** | **Action recommandée** | **Statut** |
 |--------------|----------------------|------------|----------------------|------------|
 | `PERF-01` | Font sans `swap` | Texte invisible avant chargement | `font-display: swap` sur les polices | ✅ Corrigé |
 | `PERF-02` | Images sans dimensions | Layout Shift (CLS) élevé | Ajout de `width` et `height` explicites | ✅ Corrigé |
 | `PERF-03` | JS/CSS trop volumineux | Ralentit le rendu | Minification avec `ng build --prod` | ✅ Corrigé |
-| `PERF-04` | Ressources non compressées | Charge réseau excessive | Compression `gzip` / `brotli` | ✅ Corrigé |
+| `PERF-04` | Ressources non compressées | Charge réseau excessive | Compression `gzip` / `brotli` | 🟠 À tester |
 | `PERF-05` | En-têtes de compression absents | Fichiers non compressés | Activation `gzip` sur le serveur | 🟠 À tester |
 | `PERF-06` | Cache HTTP absent | Mauvaise gestion des fichiers statiques | Ajout de `Cache-Control` | 🟠 À tester |
 | `PERF-07` | Sécurité insuffisante | Vulnérabilité aux attaques XSS | Ajout de `CSP`, `HSTS`, `X-Frame-Options` | 🟠 À tester |
@@ -86,38 +62,56 @@ Les corrections de performances sont menées en dernières, après les correctio
 | `PERF-10` | Chaînes critiques trop longues | Temps de réponse élevé | Optimisation du TTFB | 🟠 À tester |
 | `PERF-11` | Longs traitements du `main-thread` | Input lag | Optimisation des fonctions lourdes | 🟠 À tester |
 
+### 2-4 Organisation des axes d’amélioration
+
+Les axes d'améliorations de la performance du site distinguent la situation du code en phase de développement (avant le `build`) et du code de production (après le `build`). Les références utilisées sont définies dans le chapitre suivant.
+
+#### 2-4.1. Corrections avant le build (Optimisation du code & des ressources)
+
+✅ `PERF-01` **Ajout du `font-display: swap` pour éviter les retards de rendu des polices**.
+✅ `PERF-02` **Définition explicite des dimensions des images pour réduire le layout shift (CLS)**.
+✅ `PERF-03` **Minification des fichiers CSS et JS pour réduire leur taille**.
+✅ `PERF-04` **Compression des ressources texte (`gzip`, `brotli`) pour optimiser la charge réseau**.
+
+#### 2-4-2. Corrections après le build (Optimisation côté serveur & cache)
+
+✅ `PERF-05` **Activation des en-têtes de compression (`gzip`, `brotli`) sur le serveur**.
+✅ `PERF-06` **Mise en place d’un cache HTTP optimisé (`Cache-Control`, `Expires`)**.
+✅ `PERF-07` **Ajout des en-têtes de sécurité (`CSP`, `HSTS`, `X-Frame-Options`)**.
+✅ `PERF-08` **Test Lighthouse sur la version hébergée pour validation des optimisations**.
+
+#### 2-4-3. Corrections indéterminées (avant ou après le build)
+
+✅ `PERF-09` **Gestion des scripts bloquants (`async`, `defer`) pour accélérer le rendu**.
+✅ `PERF-10` **Optimisation des chaînes de requêtes critiques pour améliorer le TTFB**.
+✅ `PERF-11` **Réduction des tâches lourdes du `main-thread` identifiées dans Lighthouse**.
+
 ---
 
-## Perspectives d’amélioration
+## 3- Mise en oeuvre des corrections d'amélioration de la performance
 
-### Avant le build
+Les améliorations de la performance liées :
 
-✅ **Explorer l’utilisation de `lazy-loading` pour les images non essentielles**.
-✅ **Optimiser les animations pour éviter les `non-composited animations`**.
+- au rendu des images et des polices (`PERF-01` et `PERF-02`)
+- à la réduction du code JS par élimination des composantes inutiles et CSS (`PERF-03`),
 
-### Après le build
+ont conduit en phase de développement à constater évolution marginale (+1% à 4%) du score du test de performance Lighthouse sans impact sur les autres tests (SEO, accessibilité et best practices).
 
-✅ **Analyser l’impact du cache HTTP et ajuster la stratégie si nécessaire**.  
-✅ **Mettre en place un test Lighthouse récurrent pour suivre l’évolution des performances**.  
+Il est apparu que l'essentiel de l'amélioration de la perfomrance pouvait résider dans des actions de minimisation du code. L'approche a donc consisté à construire une version de production et à la tester en l'état.
 
-### Hors du présent projet (perspectives à long terme)
+Pour tester le code de production, Lighthouse n'a pas pu mener les tests avec un serveur émulé en local. Pour contourner ce problème, le test de performance de Lighthouse a été fait sur la version hébergée sur un serveur **Alwaysdata** (cf. lien [documentation hébergement](./alwaysdata-deploiement.md)).
 
-✅ **Étudier l’intégration d’un CDN pour accélérer le chargement global**.  
-✅ **Passer à un framework CSS plus léger pour réduire l’encombrement du `styles.css`**.  
+Le **score de 100% de performance** obtenu avec cette version de production a permis de confirmer que les option de construction du code de production (`build` du projet) est bien la principale démarche à mener pour améliorer l'index de performance du site.
+Par ailleurs, avec cette version de production :
+
+- le score **Best practices est de 81%** (dû aux API obsolètes relatives à l'incompatibilité des directives Sass3.0+ avec la version Bootstrap 5). Il peut revenir à 100% si l'on modifie la configuration de Angular en ajoutant un silence sur les dépréciation liées à Sass (choix : ne pas modifier la configuration de Angular).
+- le score **SEO** et **accessibilité** **restent à 100%**.
+
+Les correctins envisagées initialement de `PERF-04` à `PERF-11` n'ont donc pas été menées.
 
 ---
 
-## Conclusion et synthèse des corrections de performances du projet
+## 4- Conclusion et synthèse des corrections de performances du projet
 
-### Optimisations de la performance
-
-L'index de la performance Lighthouse est nettement améliorée**.  
-
-✅ Score Lighthouse après corrections en mode privé : **+20% estimé**.
-✅ **Rendu plus rapide** avec `async`, `defer`, **cache optimisé**.
-✅ **Texte visible immédiatement** avec `font-display: swap`.
-✅ **Layout Shift (CLS) réduit** grâce aux dimensions explicites des images.
-
-### Synthèse de la correction de performance
-
-Grâce aux optimisations mises en place, le projet répond désormais aux **standards de performance recommandés**. Avec un score optimisé et une meilleure fluidité, les utilisateurs bénéficient d’une navigation plus rapide et fluide. Certaines pistes d’amélioration restent envisageables à long terme, notamment via l’intégration d’un CDN ou une refonte des styles.
+Grâce aux optimisations mises en place, le projet répond désormais aux **standards de performance recommandés**.
+Cette démarche d'amélioration nécessite de traiter avec le code de développement la fluidité des images et du rendu, mais aussi le code de production. C'est avec ce dernier que la minifisation du code améliore la performance.
