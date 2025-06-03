@@ -8,7 +8,7 @@
 
 ---
 
-## . Introduction**
+## 1. Introduction**
 
 AlwaysData est une plateforme d’hébergement qui permet de déployer des applications web. Dans ce document, nous allons voir comment :
 ✅ Organiser le projet et préparer les fichiers pour le déploiement.

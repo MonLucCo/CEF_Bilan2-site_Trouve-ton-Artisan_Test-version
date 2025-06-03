@@ -26,6 +26,7 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
    - [personnalisation centralisée et optimisée des styles](./implementation-docs/styles-personnalise-bootstrap-fontAwesome.md)
    - [Amélioration Accessibilité avec LightHouse](./implementation-docs/accessibility-lighthouse.md)
    - [Amélioration Performance avec LightHouse](./implementation-docs/performance-lighthouse.md)
+   - [Hébergement Alwaysdata et version de Production](./implementation-docs/alwaysdata-deploiement.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -44,12 +45,13 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 ├── implementation-docs/    -----------------------------> # Réalisation et implémentation technique
 │   ├── email-gateway-http-smtp.md    -------------------> # Détails techniques de la passerelle HTTP-SMTP
 │   ├── seo-schema-injection-dynamique.md    ------------> # Détails de l'intégration intiale du SEO (**dynamique** et schémas de référencement)
-│   ├── seo-schema-injection-statique.md    ------------> # Détails de l'intégration finale du SEO (**statique** et schémas de référencement par un service SEO)
+│   ├── seo-schema-injection-statique.md    -------------> # Détails de l'intégration finale du SEO (**statique** et schémas de référencement par un service SEO)
 │   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails de l'intégration de Bootstrap par **CDN**
 │   ├── customisation-bootstrap.md    -------------------> # Détails de l'intégration de l'identitié du projet dans Bootstrap
 │   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails de la personnalisation des styles du projet
 │   ├── accessibilty-lighthouse.md    -------------------> # Détails de l'amélioration de l'accessibilité avec LightHouse
-│   ├── performance-lighthouse.md    -------------------> # Détails de l'amélioration de la performance avec LightHouse
+│   ├── performance-lighthouse.md    --------------------> # Détails de l'amélioration de la performance avec LightHouse
+│   ├── alwaysdata-deploiement.md.md    -----------------> # Détails de l'hébergement et de la version de production
 ```
 
 ---
