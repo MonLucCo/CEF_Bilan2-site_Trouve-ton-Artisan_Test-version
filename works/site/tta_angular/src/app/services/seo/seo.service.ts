@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { baseHref } from '../../utils/base-href.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,12 @@ export class SeoService {
     console.log("[loadSeoData] - SEO Service en route !");
 
     Promise.all([
-      firstValueFrom(this.http.get('/datas/seo-config.json')),
-      firstValueFrom(this.http.get('/datas/site-schema.json')),
-      firstValueFrom(this.http.get('/datas/artisan-schema.json'))
+      // firstValueFrom(this.http.get(baseHref('/datas/seo-config.json'))),
+      // firstValueFrom(this.http.get(baseHref('/datas/site-schema.json'))),
+      // firstValueFrom(this.http.get(baseHref('/datas/artisan-schema.json')))
+      firstValueFrom(this.http.get('datas/seo-config.json')),
+      firstValueFrom(this.http.get('datas/site-schema.json')),
+      firstValueFrom(this.http.get('datas/artisan-schema.json'))
     ])
 
       .then(([seoConfig, siteSchema, artisanSchema]) => {

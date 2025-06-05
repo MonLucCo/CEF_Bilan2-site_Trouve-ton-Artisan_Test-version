@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, firstValueFrom, Observable, of, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable, of } from 'rxjs';
 import { catchError, map, shareReplay, startWith, tap } from 'rxjs/operators';
 import { toArtisanCard } from '../../utils/to-artisan-card.utils';
 import { toContactCard } from '../../utils/to-contact-card.utils';
@@ -10,6 +10,7 @@ import { searchFilter } from '../../pipes/search-filter/search-filter.pipe';
 import { categoryFilter } from '../../pipes/category-filter/category-filter.pipe';
 import { idFilter } from '../../pipes/id-filter/id-filter.pipe';
 import { Artisan, ArtisanCard, ContactCard } from '../../models/artisan-service.models';
+import { baseHref } from '../../utils/base-href.utils';
 
 /**
  * Service pour gérer les données des artisans (résumés) et des contacts (détails).
@@ -43,6 +44,7 @@ import { Artisan, ArtisanCard, ContactCard } from '../../models/artisan-service.
  * - `getAllCategories()` : Retourne les catégories uniques des artisans.
  * - `reloadDatas()` : Vide le cache et recharge toutes les données artisans, contacts, et catégories.
  * - `isValidCategory(category: string)` : Retourne un booléen indiquant si la catégorie donnée est valide.
+ * - 'hasDataError()` : retourne l'état de chargement des données (false : pas d'erreur ; true : erreur de chargement).
  * 
  * ### Exemple d'utilisation :
  * ```typescript
@@ -60,13 +62,39 @@ export class ArtisanService {
   /**
    * URL du fichier JSON contenant les données des artisans.
    * 
+   * @private
+   * @type {string}
    * @remarks
    * Ce fichier sert de source principale pour charger les artisans, leurs contacts et les catégories.
    * La récupération est effectuée via `HttpClient`.
+   * 
+   * ⚠ La valeur est calculée dynamiquement en fonction de `baseHref`, et ne doit pas être assignée directement.
    */
-  private readonly dataUrl: string = '/datas/datas.json';
+  private readonly dataUrl: string = 'datas/datas.json';
+  // private readonly dataUrl: string = baseHref('datas/datas.json');
 
   /**
+   * @private
+   * Variable d'état signalant un problème d'accès aux données.
+   * Utilisé comme base pour `hasDataError()`, permettant aux composants de détecter une erreur de chargement.
+   * 
+   * @type {boolean}
+   * @remarks
+   * La valeur `true` indique une erreur d'accès aux données.
+   * La valeur `false` indique que les données ont été chargées avec succès.
+   * 
+   * @example
+   * ```typescript
+   * this.artisanService.hasDataError().subscribe((hasError) => {
+   *    if (hasError) console.warn("Les données artisan ne sont pas accessibles.");
+   * });
+   * ```
+   */
+  private _dataError: boolean = false;
+
+
+  /**
+   * @private
    * Observable réactif des artisans issus de `_dataCache`, servant de base pour `artisans$`, `contacts$` et `categories$`.
    */
   private _dataCache$ = new BehaviorSubject<Artisan[]>([]); // Instanciation avec un tableau vide pour éviter les comportements imprévisibles
@@ -261,11 +289,12 @@ export class ArtisanService {
       ),
       tap(data => {
         console.log('[ArtisanService] Données des artisans reçues et transformées.');
-        // this._dataCache$.next(data); // Diffusion des données transformées
+        this._dataError = data.length === 0; // Détection d'une erreur si aucune donnée reçue
       }),
       shareReplay(1), // Empêche la répétition des requêtes
       catchError((err) => {
         console.error('[ArtisanService] : Erreur lors de la récupération des données (brutes) des artisans', err);
+        this._dataError = true; // Active l’état d’erreur global
         return of([]); // Retourne un tableau vide en cas d'erreur
       })
     );
@@ -458,6 +487,13 @@ export class ArtisanService {
     return this._contactsIds$.pipe(
       map(contactIds => contactIds.has(id)), // Vérifie si l'ID existe dans le Set
     );
+  }
+
+  /**
+   * Fournit l'état de chargement des données
+   */
+  hasDataError(): boolean {
+    return this._dataError;
   }
 
 }

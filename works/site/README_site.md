@@ -1,6 +1,12 @@
 # Contenu du dossier
 
-Le dossier `/works/site` contient les différents dossiers et fichiers du développement du site.
+Le dossier `/works/site` contient les différents dossiers et fichiers du développement du projet **Trouve Ton Artisan**.
+Ces dossiers développés dans les sections suivantes concernent :
+
+- le projet **TTA** (le sujet principal du projet - version opérationnelle).
+- le projet **Serveur Backend** (un sujet connexe lié à MailDev - version opérationnelle).
+- le projet **full-stack** (un essai pour traiter Maildev - démonstrateur technologique).
+- le projet **Hosting** (un sujet connexe pour l'hébergement - version opérationnelle).
 
 ## 1. Projet TTA en technologie Angular
 
@@ -45,3 +51,7 @@ _Rédaction réservée_ : **==> Indiquer les différents documents... à supprim
 1. Le dossier `/works/site/email-api_angular` contient le développement d'une application full-stack pour assurer une passerelle HTTP-SMTP dédié à l'envoi d'email vers MailDev.
 2. Le projet de l'application passerelle est développée à la fois en **Node**.js pour l'API en backend et en **Angular** pour son interface web. Le détail de son développement accessible dans un fichier [README spécifique Email-API_Angular](./email-api_angular/README-FR.md).
 3. Le projet `email-api_angular` est fonctionnel. Toutefois, il n'a pas été retenu et intégré dans le développement du projet **TTA_Angular** dans ce niveau de version du **projet TTA**. Il a été conservé pour illustrer l'intégration combinée et les interactions de configuration dans une même architecture d'un développement en **Node.js** et en **Angular.js**.
+
+## 4. Site d'accueil pour l'hébergement
+
+Le dossier contient une page statique `index.html` et un fichier de documentation `README_hosting.md` relatif au déploiement du site chez **AlwaysData**.

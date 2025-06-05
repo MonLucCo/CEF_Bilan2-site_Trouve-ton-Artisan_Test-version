@@ -27,6 +27,7 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
    - [Amélioration Accessibilité avec LightHouse](./implementation-docs/accessibility-lighthouse.md)
    - [Amélioration Performance avec LightHouse](./implementation-docs/performance-lighthouse.md)
    - [Hébergement Alwaysdata et version de Production](./implementation-docs/alwaysdata-deploiement.md)
+   - [Validation du projet `tta_angular`](./implementation-docs/validation-projet-tta_angular.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -51,7 +52,8 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 │   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails de la personnalisation des styles du projet
 │   ├── accessibilty-lighthouse.md    -------------------> # Détails de l'amélioration de l'accessibilité avec LightHouse
 │   ├── performance-lighthouse.md    --------------------> # Détails de l'amélioration de la performance avec LightHouse
-│   ├── alwaysdata-deploiement.md.md    -----------------> # Détails de l'hébergement et de la version de production
+│   ├── alwaysdata-deploiement.md    --------------------> # Détails de l'hébergement et de la version de production
+│   ├── validation-projet-tta_angular.md    -------------> # Détails du suivi de validation et de correction du projet `tta_angular`
 ```
 
 ---

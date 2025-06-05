@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SeoService } from './services/seo/seo.service';
+import { baseHref } from './utils/base-href.utils';
 
 @Component({
   selector: 'app-root',

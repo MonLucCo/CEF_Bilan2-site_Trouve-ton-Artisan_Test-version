@@ -4,9 +4,16 @@
     </app-title>
 
     <div class="top-artisans-container">
-        <!-- Section affichant les artisans s'il y en a, ou un message alternatif dans le cas contraire. -->
-        <div *ngIf="topArtisans$ | async as topArtisans; else noTopArtisans">
-            <!-- Boucle pour afficher chaque artisan avec leurs détails. -->
+        <!-- Affichage du message d'erreur si les données ne peuvent pas être chargées -->
+        <div *ngIf="dataError">
+            <p class="alert alert-danger text-center mx-5">Désolé, suite à un problème technique, les données ne sont
+                pas
+                accessibles !
+            </p>
+        </div>
+
+        <!-- Affichage des artisans ou du message alternatif si aucune donnée disponible -->
+        <div *ngIf="topArtisans$ | async as topArtisans">
             <div class="d-flex flex-wrap justify-content-evenly gap-1">
                 <div *ngFor="let artisan of topArtisans" class="col-12 col-md-6 col-lg-3">
                     <app-fiche-artisan [artisan]="artisan"></app-fiche-artisan>
@@ -14,9 +21,10 @@
             </div>
         </div>
 
-        <!-- Message affiché s'il n'y a aucun artisan dans la liste. -->
-        <ng-template #noTopArtisans>
-            <p>Aucun artisan en haut du classement pour le moment.</p>
-        </ng-template>
+        <!-- Message affiché si le fichier est accessible mais ne contient pas de top artisans -->
+        <p *ngIf="hasNoTopArtisans && !dataError" class="alert alert-success text-center mx-5">Aucun artisan en haut du
+            classement
+            pour
+            le moment.</p>
     </div>
 </section>
