@@ -14,7 +14,8 @@
             <div class="col-12 col-md-6 d-flex flex-column align-items-center">
                 <app-fiche-artisan *ngIf="selectedArtisan" [artisan]="selectedArtisan"></app-fiche-artisan>
                 <app-contact-artisan *ngIf="selectedContact" [contact]="selectedContact"
-                    (emailValidityChange)="onEmailValidityChange($event)"></app-contact-artisan>
+                    (emailValidityChange)="onEmailValidityChange($event)" (requestFocus)="focusOnNameField($event)">
+                </app-contact-artisan>
             </div>
 
             <!-- Colonne 2 : formulaire de contact -->

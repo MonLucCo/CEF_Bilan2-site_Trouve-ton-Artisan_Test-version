@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email/email.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ContactFormComponent {
   @Input() artisanEmail!: string; // Email de l'artisan reçu depuis ContactPage
+  @ViewChild('contactFormName', { static: false }) nameField!: ElementRef;
+
   contactForm: FormGroup;
   successMessage: string = '';
   errorMessage: string = '';
@@ -51,5 +53,11 @@ export class ContactFormComponent {
 
   returnHome(): void {
     this.router.navigate(['/']);
+  }
+
+  setFocusOnName(): void {
+    setTimeout(() => {
+      this.nameField?.nativeElement.focus();
+    }, 100);
   }
 }

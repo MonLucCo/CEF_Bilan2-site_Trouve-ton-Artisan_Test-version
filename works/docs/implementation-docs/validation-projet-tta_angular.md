@@ -61,11 +61,11 @@ Chaque correction suit le processus suivant :
 
 ### 2-3. Fiche de correction PB-03 : Désactiver l'accès à l'email de la fiche de contact
 
-- Problème : [description succincte du problème à traiter].
-- Synthèse : [description succincte de la conclusion].
+- Problème : éviter la création d'un message en dehors de la plateforme en informant l'utilisateur et en le redirigeant vers le formulaire de contact.
+- Synthèse : suppression de l'ouverture du client de messagerie, information de l'utilisateur et redirection vers le formulaire de contact.
 - Accès : [fiche de correction](./validation-projet-tta_angular-PB-01.md).
-- Etat : en cours.
-- Dates : du [date] au [date].
+- Etat : close.
+- Dates : du 5 juin au 5 juin 2025.
 
 ### 2-4. Fiche de correction PB-04 : Responsivité de la `SearchBar` sur mobile
 

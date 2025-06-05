@@ -9,13 +9,23 @@
         <!-- Adresse e-mail -->
         <p class="card-text" *ngIf="isEmailValid">
             <strong>E-mail : </strong>
-            <a [href]="'mailto:' + contact.email" class="link-primary">
+            <a href="#" class="link-primary" (click)="showContactInfo($event)">
                 {{ contact.email }}
             </a>
         </p>
         <p class="card-text text-danger" *ngIf="!isEmailValid">
-            Adresse email incorrecte : contact par email impossible !
+            Adresse email incorrecte : contact par formulaire impossible !
         </p>
+
+        <!-- Fenêtre modale ou message d'information -->
+        <div *ngIf="emailInfoVisible" class="alert alert-success mt-2 mx-5 d-flex flex-column justify-content-center">
+            <p class="text-center">
+                <strong>⚠️ Information :</strong><br />Veuillez utiliser le <em>formulaire de contact</em> pour
+                contacter cet
+                artisan.
+            </p>
+            <button class="btn btn-sm btn-success mt-2 align-items-end mx-5" (click)="closeInfoAndFocus()">Ok</button>
+        </div>
 
         <!-- Site web (affiché uniquement s'il existe) -->
         <p class="card-text" *ngIf="contact.website">
