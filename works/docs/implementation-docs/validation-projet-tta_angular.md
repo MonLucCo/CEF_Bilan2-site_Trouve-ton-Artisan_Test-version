@@ -24,7 +24,7 @@ Ce document centralise le suivi des corrections du projet `tta_angular`, avec un
 | **[PB-02](#2-2-fiche-de-correction-pb-02--accès-aux-polices-graphik)** | Accès aux polices `Graphik` | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
 | **[PB-03](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)** | Affichage de l’e-mail en fiche contact (non cliquable) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
 | **[PB-04](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)** | Responsivité de la `SearchBar` sur mobile | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
-| **[PB-05](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)** | Disposition du header sur mobile (`< 450px`) | 🔄 En cours | — | 🚧 À vérifier |
+| **[PB-05](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)** | Disposition du header sur mobile (`< 450px`) | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
 | **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | 🔄 En cours | — | 🚧 À vérifier |
 | **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | ⏳ À faire | — | 🚧 À vérifier |
 | **[PB-08](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)** | Suppression des logs Angular en production | ⏳ À faire | — | 🚧 À vérifier |
@@ -77,11 +77,11 @@ Chaque correction suit le processus suivant :
 
 ### 2-5. Fiche de correction PB-05 : Disposition du header sur mobile (`< 450px`)
 
-- Problème : [description succincte du problème à traiter].
-- Synthèse : [description succincte de la conclusion].
-- Accès : [fiche de correction](./validation-projet-tta_angular-PB-Exemple.md).
-- Etat : en cours.
-- Dates : du [date] au [date].
+- Problème : l'affichage du menu de navigation et du logo est incorrect pour les petits écrans.
+- Synthèse : affichage correcte pour écrans supérieur à 330px et menu fixé en haut de l'écran.
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-05.md).
+- Etat : close.
+- Dates : le 6 juin 2025.
 
 ### 2-6. Fiche de correction PB-06 : Rendu du tableau `MailDev` dans le footer
 
