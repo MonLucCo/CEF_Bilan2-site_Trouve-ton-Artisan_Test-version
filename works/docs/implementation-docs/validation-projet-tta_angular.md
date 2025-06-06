@@ -20,15 +20,15 @@ Ce document centralise le suivi des corrections du projet `tta_angular`, avec un
 
 | Réf Fiche | Problème identifié | État correction | Date validation | Score LH impact |
 |-----------|--------------------|-----------------|-----------------|-----------------|
-| **[PB-01](#2-1-fiche-de-correction-pb-01--accès-aux-données-datasjson)** | Accès aux données (`datas.json`) | ✅ Corrigé | 05/06/2025 | ✅ Aucun impact |
-| **[PB-02](#2-2-fiche-de-correction-pb-02--accès-aux-polices-graphik)** | Accès aux polices `Graphik` | ✅ Corrigé | 05/06/2025 | ✅ Aucun impact |
-| **[PB-03](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)** | Affichage de l’e-mail en fiche contact (non cliquable) | 🔄 En cours | — | 🚧 À vérifier |
-| **[PB-04](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)** | Responsivité de la `SearchBar` sur mobile | 🔄 En cours | — | 🚧 À vérifier |
+| **[PB-01](#2-1-fiche-de-correction-pb-01--accès-aux-données-datasjson)** | Accès aux données (`datas.json`) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
+| **[PB-02](#2-2-fiche-de-correction-pb-02--accès-aux-polices-graphik)** | Accès aux polices `Graphik` | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
+| **[PB-03](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)** | Affichage de l’e-mail en fiche contact (non cliquable) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
+| **[PB-04](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)** | Responsivité de la `SearchBar` sur mobile | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
 | **[PB-05](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)** | Disposition du header sur mobile (`< 450px`) | 🔄 En cours | — | 🚧 À vérifier |
-| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | ⏳ À faire | — | 🚧 À vérifier |
+| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | 🔄 En cours | — | 🚧 À vérifier |
 | **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | ⏳ À faire | — | 🚧 À vérifier |
 | **[PB-08](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)** | Suppression des logs Angular en production | ⏳ À faire | — | 🚧 À vérifier |
-| **[PB-09](#2-9-fiche-de-correction-pb-09--libellé-du-problème)** | [libellé du problème] | ⏳ À faire | — | 🚧 À vérifier |
+| **[PB-09](#2-9-fiche-de-correction-pb-09--libellé-du-problème)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
 
 ### 1-2. Méthodologie de validation
 
@@ -57,23 +57,23 @@ Chaque correction suit le processus suivant :
 - Synthèse : problème résolu dans la **correction n°4 de PB-01**.
 - Accès : [fiche de correction](./validation-projet-tta_angular-PB-01.md).
 - Etat : close.
-- Dates : du 5 juin 2025 au 5 juin 2025.
+- Dates : le 5 juin 2025.
 
 ### 2-3. Fiche de correction PB-03 : Désactiver l'accès à l'email de la fiche de contact
 
 - Problème : éviter la création d'un message en dehors de la plateforme en informant l'utilisateur et en le redirigeant vers le formulaire de contact.
 - Synthèse : suppression de l'ouverture du client de messagerie, information de l'utilisateur et redirection vers le formulaire de contact.
-- Accès : [fiche de correction](./validation-projet-tta_angular-PB-01.md).
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-03.md).
 - Etat : close.
-- Dates : du 5 juin au 5 juin 2025.
+- Dates : le 5 juin 2025.
 
 ### 2-4. Fiche de correction PB-04 : Responsivité de la `SearchBar` sur mobile
 
-- Problème : [description succincte du problème à traiter].
-- Synthèse : [description succincte de la conclusion].
-- Accès : [fiche de correction](./validation-projet-tta_angular-PB-Exemple.md).
-- Etat : en cours.
-- Dates : du [date] au [date].
+- Problème : l'affichage du champ de saisie de la recherche est insuffisant pour les petits écrans.
+- Synthèse : mise en oeuvre de l'affichage flexible en **responsive design mobile-first** du composant SearchBar pour corriger le problème.
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-04.md).
+- Etat : close.
+- Dates : le 6 juin 2025.
 
 ### 2-5. Fiche de correction PB-05 : Disposition du header sur mobile (`< 450px`)
 

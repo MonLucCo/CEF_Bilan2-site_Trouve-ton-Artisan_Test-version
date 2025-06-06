@@ -1,42 +1,44 @@
-<div class="input-group">
-    <!-- Bouton lié à la catégorie sélectionnée -->
-    <div *ngIf="categoryMemory" class="input-group-prepend">
-        <div class="btn-group">
-            <!-- Case à cocher pour activer/désactiver la catégorie -->
-            <button class="btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
-                [disabled]="!isKeywordValid()"
-                [attr.aria-label]="'Activer ou désactiver la catégorie ' + categoryMemory">
-                <input type="checkbox" [checked]="categoryActive" id="categoryCheckbox">
-                <label for="categoryCheckbox" class="visually-hidden">Coche de la catégorie {{ categoryMemory
-                    }}</label>
-                <span>{{ categoryMemory }}</span>
+<div class="search-group d-flex flex-wrap flex-md-nowrap justify-content-center gap-3 gap-md-2">
+    <div *ngIf="categoryMemory" class="search-filter d-flex justify-content-center">
+        <!-- Bouton lié à la catégorie sélectionnée avec Case à cocher pour activer/désactiver la catégorie -->
+        <button class="filter-btn btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
+            [disabled]="!isKeywordValid()" [attr.aria-label]="'Activer ou désactiver la catégorie ' + categoryMemory">
+            <input type="checkbox" [checked]="categoryActive" id="categoryCheckbox">
+            <label for="categoryCheckbox" class="visually-hidden">Coche de la catégorie {{ categoryMemory
+                }}</label>
+            <span>{{ categoryMemory }}</span>
+        </button>
+    </div>
+
+    <div class="search-field d-flex flex-column flex-sm-row w-100 align-items-center gap-2 gap-sm-1">
+        <div class="field-input w-100">
+            <!-- Champ de recherche (selon le mode de recherche) -->
+            <ng-container class="instant-input" *ngIf="modeOnRealTimeSearch; else validateSearch">
+                <!-- Mode instantané -->
+                <label for="instant-search-input" class="visually-hidden">Recherche instantanée d’un artisan</label>
+                <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+                    (input)="onInputChange()" />
+            </ng-container>
+            <ng-template class="validate-input" #validateSearch>
+                <!-- Mode avec validation -->
+                <label for="validate-search-input" class="visually-hidden">Recherche d’un artisan</label>
+                <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+                    (keyup.enter)="triggerSearch()" />
+            </ng-template>
+        </div>
+
+        <div class="field-cmd d-flex gap-1">
+            <!-- Bouton reset -->
+            <button class="reset-btn btn btn-outline-secondary" (click)="resetSearchField()"
+                [disabled]="!isKeywordValid()" aria-label="Réinitialiser la recherche">
+                <i class="fas fa-undo"></i> <!-- Icône de reset -->
+            </button>
+
+            <!-- Bouton de recherche -->
+            <button class="search-btn btn btn-outline-primary" (click)="triggerSearch()"
+                [disabled]="modeOnRealTimeSearch || !isKeywordValid()" aria-label="Lancer la recherche">
+                <i class="fas fa-search"></i> <!-- Icône recherche (loupe) -->
             </button>
         </div>
     </div>
-
-    <!-- Champ de recherche (selon le mode de recherche) -->
-    <ng-container *ngIf="modeOnRealTimeSearch; else validateSearch">
-        <!-- Mode instantané -->
-        <label for="instant-search-input" class="visually-hidden">Recherche instantanée d’un artisan</label>
-        <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
-            (input)="onInputChange()" />
-    </ng-container>
-    <ng-template #validateSearch>
-        <!-- Mode avec validation -->
-        <label for="search-input" class="visually-hidden">Recherche d’un artisan</label>
-        <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
-            (keyup.enter)="triggerSearch()" />
-    </ng-template>
-
-    <!-- Bouton reset -->
-    <button class="btn btn-outline-secondary" (click)="resetSearchField()" [disabled]="!isKeywordValid()"
-        aria-label="Réinitialiser la recherche">
-        <i class="fas fa-undo"></i> <!-- Icône de reset -->
-    </button>
-
-    <!-- Bouton de recherche -->
-    <button class="btn btn-outline-primary" (click)="triggerSearch()"
-        [disabled]="modeOnRealTimeSearch || !isKeywordValid()" aria-label="Lancer la recherche">
-        <i class="fas fa-search"></i> <!-- Icône recherche (loupe) -->
-    </button>
 </div>
