@@ -25,10 +25,11 @@ Ce document centralise le suivi des corrections du projet `tta_angular`, avec un
 | **[PB-03](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)** | Affichage de l’e-mail en fiche contact (non cliquable) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
 | **[PB-04](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)** | Responsivité de la `SearchBar` sur mobile | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
 | **[PB-05](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)** | Disposition du header sur mobile (`< 450px`) | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
-| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | 🔄 En cours | — | 🚧 À vérifier |
-| **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | ⏳ À faire | — | 🚧 À vérifier |
+| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | 🔄 En cours | 07/06/2025 | 🚧 À vérifier |
+| **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | 🔄 En cours | — | 🚧 À vérifier |
 | **[PB-08](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)** | Suppression des logs Angular en production | ⏳ À faire | — | 🚧 À vérifier |
-| **[PB-09](#2-9-fiche-de-correction-pb-09--libellé-du-problème)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
+| **[PB-09](#2-9-fiche-de-correction-pb-09--configuration-de-lapplication-par-fichier)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
+| **[PB-10](#2-10-fiche-de-correction-pb-09--libellé-du-problème)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
 
 ### 1-2. Méthodologie de validation
 
@@ -85,11 +86,11 @@ Chaque correction suit le processus suivant :
 
 ### 2-6. Fiche de correction PB-06 : Rendu du tableau `MailDev` dans le footer
 
-- Problème : [description succincte du problème à traiter].
-- Synthèse : [description succincte de la conclusion].
-- Accès : [fiche de correction](./validation-projet-tta_angular-PB-Exemple.md).
+- Problème : incohérence des colonnes du tableau des emails reçu par MailDev, pas de version de l'application.
+- Synthèse : affichage cohérent du tableau, amélioration de lUX pour les petits écrans avec un affichage par **Accordéon**, affichage dans le Footer de la version de l'application.
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-06.md).
 - Etat : à faire.
-- Dates : du [date] au [date].
+- Dates : le 7 juin 2025.
 
 ### 2-7. Fiche de correction PB-07 : Déploiement du backend `MailDev` pour test avec Mobile
 
@@ -107,7 +108,15 @@ Chaque correction suit le processus suivant :
 - Etat : à faire.
 - Dates : du [date] au [date].
 
-### 2-9. Fiche de correction PB-09 : [libellé du problème]
+### 2-9. Fiche de correction PB-09 : configuration de l'application par fichier
+
+- Problème : [description succincte du problème à traiter].
+- Synthèse : [description succincte de la conclusion].
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-Exemple.md).
+- Etat : à définir.
+- Dates : du [date] au [date].
+
+### 2-10. Fiche de correction PB-09 : [libellé du problème]
 
 - Problème : [description succincte du problème à traiter].
 - Synthèse : [description succincte de la conclusion].

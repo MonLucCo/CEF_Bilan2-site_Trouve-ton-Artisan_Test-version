@@ -11,6 +11,7 @@ export class ApiMaildevTestComponent {
   emails: any[] = [];
   message: string = '';
   messageCounter: number = 0;
+  isAccordionView: boolean = false;
 
   constructor(private emailService: EmailService) { }
 

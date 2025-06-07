@@ -88,7 +88,8 @@
         <h3 class="visually-hidden" id="footer-signature-tools">Outils associés à signature du pied de page</h3>
         <!-- Ligne 4 : Signature et outils -->
         <div class="tools-block d-flex flex-column" role="contentinfo" aria-labelledby="footer-signature-tools">
-            <div class="sign-block text-end">
+            <div class="sign-block d-flex flex-wrap align-items-center justify-content-between">
+                <p class="version-app text-dark-emphasis m-0" style="font-size: 0.6rem;">TTA v1.0.6</p>
                 <button class="sign-content btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()"
                     [attr.aria-expanded]="showTools">
                     ⚡️ Propulsé par PerLucCo &copy; <span class="text-danger">&hearts;</span>

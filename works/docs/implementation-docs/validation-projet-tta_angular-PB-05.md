@@ -93,7 +93,7 @@ L’expérience utilisateur est mauvaise du fait d'une ergonomie inadaptée pour
 ### 2.2. Résultat attendu
 
 - Barre de navigation fixée en haut de l'écran.
-- Alignement et fluidité du Header pour les écrans de  plus 330px.
+- Alignement et fluidité du Header pour les écrans de plus 330px.
 - L'affichage est fluide et rapide (tests Lighthouse).
 
 ---
