@@ -20,15 +20,15 @@ Ce document centralise le suivi des corrections du projet `tta_angular`, avec un
 
 | Réf Fiche | Problème identifié | État correction | Date validation | Score LH impact |
 |-----------|--------------------|-----------------|-----------------|-----------------|
-| **[PB-01](#2-1-fiche-de-correction-pb-01--accès-aux-données-datasjson)** | Accès aux données (`datas.json`) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
+| **[PB-01](#2-1-fiche-de-correction-pb-01--accès-aux-données-datasjson)** | Accès aux données (`datas.json`) | ✅ Corrigé | 04/06/2025 au 05/06/2025 | ✅ Pas d'impact |
 | **[PB-02](#2-2-fiche-de-correction-pb-02--accès-aux-polices-graphik)** | Accès aux polices `Graphik` | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
 | **[PB-03](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)** | Affichage de l’e-mail en fiche contact (non cliquable) | ✅ Corrigé | 05/06/2025 | ✅ Pas d'impact |
 | **[PB-04](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)** | Responsivité de la `SearchBar` sur mobile | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
 | **[PB-05](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)** | Disposition du header sur mobile (`< 450px`) | ✅ Corrigé | 06/06/2025 | ✅ Pas d'impact |
-| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | 🔄 En cours | 07/06/2025 | 🚧 À vérifier |
-| **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | 🔄 En cours | — | 🚧 À vérifier |
-| **[PB-08](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)** | Suppression des logs Angular en production | ⏳ À faire | — | 🚧 À vérifier |
-| **[PB-09](#2-9-fiche-de-correction-pb-09--configuration-de-lapplication-par-fichier)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
+| **[PB-06](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)** | Rendu du tableau `MailDev` dans le footer | ✅ Corrigé | 07/06/2025 | 🚧 À vérifier |
+| **[PB-07](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)** | Déploiement du backend `MailDev` pour test avec Mobile | 🔄 En cours | 07/06/2025 | 🚧 À vérifier |
+| **[PB-08](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)** | Suppression des logs Angular en production | 🔄 En cours | 07/06/2025 au [date] | 🚧 À vérifier |
+| **[PB-09](#2-9-fiche-de-correction-pb-09--configuration-de-lapplication-par-fichier)** | configurer l'application `tta_angular` par fichiers JSON | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
 | **[PB-10](#2-10-fiche-de-correction-pb-09--libellé-du-problème)** | [libellé du problème] | ⏳ À faire - 🔄 En cours | — | 🚧 À vérifier |
 
 ### 1-2. Méthodologie de validation
@@ -94,11 +94,11 @@ Chaque correction suit le processus suivant :
 
 ### 2-7. Fiche de correction PB-07 : Déploiement du backend `MailDev` pour test avec Mobile
 
-- Problème : [description succincte du problème à traiter].
-- Synthèse : [description succincte de la conclusion].
-- Accès : [fiche de correction](./validation-projet-tta_angular-PB-Exemple.md).
-- Etat : à faire.
-- Dates : du [date] au [date].
+- Problème : pas d'accès au serveur MailDev pour les mobiles utilisant tta_angular déployé.
+- Synthèse : une analyse conduit à reporter le traitement de ce problème.
+- Accès : [fiche de correction](./validation-projet-tta_angular-PB-07_analyse.md).
+- Etat : en cours.
+- Dates : du 7 juin 2025 au [date].
 
 ### 2-8. Fiche de correction PB-08 : Suppression des logs Angular en production
 
