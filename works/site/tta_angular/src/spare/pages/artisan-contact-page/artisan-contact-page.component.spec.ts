@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArtisanContactPageComponent } from './artisan-contact-page.component';
-import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
+import { ContactFormComponent } from '../../../app/components/contact-form/contact-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { EmailService } from '../../services/email/email.service';
+import { EmailService } from '../../../app/services/email/email.service';
 
 describe('ArtisanDetailPageComponent', () => {
   let component: ArtisanContactPageComponent;
