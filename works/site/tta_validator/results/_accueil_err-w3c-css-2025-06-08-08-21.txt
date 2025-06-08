@@ -1,0 +1,28 @@
+🛑 Erreurs détectées sur la page /accueil (css)
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <title>CSS Validator : Error</title>
+    <link type="text/css" rel='stylesheet' href="https://jigsaw.w3.org/css-validator/style/error.css" />
+  </head>
+
+  <body>
+    <div>
+      <a href="https://www.w3.org/"><img src="http://www.w3.org/Icons/w3c_home" alt="w3c" /></a>
+    </div>
+    <hr />
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+    <div class="t3">Error</div>
+      
+<h2>Target: file://localhost/TextArea</h2>
+<div class="error">
+<p>Oups! Internal error!</p><p>
+</p></div>
+<hr />
+<p><img src='images/mwcss.gif' alt='made with CSS' /></p>
+<address><a href='Email.html'>www-validator-css</a></address>
+</body></html>

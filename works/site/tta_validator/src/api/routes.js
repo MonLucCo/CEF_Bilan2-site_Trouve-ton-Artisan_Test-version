@@ -1,5 +1,6 @@
-const express = require('express');
-const fs = require('fs');
+import express from "express";
+import fs from "fs";
+
 const router = express.Router();
 
 router.get('/results', (req, res) => {
@@ -8,4 +9,4 @@ router.get('/results', (req, res) => {
     res.json(results);
 });
 
-module.exports = router;
+export default router;

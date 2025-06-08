@@ -1,4 +1,6 @@
-const fs = require('fs');
+import { fs } from "fs";
+
+// const fs = require('fs');
 
 const readJSON = (filePath) => {
     if (!fs.existsSync(filePath)) return null;

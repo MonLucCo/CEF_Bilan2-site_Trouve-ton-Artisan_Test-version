@@ -1,0 +1,25 @@
+{
+  "html": {
+    "messages": [
+      {
+        "type": "error",
+        "message": "End of file seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
+      },
+      {
+        "type": "error",
+        "message": "Element “head” is missing a required instance of child element “title”."
+      },
+      {
+        "type": "info",
+        "subType": "warning",
+        "message": "Consider adding a “lang” attribute to the “html” start tag to declare the language of this document."
+      }
+    ],
+    "source": {
+      "type": "text/html",
+      "encoding": "utf-8",
+      "code": ""
+    }
+  },
+  "css": null
+}

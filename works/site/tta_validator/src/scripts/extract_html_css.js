@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+import puppeteer from 'puppeteer';
+import fs from 'fs';
 
 (async () => {
     const config = JSON.parse(fs.readFileSync('config/pages.json'));
@@ -14,8 +14,8 @@ const fs = require('fs');
             return [...document.styleSheets].map(sheet => [...sheet.cssRules].map(rule => rule.cssText).join('\n')).join('\n');
         });
 
-        fs.writeFileSync(`results/${route.replace(/\//g, '_')}.html`, html);
-        fs.writeFileSync(`results/${route.replace(/\//g, '_')}.css`, css);
+        fs.writeFileSync(`results/${route.replace(/\//g, '_')}_.html`, html);
+        fs.writeFileSync(`results/${route.replace(/\//g, '_')}_.css`, css);
     }
 
     await browser.close();

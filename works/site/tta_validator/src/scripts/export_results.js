@@ -1,11 +1,11 @@
-const fs = require('fs');
-const PDFDocument = require('pdfkit');
-const { parse } = require('json2csv');
+import fs from "fs";
+import PDFDocument from "pdfkit";
+import { parse } from "json2csv";
 
 const exportPDF = (results, res) => {
     const doc = new PDFDocument();
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=validation_results.pdf');
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "attachment; filename=validation_results.pdf");
     doc.pipe(res);
 
     doc.fontSize(16).text("Résultats de validation W3C", { align: "center" });
@@ -22,6 +22,10 @@ const exportPDF = (results, res) => {
 };
 
 const exportCSV = (results, res) => {
+    if (!results || results.length === 0) {
+        res.status(400).send("❌ Aucune donnée à exporter en CSV !");
+        return;
+    }
     const csv = parse(results.map(data => ({
         page: data.page,
         htmlErrors: data.html.errors.length,
@@ -33,4 +37,4 @@ const exportCSV = (results, res) => {
     res.send(csv);
 };
 
-module.exports = { exportPDF, exportCSV };
+export { exportPDF, exportCSV };
