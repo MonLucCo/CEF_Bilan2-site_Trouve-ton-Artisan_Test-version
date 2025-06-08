@@ -79,15 +79,32 @@ const validateHTML = async (page, htmlData) => {
 
 // 📌 Fonction de validation W3C pour CSS
 const validateCSS = async (page, cssData) => {
-    const formData = new FormData();
+    if (!cssData.trim()) {
+        console.error(`❌ Erreur : Le fichier CSS ${page} est vide`);
+        logMessage(`❌ Fichier CSS vide : ${page}`);
+        return null;
+    }
+
+    const formData = new URLSearchParams();
+    // formData.append("uri", "");  // Indiquer que l'on valide un fichier et non une URL
     formData.append("text", cssData);
+    formData.append("profile", "css3svg");  // Utilisation de CSS niveau 3 + SVG
+    formData.append("usermedium", "all");  // Prendre en compte tous les médiums (écran, impression...)
+    formData.append("warning", "1");  // Inclure les avertissements dans la validation
+    formData.append("output", "json");  // Format de sortie JSON pour analyse
+
+    console.log(`📌 Requête envoyée au validateur CSS :`, formData);
+    logMessage(`Requête envoyée au validateur CSS`);
 
     const response = await fetch("https://jigsaw.w3.org/css-validator/validator", {
         method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData
     });
-
     const textResponse = await response.text();
+
+    console.log(`📌 Réponse brute du validateur CSS :`, textResponse);
+    logMessage(`Réponse brute du validateur CSS`);
 
     try {
         return JSON.parse(textResponse);
@@ -104,8 +121,8 @@ const runValidation = async () => {
     const results = [];
 
     for (let route of config.pages) {
-        const htmlFile = `${resultsDir}/_${route.replace(/\//g, '_')}_.html`;
-        const cssFile = `${resultsDir}/_${route.replace(/\//g, '_')}_.css`;
+        const htmlFile = `${resultsDir}/${route.replace(/\//g, '_')}_.html`;
+        const cssFile = `${resultsDir}/${route.replace(/\//g, '_')}_.css`;
 
         const htmlData = fs.existsSync(htmlFile) ? fs.readFileSync(htmlFile, "utf-8") : "";
         const cssData = fs.existsSync(cssFile) ? fs.readFileSync(cssFile, "utf-8") : "";

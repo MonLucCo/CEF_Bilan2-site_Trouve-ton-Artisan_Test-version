@@ -1,4 +1,0 @@
-[2025-06-08T08:21:07.165Z] Erreur W3C enregistrée dans '/results/' → _accueil_err-w3c-css-2025-06-08-08-21.txt
-[2025-06-08T08:21:07.767Z] Erreur W3C enregistrée dans '/results/' → _erreur-404_err-w3c-css-2025-06-08-08-21.txt
-[2025-06-08T08:22:08.853Z] Erreur W3C enregistrée dans '/results/' → _accueil_err-w3c-css-2025-06-08-08-22.txt
-[2025-06-08T08:22:09.446Z] Erreur W3C enregistrée dans '/results/' → _erreur-404_err-w3c-css-2025-06-08-08-22.txt
