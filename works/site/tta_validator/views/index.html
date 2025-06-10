@@ -10,6 +10,16 @@
 <body>
     <h1>Résultats de validation W3C</h1>
 
+    <!-- 📌 Boutons pour exécuter les tâches -->
+    <div class="controls">
+        <button id="loadPages">Charger `pages.json`</button>
+        <button id="extractPages">Extraire les pages</button>
+        <button id="validatePages">Valider les pages</button>
+    </div>
+
+    <h2>Statut de l'exécution</h2>
+    <pre id="statusOutput"></pre>
+
     <table>
         <thead>
             <tr>
@@ -19,8 +29,7 @@
                 <th>Erreurs CSS</th>
             </tr>
         </thead>
-        <tbody id="resultsTable">
-        </tbody>
+        <tbody id="resultsTable"></tbody>
     </table>
 
     <button id="exportPDF">Exporter en PDF</button>

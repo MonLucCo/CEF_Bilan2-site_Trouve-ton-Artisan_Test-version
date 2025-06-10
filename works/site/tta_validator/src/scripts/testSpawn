@@ -1,0 +1,10 @@
+const { spawn } = require("child_process");
+
+const ps = spawn("powershell.exe", ["-ExecutionPolicy", "Bypass", "-Command", "Write-Output 'Test PowerShell'"]);
+
+ps.stdout.on("data", (data) => {
+    console.log(`✅ Résultat : ${data}`);
+});
+ps.stderr.on("data", (data) => {
+    console.error(`❌ Erreur : ${data}`);
+});

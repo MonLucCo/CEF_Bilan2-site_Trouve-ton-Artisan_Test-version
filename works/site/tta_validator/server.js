@@ -1,7 +1,12 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+
 import { exportPDF, exportCSV } from "./src/scripts/export_results.js";
+import { runValidation } from "./src/scripts/validate_w3c.js";
+import { runExtraction } from "./src/scripts/extract_html_css.js";
+
+import { execFile } from "child_process";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -44,6 +49,11 @@ if (!fs.existsSync(LOG_FILE)) {
     logMessage(`📌 Création fichier : validation_logs.txt`);
 }
 
+// Utile avec les EndPoints utilisant les scripts .sh et .ps1
+// 📌 Détection de l'OS pour adapter l'exécution (utile pour l'exécution de scripts .sh ou .ps1)
+// const isWindows = process.platform === "win32";
+
+// 📌 End-Points du serveur et composition de l'application
 app.use('/public', express.static('public', {
     setHeaders: (res, path) => {
         if (path.endsWith('.css')) {
@@ -60,6 +70,10 @@ app.get('/', (req, res) => {
 app.get('/results', (req, res) => {
     logMessage("📊 Consultation des résultats de validation");
     let files = fs.readdirSync(resultsDir).filter(file => file.endsWith('_validation.json'));
+
+    if (files.length === 0) {
+        return res.json({ message: "Aucun résultat disponible." });
+    }
     let results = files.map(file => JSON.parse(fs.readFileSync(`${resultsDir}/${file}`)));
     res.json(results);
 });
@@ -78,6 +92,111 @@ app.get('/export/csv', (req, res) => {
     exportCSV(results, res);
 });
 
+app.get('/loadPages', (req, res) => {
+    logMessage("📥 Chargement du fichier `pages.json`");
+    const configPath = path.resolve(__dirname, "config/pages.json");
+
+    if (!fs.existsSync(configPath)) {
+        return res.status(404).send("❌ ERREUR : `pages.json` introuvable !");
+    }
+
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    res.json({ message: "✅ `pages.json` chargé avec succès", config });
+});
+
+app.get('/extractPages', async (req, res) => {
+    console.log("📌 Extraction en cours...");
+    logMessage("📌📑 Extraction des pages en cours...");
+
+    try {
+        const result = await runExtraction();
+        console.log("✅ Extraction réussie :", result);
+        res.json({ message: "📌✅ Extraction terminée", result });
+    } catch (error) {
+        console.error("❌🔍 Erreur d'extraction :", error);
+        res.status(500).send("Erreur lors de l'extraction.");
+    }
+
+});
+
+// EndPoint '/extractPages' utilisant des scripts .sh et .ps1 selon l'environnement système.
+// app.get('/extractPages', (req, res) => {
+//     console.log("📌 Extraction en cours...");
+//     logMessage("📌📑 Extraction des pages en cours...");
+
+//     const extractPath = isWindows ? "src/scripts/extract.ps1" : "src/scripts/extract.sh";
+//     // const extractPath = path.resolve(__dirname, isWindows ? "src/scripts/extract.ps1" : "src/scripts/extract.sh");
+//     const extractCommand = "powershell.exe";
+//     // const extractCommand = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
+//     const extractArgs = ["-ExecutionPolicy", "Bypass", "-File", extractPath];
+
+//     if (!fs.existsSync(extractPath)) {
+//         console.error(`❌ Le script d'extraction est introuvable : ${extractPath}`);
+//         return res.status(500).send("Erreur : Script d'extraction introuvable.");
+//     }
+
+//     console.log(`📌🔍 Exécution de : ${extractCommand} avec les arguments ${extractArgs}`);
+
+//     execFile(extractCommand, extractArgs, (error, stdout, stderr) => {
+//         if (error) {
+//             console.error(`❌ Erreur d\'extraction : ${error.message}`);
+//             console.error(`🔍 Détails de l'erreur : ${stderr}`);
+//             return res.status(500).send("Erreur lors de l'extraction.");
+//         }
+//         console.log(`📌📝 Résultat d'extraction' : ${stdout}`);
+//         console.log(`📌✅ Extraction des pages terminée`);
+//         logMessage("📌📑 Extraction des pages terminée");
+//         res.json({ message: "📌✅ Extraction des pages terminée" });
+//     });
+
+// });
+
+app.get('/validatePages', async (req, res) => {
+    console.log("📌 Validation en cours...");
+    logMessage("📌📊 Validation des pages en cours...");
+
+    try {
+        const result = await runValidation();
+        console.log("✅ Validation réussie :", result);
+        res.json({ message: "📌✅ Validation terminée", result });
+    } catch (error) {
+        console.error("❌🔍 Erreur de validation :", error);
+        res.status(500).send("Erreur lors de la validation.");
+    }
+
+});
+
+// EndPoint '/validatePages' utilisant des scripts .sh et .ps1 selon l'environnement système.
+// app.get('/validatePages', (req, res) => {
+//     console.log("📌 Validation en cours...");
+//     logMessage("📌📊 Validation des pages en cours...");
+
+//     const validatePath = isWindows ? "src/scripts/validate.ps1" : "src/scripts/validate.sh";
+//     // const validatePath = path.resolve(__dirname, isWindows ? "src/scripts/validate.ps1" : "src/scripts/validate.sh");
+//     const validateCommand = "powershell.exe";
+//     // const validateCommand = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
+//     const validateArgs = ["-ExecutionPolicy", "Bypass", "-File", validatePath];
+
+//     if (!fs.existsSync(validatePath)) {
+//         console.error(`❌ Le script de validation est introuvable : ${validatePath}`);
+//         return res.status(500).send("Erreur : Script de validation introuvable.");
+//     }
+
+//     console.log(`📌🔍 Exécution de : ${validateCommand} avec les arguments ${validateArgs}`);
+
+//     execFile(validateCommand, validateArgs, (error, stdout, stderr) => {
+//         if (error) {
+//             console.error(`❌ Erreur validation : ${error.message}`);
+//             console.error(`🔍 Détails de l'erreur : ${stderr}`);
+//             return res.status(500).send("Erreur lors de la validation.");
+//         }
+//         console.log(`📌📝 Résultat de validation : ${stdout}`);
+//         console.log(`📌✅ Validation des pages terminée`);
+//         res.json({ message: "📌✅ Validation des pages terminée" });
+//     });
+// });
+
+// 📌 Mise en service du serveur
 app.listen(PORT, () => {
     logMessage(`🚀 Serveur démarré → http://localhost:${PORT}`);
     console.log(`🚀 Serveur tta_validator actif → http://localhost:${PORT}`);

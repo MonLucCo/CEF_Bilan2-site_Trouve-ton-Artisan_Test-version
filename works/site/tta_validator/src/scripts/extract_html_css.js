@@ -69,12 +69,25 @@ const extractHTMLAndCSS = async (pageUrl, pageName, injectHTML, injectCSS) => {
 };
 
 // 📌 Exécuter l'extraction sur toutes les pages définies dans `pages.json`
-const configPath = path.resolve(__dirname, "../../config/pages.json");
-const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+const runExtraction = async () => {
+    const configPath = path.resolve(__dirname, "../../config/pages.json");
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
 
-const baseUrl = config.base_url;
+    const baseUrl = config.base_url;
 
-config.pages.forEach(async (page) => {
-    const pageUrl = `${baseUrl}${page}`;
-    await extractHTMLAndCSS(pageUrl, page, config.inject_html || "", config.inject_css || "");
-});
+    config.pages.forEach(async (page) => {
+        const pageUrl = `${baseUrl}${page}`;
+        await extractHTMLAndCSS(pageUrl, page, config.inject_html || "", config.inject_css || "");
+    });
+};
+
+
+// 📌 Pour lancement en ligne de commande (cf. script 'extract' de angular.json) avec la commande 'npm run extract'
+if (process.argv[1] && process.argv[1].endsWith("extract_html_css.js")) {
+    // console.log("👉 Début de l'extraction en CLI...");
+    runExtraction();
+    // console.log("👉 Fin de l'extraction en CLI.");
+}
+
+export { runExtraction };
+
