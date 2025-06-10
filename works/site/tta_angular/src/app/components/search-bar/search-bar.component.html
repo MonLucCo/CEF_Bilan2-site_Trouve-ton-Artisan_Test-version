@@ -3,9 +3,8 @@
         <!-- Bouton lié à la catégorie sélectionnée avec Case à cocher pour activer/désactiver la catégorie -->
         <button class="filter-btn btn btn-secondary d-flex align-items-center gap-2" (click)="toggleCategory()"
             [disabled]="!isKeywordValid()" [attr.aria-label]="'Activer ou désactiver la catégorie ' + categoryMemory">
-            <input type="checkbox" [checked]="categoryActive" id="categoryCheckbox">
-            <label for="categoryCheckbox" class="visually-hidden">Coche de la catégorie {{ categoryMemory
-                }}</label>
+            <input type="checkbox" [checked]="categoryActive" id="categoryCheckbox"
+                [attr.aria-label]="'Coche de la catégorie ' + categoryMemory">
             <span>{{ categoryMemory }}</span>
         </button>
     </div>
@@ -15,15 +14,14 @@
             <!-- Champ de recherche (selon le mode de recherche) -->
             <ng-container class="instant-input" *ngIf="modeOnRealTimeSearch; else validateSearch">
                 <!-- Mode instantané -->
-                <label for="instant-search-input" class="visually-hidden">Recherche instantanée d’un artisan</label>
-                <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
+                <input type="text" class="form-control instant-search-input"
+                    aria-label="Recherche instantanée d’un artisan" [placeholder]="placeholder" [(ngModel)]="keyword"
                     (input)="onInputChange()" />
             </ng-container>
             <ng-template class="validate-input" #validateSearch>
                 <!-- Mode avec validation -->
-                <label for="validate-search-input" class="visually-hidden">Recherche d’un artisan</label>
-                <input type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="keyword"
-                    (keyup.enter)="triggerSearch()" />
+                <input type="text" class="form-control validate-search-input" aria-label="Recherche d’un artisan"
+                    [placeholder]="placeholder" [(ngModel)]="keyword" (keyup.enter)="triggerSearch()" />
             </ng-template>
         </div>
 

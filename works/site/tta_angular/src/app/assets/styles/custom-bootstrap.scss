@@ -79,7 +79,7 @@ h6 {
     color: white;
 
     &:hover {
-        background-color: color-adjust($primary, -10%) !important;
+        background-color: darken($primary, 10%);
     }
 }
 
@@ -88,7 +88,7 @@ h6 {
     color: white;
 
     &:hover {
-        background-color: color-adjust($danger, -10%) !important;
+        background-color: darken($danger, 10%);
     }
 }
 

@@ -1,14 +1,12 @@
-<header class="app-header bg-light shadow-sm py-2" role="banner" style="margin-top: 60px;">
-    <!-- Titre caché pour l'accessibilité -->
-    <h2 id="site-navigation" class="visually-hidden">Menu principal</h2>
-
-    <nav class="navbar navbar-expand-lg text-uppercase pb-0 fixed-top bg-light container px-0" role="navigation">
+<header class="app-header bg-light shadow-sm py-2" style="margin-top: 60px;">
+    <nav id="site-navigation" class="navbar navbar-expand-lg text-uppercase pb-0 fixed-top bg-light container px-0"
+        aria-label="Menu principal">
         <div class="container ps-0 d-flex justify-content-between justify-content-lg-evenly align-items-start">
             <!-- Logo aligné au centre verticalement -->
             <a class="navbar-brand d-flex align-items-center p-0 flex-grow-1" routerLink="/accueil"
                 style="max-height: 60px;">
-                <img class="logo img-fluid" src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" role="img"
-                    width="240" height="60" style="max-width: 100%; height: auto;">
+                <img class="logo img-fluid" src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" width="240"
+                    height="60" style="max-width: 100%; height: auto;">
             </a>
 
             <!-- Bouton Hamburger (menu mobile/tablette) -->
@@ -21,24 +19,24 @@
             <div class="collapse navbar-collapse flex-md-grow-1" id="navbarNav" aria-labelledby="site-navigation">
                 <ul class="navbar-nav ms-5 gap-xl-3 gap-md-2 gap-1">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" routerLink="/" routerLinkActive="active" aria-current="page"
-                            aria-label="Retour Accueil">Accueil</a>
+                        <button class="nav-link fw-bold" routerLink="/" aria-current="page"
+                            aria-label="Retour Accueil">Accueil</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Bâtiment']"
-                            aria-label="Catégorie Bâtiment">Bâtiment</a>
+                        <button class="nav-link fw-bold" [routerLink]="['/categorie', 'Bâtiment']"
+                            aria-label="Catégorie Bâtiment">Bâtiment</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Services']"
-                            aria-label="Catégorie Services">Services</a>
+                        <button class="nav-link fw-bold" [routerLink]="['/categorie', 'Services']"
+                            aria-label="Catégorie Services">Services</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Fabrication']"
-                            aria-label="Catégorie Fabrication">Fabrication</a>
+                        <button class="nav-link fw-bold" [routerLink]="['/categorie', 'Fabrication']"
+                            aria-label="Catégorie Fabrication">Fabrication</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" [routerLink]="['/categorie', 'Alimentation']"
-                            aria-label="Catégorie Alimentation">Alimentation</a>
+                        <button class="nav-link fw-bold" [routerLink]="['/categorie', 'Alimentation']"
+                            aria-label="Catégorie Alimentation">Alimentation</button>
                     </li>
                 </ul>
             </div>
@@ -48,11 +46,8 @@
     <hr class="separate w-75 mx-auto mt-0">
 
     <!-- Barre de recherche -->
-    <div class="search-bar mt-0 mb-3 text-center container px-0" aria-labelledby="search-label">
-        <!-- Titre caché pour la navigation -->
-        <h2 id="search-label" class="visually-hidden">Recherche d’artisan</h2>
-
-        <div class="col-10 mx-auto">
+    <div class="search-bar mt-0 mb-3 text-center container px-0">
+        <div class="col-10 mx-auto" aria-label="Recherche d'artisan">
             <!-- Instance de SearchBar avec la loupe -->
             <app-search-bar [modeOnRealTimeSearch]="mode === 'realtime'" (search)="onSearch($event)">
             </app-search-bar>
