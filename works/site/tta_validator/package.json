@@ -12,7 +12,7 @@
     "validate": "node src/scripts/validate_w3c.js",
     "extract": "node src/scripts/extract_html_css.js",
     "results": "node src/scripts/export_results.js",
-    "build": "pkg server.js --targets win,linux,mac --output tta_validator_bin"
+    "build": "pkg server.js --targets node18-win-x64,node18-linux-x64,node18-macos-x64 --output bin/tta_validator"
   },
   "keywords": [
     "validation",

@@ -11,6 +11,10 @@ import { execFile } from "child_process";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
+console.log("============================================");
+console.log("🟢 PerLucCo - Juin 2025 - Version v1.0.0 🟢");
+console.log("============================================");
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log(`📌 Dossier de travail : ${__dirname}`); // Log principal au démarrage
