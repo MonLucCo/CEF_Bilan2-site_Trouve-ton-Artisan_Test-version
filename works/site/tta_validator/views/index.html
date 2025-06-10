@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Validation W3C - Résultats</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+
+<body>
+    <h1>Validation W3C d'un site dynamique ou statique</h1>
+    <p class="signature">© PerLucCo - Juin 2025 - Version v1.0.0</p>
+
+    <!-- 📌 Boutons pour exécuter les tâches -->
+    <div class="controls">
+        <button id="initializeTest">Initialiser le test</button>
+        <button id="loadPages">Charger config</button>
+        <button id="extractPages">Extraire les pages</button>
+        <button id="validatePages">Valider les pages</button>
+    </div>
+
+    <div class="status-container">
+        <h2 class="status-title">Statut d'exécution</h2>
+        <div id="statusExecution" class="status-content"></div>
+    </div>
+
+    <div class="status-container">
+        <h2 class="status-title">Site testé</h2>
+        <p id="baseURL">🔍 Adresse du site : Non définie</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sélection</th>
+                <th>Page</th>
+                <th>HTML (rendu)</th>
+                <th>CSS (rendu)</th>
+                <th>HTTPS (adresse)</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTable"></tbody>
+    </table>
+
+    <button id="exportPDF">Exporter en PDF</button>
+    <button id="exportCSV">Exporter en CSV</button>
+
+    <script src="/public/web-app.js"></script>
+</body>
+
+</html>

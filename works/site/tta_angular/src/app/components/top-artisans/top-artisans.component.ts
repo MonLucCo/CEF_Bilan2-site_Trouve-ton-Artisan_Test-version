@@ -14,15 +14,37 @@ import { ArtisanService } from '../../services/artisan/artisan.service';
 })
 export class TopArtisansComponent implements OnInit {
   /**
+   * Variable d'état indiquant si le chargement des données a rencontré un problème.
+   */
+  dataError: boolean = false;
+
+  /**
    * Observable exposant la liste des artisans "top".
    * Utilisé directement dans le template Angular avec le pipe async.
    */
   topArtisans$: Observable<ArtisanCard[]> | undefined;
 
+  /**
+   * Variable d'état indiquant si aucun artisan "Top" n'est disponible.
+   */
+  hasNoTopArtisans: boolean = false;
+
   constructor(private artisanService: ArtisanService) { }
 
   ngOnInit(): void {
-    // Récupère les artisans "top" en tant qu'Observable depuis ArtisanService.
+    // Récupération des artisans "top" et mise à jour des états d'erreur et de disponibilité.
+    this.dataError = this.artisanService.hasDataError();
     this.topArtisans$ = this.artisanService.getArtisanByTop();
+
+    this.topArtisans$.subscribe(topArtisans => {
+      this.hasNoTopArtisans = (topArtisans.length === 0); // Vérification explicite
+    });
+
+    console.log('[] - [] : Initialisation des données terminée', {
+      stateError: this.dataError,
+      noTopArtisan: this.hasNoTopArtisans,
+      topArtisans: this.topArtisans$
+    });
   }
 }
+

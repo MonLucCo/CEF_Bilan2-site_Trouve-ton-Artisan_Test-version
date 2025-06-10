@@ -1,0 +1,37 @@
+{
+  "name": "tta_validator",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "config": {
+    "port": 3010
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "validate": "node src/scripts/validate_w3c.js",
+    "extract": "node src/scripts/extract_html_css.js",
+    "results": "node src/scripts/export_results.js",
+    "build": "pkg server.js --targets node18-win-x64,node18-linux-x64,node18-macos-x64 --output bin/tta_validator"
+  },
+  "keywords": [
+    "validation",
+    "HTML",
+    "CSS",
+    "SPA",
+    "W3C",
+    "puppeteer"
+  ],
+  "author": "PerLucCo",
+  "license": "MIT",
+  "description": "Validation automatique des pages HTML et CSS d'un SPA avec Puppeteer et W3C.",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "node-fetch": "^3.3.2",
+    "pdfkit": "^0.17.1",
+    "pkg": "^5.8.1",
+    "puppeteer": "^24.10.0"
+  }
+}

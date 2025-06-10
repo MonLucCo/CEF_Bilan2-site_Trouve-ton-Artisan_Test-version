@@ -32,6 +32,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "baseHref": "/trouve-ton-artisan/",
+            "deployUrl": "/trouve-ton-artisan/",
             "assets": [
               {
                 "glob": "**/*",
@@ -44,18 +46,8 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/seo",
-                "output": "/seo"
-              },
-              {
-                "glob": "**/*",
                 "input": "src/app/assets/styles",
                 "output": "/styles"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/app/assets/fonts/Graphik Family",
-                "output": "/fonts/graphik"
               },
               {
                 "glob": "**/*",

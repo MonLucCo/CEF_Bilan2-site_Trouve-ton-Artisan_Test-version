@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { ArtisansPageComponent } from './pages/artisans-page/artisans-page.component';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ArtisanContactPageComponent } from './pages/artisan-contact-page/artisan-contact-page.component';
+import { ArtisanContactPageComponent } from '../spare/pages/artisan-contact-page/artisan-contact-page.component';
 import { routes } from './app-routing.module';
 
 describe('AppRoutingModule', () => {

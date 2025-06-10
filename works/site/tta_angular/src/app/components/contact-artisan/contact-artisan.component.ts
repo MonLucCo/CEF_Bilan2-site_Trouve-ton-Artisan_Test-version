@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { ContactCard } from '../../models/artisan-service.models';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -11,8 +11,10 @@ import { FormControl, Validators } from '@angular/forms';
 export class ContactArtisanComponent implements OnChanges {
   @Input() contact!: ContactCard; // Données du contact à afficher
   @Output() emailValidityChange = new EventEmitter<boolean>();
+  @Output() requestFocus = new EventEmitter<string>();
 
   isEmailValid: boolean = false; // Validité de l'email du contact
+  emailInfoVisible: boolean = false; // Etat de visibilité du message d'information pour l'Email
 
   ngOnChanges(): void {
     // Validation basique des champs à chaque changement de 'contact'
@@ -45,4 +47,16 @@ export class ContactArtisanComponent implements OnChanges {
       return false;
     }
   }
+
+  // Fonction pour la gestion préventive de l'email vs formulaire
+  showContactInfo(event: Event): void {
+    event.preventDefault(); // Empêcher l'ouverture du mailto
+    this.emailInfoVisible = true; // Afficher le message d'information
+  }
+
+  closeInfoAndFocus(): void {
+    this.emailInfoVisible = false;
+    this.requestFocus.emit('focusOnNameByContactArtisan'); // Notification du focus par événement nommé
+  }
+
 }

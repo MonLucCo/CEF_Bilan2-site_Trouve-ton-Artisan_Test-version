@@ -1,16 +1,18 @@
 // 1️⃣ Importation des polices Graphik
 @font-face {
     font-family: 'Graphik';
-    src: url('/fonts/graphik/Graphik-Regular-Trial.otf') format('opentype');
+    src: url(/trouve-ton-artisan/fonts/graphik/graphik-regular.woff2) format('woff2');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('/fonts/graphik/Graphik-Bold-Trial.otf') format('opentype');
+    src: url(/trouve-ton-artisan/fonts/graphik/graphik-bold.woff2) format('woff2');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 // 2️⃣ Définition des variables de couleurs et typographies
@@ -59,13 +61,25 @@ h6 {
     font-weight: bold;
 }
 
+// Masquage pour outils d'assistance
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 // 6️⃣ Personnalisation des boutons Bootstrap
 .btn-primary {
     background-color: $primary;
     color: white;
 
     &:hover {
-        background-color: color-adjust($primary, -10%) !important;
+        background-color: darken($primary, 10%);
     }
 }
 
@@ -74,6 +88,34 @@ h6 {
     color: white;
 
     &:hover {
-        background-color: color-adjust($danger, -10%) !important;
+        background-color: darken($danger, 10%);
     }
+}
+
+// 7️⃣ Focus visible pour les boutons (accessibilité)
+button:focus {
+    outline: 2px solid $primary; // Bordure bleue pour une meilleure visibilité
+    outline-offset: 2px; // Légère séparation pour rendre le contour plus clair
+}
+
+// 8️⃣ Styles spécifiques
+// Style des étoiles de notation
+.rating-stars {
+    display: inline-block;
+    font-size: 1.25rem;
+    color: $primary;
+
+    .fa-star-o {
+        color: $light;
+    }
+
+    .fas {
+        margin-right: 0.1rem;
+    }
+}
+
+// Style des liens au survol
+.nav-link:hover {
+    color: $primary;
+    text-decoration: underline;
 }

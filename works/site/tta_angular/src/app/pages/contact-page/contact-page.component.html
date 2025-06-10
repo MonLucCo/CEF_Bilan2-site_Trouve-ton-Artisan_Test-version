@@ -1,4 +1,4 @@
-<div class="contact-content container d-flex flex-column gap-3 mx-3">
+<div class="contact-content container d-flex flex-column gap-3 mx-0">
     <app-title [text]="'Présentation détaillée'" [level]="1" [icon]="'fas fa-address-card'"
         [description]="'La présentation complète des informations disponibles.'">
     </app-title>
@@ -14,7 +14,8 @@
             <div class="col-12 col-md-6 d-flex flex-column align-items-center">
                 <app-fiche-artisan *ngIf="selectedArtisan" [artisan]="selectedArtisan"></app-fiche-artisan>
                 <app-contact-artisan *ngIf="selectedContact" [contact]="selectedContact"
-                    (emailValidityChange)="onEmailValidityChange($event)"></app-contact-artisan>
+                    (emailValidityChange)="onEmailValidityChange($event)" (requestFocus)="focusOnNameField($event)">
+                </app-contact-artisan>
             </div>
 
             <!-- Colonne 2 : formulaire de contact -->

@@ -8,7 +8,8 @@
             <label for="name" class="form-label">
                 <i class="fas fa-user"></i> Nom :
             </label>
-            <input id="name" type="text" formControlName="name" class="form-control" placeholder="Entrez votre nom" />
+            <input id="name" type="text" formControlName="name" class="form-control" placeholder="Entrez votre nom"
+                #contactFormName />
             <small *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-danger">
                 <i class="fas fa-exclamation-circle"></i> Le nom est obligatoire.
             </small>

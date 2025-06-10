@@ -1,4 +1,5 @@
 {
+    "title": "Trouve Ton Artisan | Plateforme de formation en développement web",
     "siteName": "Trouve Ton Artisan",
     "siteUrl": "https://www.trouve-ton-artisan.com",
     "description": "Plateforme de formation sur la mise en relation entre artisans et clients.",
@@ -9,5 +10,6 @@
         "SEO"
     ],
     "author": "Trouve Ton Artisan",
-    "robots": "index, follow"
+    "robots": "index, follow",
+    "image": "https://www.trouve-ton-artisan.com/images/img/og-image.jpg"
 }

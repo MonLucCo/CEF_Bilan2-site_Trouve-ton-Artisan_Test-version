@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ArtisanCard, ContactCard } from '../../models/artisan-service.models';
 import { ArtisanService } from '../../services/artisan/artisan.service';
 import { SharedService } from '../../services/shared/shared.service';
+import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-contact-page',
@@ -10,6 +11,8 @@ import { SharedService } from '../../services/shared/shared.service';
   styleUrl: './contact-page.component.scss'
 })
 export class ContactPageComponent implements OnInit {
+  @ViewChild(ContactFormComponent, { static: false }) contactForm!: ContactFormComponent;
+
   selectedArtisan: ArtisanCard | null = null;
   selectedContact: ContactCard | null = null;
   isEmailValid: boolean = false;
@@ -54,5 +57,12 @@ export class ContactPageComponent implements OnInit {
     this.artisanService.getContactById(id).subscribe((contact) => {
       this.selectedContact = contact || null;
     });
+  }
+
+  focusOnNameField(eventName: string): void {
+    console.log(`Événement reçu : ${eventName}`)
+    setTimeout(() => {
+      this.contactForm?.setFocusOnName();
+    }, 100);
   }
 }

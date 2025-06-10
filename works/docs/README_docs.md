@@ -19,10 +19,15 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 3. Pour l'**implémentation technique** de l'application de la passerelle HTTP-SMTP :
 
    - étapes pratiques d'implémentation de l'[application de passerelle (Email API)](./implementation-docs/email-gateway-http-smtp.md)
-   - objectifs et implémentation du [SEO Dynamique et Schémas de référencement](./implementation-docs/seo-schema.md)
+   - objectifs et **implémentation initiale** du [SEO Dynamique et Schémas de référencement](./implementation-docs/seo-schema-injection-dynamique.md)
+   - objectifs et **implémentation finale** du [SEO Statique par un Service SEO](./implementation-docs/seo-schema-injection-statique.md)
    - objectifs et implémentation de [Bootstrap et Font Awesome](./implementation-docs/boostrap-fontAwesome-integrationFromCDN.md)
    - intégration et [customisation de Bootstrap](./implementation-docs/customisation-bootstrap.md)
    - [personnalisation centralisée et optimisée des styles](./implementation-docs/styles-personnalise-bootstrap-fontAwesome.md)
+   - [Amélioration Accessibilité avec LightHouse](./implementation-docs/accessibility-lighthouse.md)
+   - [Amélioration Performance avec LightHouse](./implementation-docs/performance-lighthouse.md)
+   - [Hébergement Alwaysdata et version de Production](./implementation-docs/alwaysdata-deploiement.md)
+   - [Validation du projet `tta_angular`](./implementation-docs/validation-projet-tta_angular.md)
 
 ## Diagramme de la structure documentaire - Synthèse graphique
 
@@ -40,10 +45,15 @@ Le dossier `/works/docs` contient les dossiers et documents des travaux menés p
 │
 ├── implementation-docs/    -----------------------------> # Réalisation et implémentation technique
 │   ├── email-gateway-http-smtp.md    -------------------> # Détails techniques de la passerelle HTTP-SMTP
-│   ├── seo-schema.md    --------------------------------> # Détails techniques du SEO **dynamique** et des schémas de référencement
-│   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails techniques du SEO **dynamique** et des schémas de référencement
-│   ├── customisation-bootstrap.md    -------------------> # Détails techniques de l'intégration de l'identitié du projet dans Bootstrap
-│   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails techniques de la personnalisation des styles du projet
+│   ├── seo-schema-injection-dynamique.md    ------------> # Détails de l'intégration intiale du SEO (**dynamique** et schémas de référencement)
+│   ├── seo-schema-injection-statique.md    -------------> # Détails de l'intégration finale du SEO (**statique** et schémas de référencement par un service SEO)
+│   ├── bootstrap-fontAwesome-integrationFromCDN.md    --> # Détails de l'intégration de Bootstrap par **CDN**
+│   ├── customisation-bootstrap.md    -------------------> # Détails de l'intégration de l'identitié du projet dans Bootstrap
+│   ├── styles-personnalise-bootstrap-fontAwesome.md    -> # Détails de la personnalisation des styles du projet
+│   ├── accessibilty-lighthouse.md    -------------------> # Détails de l'amélioration de l'accessibilité avec LightHouse
+│   ├── performance-lighthouse.md    --------------------> # Détails de l'amélioration de la performance avec LightHouse
+│   ├── alwaysdata-deploiement.md    --------------------> # Détails de l'hébergement et de la version de production
+│   ├── validation-projet-tta_angular.md    -------------> # Détails du suivi de validation et de correction du projet `tta_angular`
 ```
 
 ---

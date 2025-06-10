@@ -1,17 +1,15 @@
-.rating-stars {
-    display: inline-block;
-    font-size: 1.25rem;
-    /* Taille des étoiles */
-    color: #0074c7;
-    /* Couleur des étoiles pleines et demi-étoiles */
+// @use "../../assets/styles/custom-bootstrap.scss" as *;
 
-    .fa-star-o {
-        color: #f1f8fc;
-        /* Couleur des étoiles vides */
-    }
+// .rating-stars {
+//     display: inline-block;
+//     font-size: 1.25rem;
+//     color: $primary;
 
-    .fas {
-        margin-right: 0.1rem;
-        /* Espacement entre les étoiles */
-    }
-}
+//     .fa-star-o {
+//         color: $light;
+//     }
+
+//     .fas {
+//         margin-right: 0.1rem;
+//     }
+// }

@@ -1,6 +1,13 @@
 # Contenu du dossier
 
-Le dossier `/works/site` contient les différents dossiers et fichiers du développement du site.
+Le dossier `/works/site` contient les différents dossiers et fichiers du développement du projet **Trouve Ton Artisan**.
+Ces dossiers développés dans les sections suivantes concernent :
+
+- le projet [TTA](#1-projet-tta-en-technologie-angular) (le sujet principal du projet - version opérationnelle).
+- le projet [Serveur Backend](#2-serveur-backend-pour-échanger-en-smtp-avec-lapplication-maildev) (un sujet connexe lié à MailDev - version opérationnelle).
+- le projet [full-stack](#3-solution-full-stack-dune-application-passerelle-http-smtp) (un essai pour traiter Maildev - démonstrateur technologique).
+- le projet [Hosting](#4-site-daccueil-pour-lhébergement) (un sujet connexe pour l'hébergement des sites - version opérationnelle).
+- le projet [Validator W3C dynamique](#5-validateur-w3c-pour-les-site-réactifs-spa) (un sujet connexe lié à la validation W3C des SPA - version opérationnelle).
 
 ## 1. Projet TTA en technologie Angular
 
@@ -45,3 +52,19 @@ _Rédaction réservée_ : **==> Indiquer les différents documents... à supprim
 1. Le dossier `/works/site/email-api_angular` contient le développement d'une application full-stack pour assurer une passerelle HTTP-SMTP dédié à l'envoi d'email vers MailDev.
 2. Le projet de l'application passerelle est développée à la fois en **Node**.js pour l'API en backend et en **Angular** pour son interface web. Le détail de son développement accessible dans un fichier [README spécifique Email-API_Angular](./email-api_angular/README-FR.md).
 3. Le projet `email-api_angular` est fonctionnel. Toutefois, il n'a pas été retenu et intégré dans le développement du projet **TTA_Angular** dans ce niveau de version du **projet TTA**. Il a été conservé pour illustrer l'intégration combinée et les interactions de configuration dans une même architecture d'un développement en **Node.js** et en **Angular.js**.
+
+## 4. Site d'accueil pour l'hébergement
+
+Le dossier contient une page statique `index.html` et un fichier de documentation `README_hosting.md` relatif au déploiement du site chez **AlwaysData**.
+
+## 5. Validateur W3C pour les sites réactifs (SPA)
+
+Le dossier `tta_validator` est une application backend [Node.js](https://Node.js) qui automatise l’**évaluation W3C des pages d’un site réactif**. À partir d’un fichier de configuration JSON, chaque page est analysée dynamiquement et les résultats sont archivés pour une réutilisation directe. L'outil simplifie les tests pour les sites hébergés (`https://`) et en local (`http://`), avec des vérifications répétés via le terminal ou l’interface web.
+
+Les résultats proviennent du [Validateur W3C](https://validator.w3.org/nu/) ou du [Service de validation CSS du W3C](https://jigsaw.w3.org/css-validator/).
+
+L'intérêt de ce projet est d'**aider à la validation des sites réactifs** en analysant leur HTML et CSS obtenus à partir du rendu de la page. Il facilite la détection des erreurs et l'impact des corrections sur toutes les pages, qu'elles soient en développement (`http://`) ou déployées (`https://`).
+
+Pour le projet TTA_angular, il permet d'évaluer page par page l'impact des corrections sur la validation W3C.
+
+[Documentation du projet TTA_Validator](./tta_validator/docs/README_tta_validator.md).

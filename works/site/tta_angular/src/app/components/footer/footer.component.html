@@ -1,11 +1,13 @@
 <footer class="footer container p-0 m-0">
-    <div class="footer-top container bg-primary-subtle">
+    <!-- Titre caché pour l'accessibilité -->
+    <h2 class="visually-hidden" id="footer-navigation">Navigation du pied de page</h2>
+    <div class="footer-top container bg-light" role="contentinfo" aria-labelledby="footer-navigation">
         <!-- Ligne 1 : Logo et adresse -->
         <div class="row align-items-center py-3">
             <div class="d-flex align-items-center flex-wrap">
                 <div class="col-12 col-md-6">
-                    <img src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" class="me-3"
-                        style="height: 150px;">
+                    <img src="images/logos/LogoTTA.svg" alt="Logo Trouve Ton Artisan" class="me-3" width="265"
+                        height="150">
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="card w-100">
@@ -29,15 +31,22 @@
         <div class="row py-3 flex-wrap">
             <div class="col">
                 <ul class="list-unstyled d-flex flex-wrap justify-content-center">
-                    <li class="mx-2"><a [routerLink]="['/legal', 'mentions-legales']">Mentions légales</a></li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'donnees-personnelles']">Données personnelles</a>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'mentions-legales']"
+                            aria-label="Mentions légales Trouve Ton Artisan">Mentions légales</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'donnees-personnelles']"
+                            aria-label="Mentions légales Données personnelles">Données personnelles</a>
                     </li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'accessibilite']">Accessibilité</a> </li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'marches-publics']">Marchés publics</a></li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'contacts']">Contacts</a></li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'politique-cookies']">Politique des cookies</a>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'accessibilite']"
+                            aria-label="Mentions légales Accessibilité">Accessibilité</a> </li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'marches-publics']"
+                            aria-label="Mentions légales Marchés publics">Marchés publics</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'contacts']"
+                            aria-label="Mentions légales Nous contacter">Contacts</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'politique-cookies']"
+                            aria-label="Mentions légales Politique Cookies">Politique des cookies</a>
                     </li>
-                    <li class="mx-2"><a [routerLink]="['/legal', 'gestion-cookies']">Gestion des cookies</a></li>
+                    <li class="mx-2"><a [routerLink]="['/legal', 'gestion-cookies']"
+                            aria-label="Mentions légales Gestion Cookies">Gestion des cookies</a></li>
                 </ul>
             </div>
         </div>
@@ -46,19 +55,24 @@
         <div class="row text-dark py-3">
             <div class="col text-center">
                 <div class="social-icons d-flex justify-content-center">
-                    <a href="https://www.facebook.com" target="_blank" class="mx-2">
+                    <a href="https://www.facebook.com" target="_blank" class="mx-2"
+                        aria-label="Page Facebook de Trouve Ton Artisan">
                         <i class="fab fa-facebook fa-2x"></i>
                     </a>
-                    <a href="https://www.linkedin.com" target="_blank" class="mx-2">
+                    <a href="https://www.linkedin.com" target="_blank" class="mx-2"
+                        aria-label="Page LinkedIn de Trouve Ton Artisan">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <a href="https://www.youtube.com" target="_blank" class="mx-2">
+                    <a href="https://www.youtube.com" target="_blank" class="mx-2"
+                        aria-label="Page YouTube de Trouve Ton Artisan">
                         <i class="fab fa-youtube fa-2x"></i>
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" class="mx-2">
+                    <a href="https://www.instagram.com" target="_blank" class="mx-2"
+                        aria-label="Page Instagram de Trouve Ton Artisan">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
-                    <a href="https://www.twitter.com" target="_blank" class="mx-2">
+                    <a href="https://www.twitter.com" target="_blank" class="mx-2"
+                        aria-label="Page Twitter de Trouve Ton Artisan">
                         <i class="fab fa-twitter fa-2x"></i>
                     </a>
                 </div>
@@ -66,11 +80,18 @@
         </div>
     </div>
 
-    <div class="footer-bottom container bg-secondary-subtle py-3 d-flex flex-column">
+    <!-- Titre caché pour l'accessibilité -->
+    <h2 class="visually-hidden" id="footer-signature">Signature du pied de page</h2>
+    <div class="footer-bottom container bg-secondary-subtle py-3 d-flex flex-column" role="contentinfo"
+        aria-labelledby="footer-signature">
+        <!-- Titre caché pour l'accessibilité -->
+        <h3 class="visually-hidden" id="footer-signature-tools">Outils associés à signature du pied de page</h3>
         <!-- Ligne 4 : Signature et outils -->
-        <div class="tools-block d-flex flex-column">
-            <div class="sign-block text-end">
-                <button class="sign-content btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()">
+        <div class="tools-block d-flex flex-column" role="contentinfo" aria-labelledby="footer-signature-tools">
+            <div class="sign-block d-flex flex-wrap align-items-center justify-content-between">
+                <p class="version-app text-dark-emphasis m-0" style="font-size: 0.6rem;">TTA v1.0.6</p>
+                <button class="sign-content btn p-0 text-decoration-none text-dark" (click)="toggleToolAccess()"
+                    [attr.aria-expanded]="showTools">
                     ⚡️ Propulsé par PerLucCo &copy; <span class="text-danger">&hearts;</span>
                 </button>
             </div>
@@ -107,7 +128,10 @@
             </div>
         </div>
 
+        <!-- Titre caché pour l'accessibilité -->
+        <h3 class="visually-hidden" id="footer-tools-maildev">Outils MailDev associés à signature du pied de page</h3>
         <!-- Ligne 5 : MailDev -->
-        <app-api-maildev-test *ngIf="showTestComponent && showTools"></app-api-maildev-test>
+        <app-api-maildev-test *ngIf="showTestComponent && showTools" role="contentinfo"
+            aria-labelledby="footer-tools-maildev"></app-api-maildev-test>
     </div>
 </footer>
