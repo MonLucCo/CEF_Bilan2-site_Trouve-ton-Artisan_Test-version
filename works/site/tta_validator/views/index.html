@@ -8,25 +8,34 @@
 </head>
 
 <body>
-    <h1>Résultats de validation W3C</h1>
+    <h1>Validation W3C de site dynamique ou statique</h1>
 
     <!-- 📌 Boutons pour exécuter les tâches -->
     <div class="controls">
-        <button id="loadPages">Charger `pages.json`</button>
+        <button id="initializeTest">Initialiser le test</button>
+        <button id="loadPages">Charger config</button>
         <button id="extractPages">Extraire les pages</button>
         <button id="validatePages">Valider les pages</button>
     </div>
 
-    <h2>Statut de l'exécution</h2>
-    <pre id="statusOutput"></pre>
+    <div class="status-container">
+        <h2 class="status-title">Statut d'exécution</h2>
+        <div id="statusExecution" class="status-content"></div>
+    </div>
+
+    <div class="status-container">
+        <h2 class="status-title">Site testé</h2>
+        <p id="baseURL">🔍 Adresse du site : Non définie</p>
+    </div>
 
     <table>
         <thead>
             <tr>
                 <th>Sélection</th>
                 <th>Page</th>
-                <th>Erreurs HTML</th>
-                <th>Erreurs CSS</th>
+                <th>HTML (rendu)</th>
+                <th>CSS (rendu)</th>
+                <th>HTTPS (adresse)</th>
             </tr>
         </thead>
         <tbody id="resultsTable"></tbody>
@@ -35,7 +44,7 @@
     <button id="exportPDF">Exporter en PDF</button>
     <button id="exportCSV">Exporter en CSV</button>
 
-    <script src="/public/app.js"></script>
+    <script src="/public/web-app.js"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@ if (!fs.existsSync(resultsDir)) {
 
 // 📌 Vérifier que `validation_logs.txt` existe avant d'écrire dedans
 if (!fs.existsSync(LOG_FILE)) {
-    fs.writeFileSync(LOG_FILE, ""); // Création automatique du fichier
+    fs.writeFileSync(LOG_FILE, "", { flag: "w" }); // Création automatique du fichier
     logMessage(`📌 Création fichier : validation_logs.txt`);
 }
 
@@ -67,29 +67,56 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
+app.post("/resetTests", (req, res) => {
+    console.log("📌 Réinitialisation du test en cours...");
+
+    try {
+        fs.readdirSync(resultsDir).forEach(file => {
+            const filePath = path.join(resultsDir, file);
+            if (filePath !== LOG_FILE) {
+                fs.unlinkSync(filePath);
+            }
+        });
+
+        console.log("✅ Réinitialisation terminée !");
+        res.json({ message: "📌✅ Test réinitialisé avec succès !" });
+    } catch (error) {
+        console.error("❌🔍  Erreur lors de la réinitialisation :", error);
+        res.status(500).json({ message: "Erreur lors de la réinitialisation." });
+    }
+});
+
+app.get('/config', (req, res) => {
+    console.log("📌 Consultation des paramètres de configuration...");
+    logMessage("📊 Consultation des paramètres de configuration");
+
+    try {
+        const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+        res.json(config);
+    } catch (error) {
+        console.error("❌ Erreur lors du chargement des paramètres :", error);
+        res.status(500).json({ message: "Erreur lors de la récupération des paramètres de configuration." });
+    }
+});
+
 app.get('/results', (req, res) => {
     logMessage("📊 Consultation des résultats de validation");
     let files = fs.readdirSync(resultsDir).filter(file => file.endsWith('_validation.json'));
 
     if (files.length === 0) {
-        return res.json({ message: "Aucun résultat disponible." });
+        // return res.json({ message: "Aucun résultat disponible." });
+        return res.json([]); // Corrige la réponse vide en retournant un tableau au lieu d'un objet    
     }
     let results = files.map(file => JSON.parse(fs.readFileSync(`${resultsDir}/${file}`)));
     res.json(results);
 });
 
 app.get('/export/pdf', (req, res) => {
-    logMessage("📝 Exportation des résultats en PDF");
-    let files = fs.readdirSync(resultsDir).filter(file => file.endsWith('_validation.json'));
-    let results = files.map(file => JSON.parse(fs.readFileSync(`${resultsDir}/${file}`)));
-    exportPDF(results, res);
+    res.status(200).send("🚧 Fonction d'export PDF en construction. Veuillez patienter pour une future mise à jour.");
 });
 
 app.get('/export/csv', (req, res) => {
-    logMessage("📄 Exportation des résultats en CSV");
-    let files = fs.readdirSync(resultsDir).filter(file => file.endsWith('_validation.json'));
-    let results = files.map(file => JSON.parse(fs.readFileSync(`${resultsDir}/${file}`)));
-    exportCSV(results, res);
+    res.status(200).send("🚧 Fonction d'export CSV en construction. Veuillez patienter pour une future mise à jour.");
 });
 
 app.get('/loadPages', (req, res) => {

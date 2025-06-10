@@ -35,6 +35,15 @@ button {
     font-size: 16px;
 }
 
+button:hover {
+    opacity: 0.8;
+}
+
+table {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
 #exportPDF {
     background-color: #28a745;
     color: white;
@@ -45,6 +54,46 @@ button {
     color: white;
 }
 
-button:hover {
-    opacity: 0.8;
+.status-container {
+    width: 100%;
+    max-height: 200px;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.status-title {
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ccc;
+}
+
+.status-content {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 14px;
+    font-family: monospace;
+    padding-top: 5px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.controls button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 5px;
+}
+
+.controls button:hover {
+    background: #0056b3;
 }

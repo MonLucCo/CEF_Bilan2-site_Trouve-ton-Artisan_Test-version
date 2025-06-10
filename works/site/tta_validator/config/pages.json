@@ -1,12 +1,12 @@
 {
     "port": 3010,
-    "results_folder": "results/",
+    "results_folder": "results",
     "log_file": "validation_logs.txt",
     "inject_html": "<!DOCTYPE html> <!-- injection personnelle -->",
     "inject_css": "",
-    "base_url": "https://perlucco.alwaysdata.net/trouve-ton-artisan",
+    "base_url": "http://localhost:4200/trouve-ton-artisan",
     "pages": [
         "/accueil",
-        "/styles-7EIT2GGZ.css"
+        "/erreur-404"
     ]
 }
