@@ -1,8 +1,32 @@
 # Documentation – Implémentation et Configuration des Styles en Angular
 
-## Sommaire
+---
 
-[TOC]
+- [Documentation – Implémentation et Configuration des Styles en Angular](#documentation--implémentation-et-configuration-des-styles-en-angular)
+  - [1.Version](#1version)
+  - [Introduction](#introduction)
+  - [Configuration des styles dans `angular.json`](#configuration-des-styles-dans-angularjson)
+    - [Objectif de la configuration dans `angular.json`](#objectif-de-la-configuration-dans-angularjson)
+    - [Pourquoi cette configuration dans `angular.json` ?](#pourquoi-cette-configuration-dans-angularjson-)
+  - [Code minimal optimisé de `index.html`](#code-minimal-optimisé-de-indexhtml)
+    - [Code optimisé de `index.html`](#code-optimisé-de-indexhtml)
+    - [Synthèse : pourquoi cette simplification ?](#synthèse--pourquoi-cette-simplification-)
+  - [Centralisation des styles dans `styles.scss`](#centralisation-des-styles-dans-stylesscss)
+    - [Code optimisé de `styles.scss`](#code-optimisé-de-stylesscss)
+    - [Synthèse : pourquoi cette approche ?](#synthèse--pourquoi-cette-approche-)
+  - [Personnalisation complète via `custom-bootstrap.scss`\*\*](#personnalisation-complète-via-custom-bootstrapscss)
+    - [Code optimisé de `custom-bootstrap.scss`](#code-optimisé-de-custom-bootstrapscss)
+    - [Pourquoi cette personnalisation avec `@use` ?](#pourquoi-cette-personnalisation-avec-use-)
+    - [Pourquoi utiliser `@import`plutôt que `@use` ?](#pourquoi-utiliser-importplutôt-que-use-)
+    - [Synthèse : limitations de Bootstrap v5 avec Sass v3.0+](#synthèse--limitations-de-bootstrap-v5-avec-sass-v30)
+    - [Solution appliquée : Retour à `@import` pour la personnalisation des couleurs](#solution-appliquée--retour-à-import-pour-la-personnalisation-des-couleurs)
+  - [Références documentaires](#références-documentaires)
+
+---
+
+## 1.Version
+
+v1.0.6
 
 ---
 
@@ -16,7 +40,7 @@ Elle reprend les étapes clés qui ont permis d’obtenir **une configuration op
 
 ## Configuration des styles dans `angular.json`
 
-### Objectif de la configuration dans `angular.json`:
+### Objectif de la configuration dans `angular.json`
 
 - Définir les fichiers `styles.scss` et `custom-bootstrap.scss` comme styles globaux.  
 - Gérer l'import des polices et ressources nécessaires.  

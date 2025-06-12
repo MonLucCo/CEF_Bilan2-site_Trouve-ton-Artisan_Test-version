@@ -2,9 +2,29 @@
 
 ---
 
-## Sommaire
+- [Document : validation du projet `tta_angular`](#document--validation-du-projet-tta_angular)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [1- Organisation de la validation](#1--organisation-de-la-validation)
+    - [1-1. Tableau des problèmes à corriger et état d’avancement](#1-1-tableau-des-problèmes-à-corriger-et-état-davancement)
+    - [1-2. Méthodologie de validation](#1-2-méthodologie-de-validation)
+  - [2- Détails des fiches de correction](#2--détails-des-fiches-de-correction)
+    - [2-1. Fiche de correction PB-01 : Accès aux données (`datas.json`)](#2-1-fiche-de-correction-pb-01--accès-aux-données-datasjson)
+    - [2-2. Fiche de correction PB-02 : Accès aux polices (`Graphik`)](#2-2-fiche-de-correction-pb-02--accès-aux-polices-graphik)
+    - [2-3. Fiche de correction PB-03 : Désactiver l'accès à l'email de la fiche de contact](#2-3-fiche-de-correction-pb-03--désactiver-laccès-à-lemail-de-la-fiche-de-contact)
+    - [2-4. Fiche de correction PB-04 : Responsivité de la `SearchBar` sur mobile](#2-4-fiche-de-correction-pb-04--responsivité-de-la-searchbar-sur-mobile)
+    - [2-5. Fiche de correction PB-05 : Disposition du header sur mobile (`< 450px`)](#2-5-fiche-de-correction-pb-05--disposition-du-header-sur-mobile--450px)
+    - [2-6. Fiche de correction PB-06 : Rendu du tableau `MailDev` dans le footer](#2-6-fiche-de-correction-pb-06--rendu-du-tableau-maildev-dans-le-footer)
+    - [2-7. Fiche de correction PB-07 : Déploiement du backend `MailDev` pour test avec Mobile](#2-7-fiche-de-correction-pb-07--déploiement-du-backend-maildev-pour-test-avec-mobile)
+    - [2-8. Fiche de correction PB-08 : Suppression des logs Angular en production](#2-8-fiche-de-correction-pb-08--suppression-des-logs-angular-en-production)
+    - [2-9. Fiche de correction PB-09 : configuration de l'application par fichier](#2-9-fiche-de-correction-pb-09--configuration-de-lapplication-par-fichier)
+    - [2-10. Fiche de correction PB-09 : \[libellé du problème\]](#2-10-fiche-de-correction-pb-09--libellé-du-problème)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

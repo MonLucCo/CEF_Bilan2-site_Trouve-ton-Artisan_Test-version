@@ -2,9 +2,31 @@
 
 ---
 
-## Sommaire
+- [Document : Fiche de correction PB-\[06\]](#document--fiche-de-correction-pb-06)
+  - [Version](#version)
+  - [1. Introduction](#1-introduction)
+  - [2. Démarche discutée](#2-démarche-discutée)
+    - [2.1. Problématique initiale](#21-problématique-initiale)
+    - [2.2. Options envisagées](#22-options-envisagées)
+  - [3. Choix de privilégier un déploiement Node.js sur AlwaysData](#3-choix-de-privilégier-un-déploiement-nodejs-sur-alwaysdata)
+    - [3.1. Pourquoi éviter le binaire sur AlwaysData ?](#31-pourquoi-éviter-le-binaire-sur-alwaysdata-)
+    - [3.2. Avantages du serveur Node.js sur AlwaysData](#32-avantages-du-serveur-nodejs-sur-alwaysdata)
+    - [3.3. Décision](#33-décision)
+  - [4. Impasse pour le mailing MailDev sur mobiles et tablettes](#4-impasse-pour-le-mailing-maildev-sur-mobiles-et-tablettes)
+    - [4.1. Pourquoi un problème se pose ?](#41-pourquoi-un-problème-se-pose-)
+    - [4.2. Options explorées](#42-options-explorées)
+    - [4.3. Décision](#43-décision)
+  - [5. Configuration retenue pour `tta_Angular` en dev et prod](#5-configuration-retenue-pour-tta_angular-en-dev-et-prod)
+    - [5.1. Développement (`tta_Angular` et `tta_MailDev` en local)](#51-développement-tta_angular-et-tta_maildev-en-local)
+    - [5.2. Production (`tta_Angular` avec simulation mobile)](#52-production-tta_angular-avec-simulation-mobile)
+    - [5.3. Conclusion](#53-conclusion)
+  - [6. Suivi et évolutions possibles](#6-suivi-et-évolutions-possibles)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

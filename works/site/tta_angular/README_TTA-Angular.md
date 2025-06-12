@@ -1,5 +1,20 @@
 # TTA-Angular
 
+---
+
+- [TTA-Angular](#tta-angular)
+  - [Version](#version)
+  - [Development server](#development-server)
+  - [Code scaffolding](#code-scaffolding)
+  - [Building](#building)
+  - [Running unit tests](#running-unit-tests)
+  - [Running end-to-end tests](#running-end-to-end-tests)
+  - [Additional Resources](#additional-resources)
+
+---
+
+## Version
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
 ## Development server

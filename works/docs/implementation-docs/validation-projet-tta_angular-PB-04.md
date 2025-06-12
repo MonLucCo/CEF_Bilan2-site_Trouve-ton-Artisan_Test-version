@@ -2,9 +2,29 @@
 
 ---
 
-## Sommaire
+- [Document : Fiche de correction PB-\[04\]](#document--fiche-de-correction-pb-04)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [1. Description du problème PB-\[04\]](#1-description-du-problème-pb-04)
+    - [1.1 Problème identifié](#11-problème-identifié)
+    - [1.2 Impact observé](#12-impact-observé)
+  - [2. Solution de correction PB-\[04\]](#2-solution-de-correction-pb-04)
+    - [2.1. Correction n°1 : mettre en oeuvre un Responsive Design Mobile-First pour la SearchBar](#21-correction-n1--mettre-en-oeuvre-un-responsive-design-mobile-first-pour-la-searchbar)
+      - [2.1.1. Problème identifié](#211-problème-identifié)
+      - [2.1.2. Solution proposée](#212-solution-proposée)
+      - [2.1.3. Code mis à jour](#213-code-mis-à-jour)
+    - [2.2. Résultat attendu](#22-résultat-attendu)
+  - [3. Test validation](#3-test-validation)
+    - [3.1. Tests en développement](#31-tests-en-développement)
+    - [3.2. Tests en production](#32-tests-en-production)
+    - [3.3. Tests Lighthouse](#33-tests-lighthouse)
+  - [4. Conclusion et suivi](#4-conclusion-et-suivi)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

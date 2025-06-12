@@ -2,9 +2,26 @@
 
 ---
 
-## Sommaire
+- [Documentation : AlwaysData - Déploiement de `tta_angular`](#documentation--alwaysdata---déploiement-de-tta_angular)
+  - [Version](#version)
+  - [1. Introduction\*\*](#1-introduction)
+  - [2. Préparation du projet Angular pour le déploiement](#2-préparation-du-projet-angular-pour-le-déploiement)
+    - [2.1. Génération du build Angular](#21-génération-du-build-angular)
+    - [2.2. Organisation des fichiers](#22-organisation-des-fichiers)
+  - [3. Déploiement sur AlwaysData](#3-déploiement-sur-alwaysdata)
+    - [3.1. Création du dossier d’hébergement](#31-création-du-dossier-dhébergement)
+    - [3.2. Transfert des fichiers Angular](#32-transfert-des-fichiers-angular)
+    - [3.3. Configuration du chemin d’accès](#33-configuration-du-chemin-daccès)
+  - [4. Optimisation post-déploiement](#4-optimisation-post-déploiement)
+    - [4.1. Activation des en-têtes `Cache-Control` et `gzip`](#41-activation-des-en-têtes-cache-control-et-gzip)
+    - [4.2. Vérifications post-déploiement](#42-vérifications-post-déploiement)
+    - [4.3. Monitoring et amélioration continue](#43-monitoring-et-amélioration-continue)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

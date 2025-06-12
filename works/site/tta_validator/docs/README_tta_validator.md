@@ -2,9 +2,25 @@
 
 ---
 
-## 1.Sommaire
+- [Documentation : projet `tta_validator` - Automatisation de la validation W3C pour un SPA](#documentation--projet-tta_validator---automatisation-de-la-validation-w3c-pour-un-spa)
+  - [1.Version](#1version)
+  - [2.Introduction](#2introduction)
+  - [3.Installation du projet](#3installation-du-projet)
+    - [3.1.Prérequis](#31prérequis)
+    - [3.2.Commandes d’installation](#32commandes-dinstallation)
+  - [5.Création et utilisation du binaire `pkg`](#5création-et-utilisation-du-binaire-pkg)
+    - [5.1.Commandes pour générer l’exécutable](#51commandes-pour-générer-lexécutable)
+    - [5.2.Exploitation du binaire](#52exploitation-du-binaire)
+  - [6.Fonctionnalités et suivi du projet](#6fonctionnalités-et-suivi-du-projet)
+    - [6.1.Fonctionnalités clés](#61fonctionnalités-clés)
+    - [6.2.Optimisations et évolutions possibles](#62optimisations-et-évolutions-possibles)
+  - [7.Références utiles pour `tta_validator`](#7références-utiles-pour-tta_validator)
+    - [7.1.Références techniques (où et Pourquoi)](#71références-techniques-où-et-pourquoi)
+    - [7.2.Meilleures pratiques pour optimiser la validation W3C](#72meilleures-pratiques-pour-optimiser-la-validation-w3c)
 
-[TOC]
+## 1.Version
+
+v1.0.6
 
 ---
 
@@ -40,25 +56,6 @@ notepad package.json
 
 # 4️⃣ Installer les dépendances
 npm install puppeteer express pkg node-fetch pdfkit json2csv fs-extra
-
-# 5️⃣ Créer l’arborescence du projet
-mkdir config results src src/scripts src/utils src/api views public
-
-# 6️⃣ Création des fichiers essentiels
-New-Item -Path config/pages.json -ItemType File
-New-Item -Path server.js -ItemType File
-New-Item -Path views/index.html -ItemType File
-New-Item -Path public/script.js -ItemType File
-New-Item -Path src/scripts/extract_html_css.js -ItemType File
-New-Item -Path src/scripts/validate_w3c.js -ItemType File
-New-Item -Path src/scripts/export_results.js -ItemType File
-New-Item -Path src/utils/fileHelper.js -ItemType File
-New-Item -Path src/utils/formatHelper.js -ItemType File
-New-Item -Path src/api/routes.js -ItemType File
-New-Item -Path src/api/middleware.js -ItemType File
-```
-
-✅ **Projet installé avec une structure bien définie**
 
 ---
 
@@ -107,7 +104,7 @@ pkg server.js --targets win,linux,mac --output tta_validator_bin
 ✅ **Exécution sans dépendances Node.js**
 
 ```powershell
-./tta_validator_bin
+./bin/tta_validator-win.exe
 ```
 
 ✅ **Les validations peuvent être réalisées sans installation préalable des dépendances**
@@ -137,7 +134,7 @@ pkg server.js --targets win,linux,mac --output tta_validator_bin
 
 Voici les sources d'inspiration du code de cette application
 
-### 7.1.Références techniques
+### 7.1.Références techniques (où et Pourquoi)
 
 📌 **1️⃣ Puppeteer : Automatisation du navigateur Chrome**
 🔹 **Documentation officielle** → [Puppeteer](https://pptr.dev/)

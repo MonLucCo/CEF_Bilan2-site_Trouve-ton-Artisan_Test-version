@@ -2,9 +2,26 @@
 
 ---
 
-## Sommaire
+- [Document : Fiche de correction PB-01](#document--fiche-de-correction-pb-01)
+  - [1.Version](#1version)
+  - [Introduction](#introduction)
+  - [1 Description du problème PB-01](#1-description-du-problème-pb-01)
+  - [2. Solution de correction PB-01](#2-solution-de-correction-pb-01)
+    - [2.1. Correction n°1 : Gestion dynamique de `dataUrl` de `ArtisanService`](#21-correction-n1--gestion-dynamique-de-dataurl-de-artisanservice)
+    - [2.2. Correction n°2 : Gestion du chargement des données avec signalement d’erreur (`ArtisanService`)](#22-correction-n2--gestion-du-chargement-des-données-avec-signalement-derreur-artisanservice)
+    - [2.3. Correction n°3 : Gestion des messages conditionnels (`TopArtisan`)](#23-correction-n3--gestion-des-messages-conditionnels-topartisan)
+    - [2.4. Correction n°4 : Correction dynamique des URL de fichiers à charger](#24-correction-n4--correction-dynamique-des-url-de-fichiers-à-charger)
+  - [3. Test validation](#3-test-validation)
+    - [3.1. Test en développement](#31-test-en-développement)
+    - [3.2. Test en production sur AlwaysData](#32-test-en-production-sur-alwaysdata)
+    - [3.3. Tests Lighthouse](#33-tests-lighthouse)
+  - [4. Conclusion](#4-conclusion)
 
-[TOC]
+---
+
+## 1.Version
+
+v1.0.6
 
 ---
 

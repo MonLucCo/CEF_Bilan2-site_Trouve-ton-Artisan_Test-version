@@ -1,11 +1,20 @@
 {
     "port": 3010,
-    "results_folder": "results",
+    "results_folder": "results/",
     "log_file": "validation_logs.txt",
     "inject_html": "<!DOCTYPE html> <!-- injection personnelle -->",
     "inject_css": "",
-    "base_url": "https://perlucco.alwaysdata.net/trouve-ton-artisan",
+    "base_url": "http://localhost:4200/trouve-ton-artisan",
     "pages": [
-        "/accueil"
+        "/accueil",
+        "/artisans/categories/Bâtiment",
+        "/artisans/categories/Services",
+        "/artisans/categories/Fabrication",
+        "/artisans/categories/Alimentation",
+        "/artisans/recherche/mo",
+        "/artisans/categorie/Services?recherche=mo",
+        "/artisans/contact/7",
+        "/artisans/contact/9",
+        "/erreur-404"
     ]
 }

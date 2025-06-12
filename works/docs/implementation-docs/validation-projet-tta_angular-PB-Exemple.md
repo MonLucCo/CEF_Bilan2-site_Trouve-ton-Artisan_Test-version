@@ -2,9 +2,23 @@
 
 ---
 
-## Sommaire
+- [Document : Fiche de correction PB-\[Numéro\]](#document--fiche-de-correction-pb-numéro)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [1. Description du problème PB-\[Numéro\]](#1-description-du-problème-pb-numéro)
+  - [2. Solution de correction PB-\[Numéro\]](#2-solution-de-correction-pb-numéro)
+    - [2.1. Correction n°1 : \[Titre de la correction\]](#21-correction-n1--titre-de-la-correction)
+  - [3. Test validation](#3-test-validation)
+    - [3.1. Tests en développement](#31-tests-en-développement)
+    - [3.2. Tests en production](#32-tests-en-production)
+    - [3.3. Tests Lighthouse](#33-tests-lighthouse)
+  - [4. Conclusion et suivi](#4-conclusion-et-suivi)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

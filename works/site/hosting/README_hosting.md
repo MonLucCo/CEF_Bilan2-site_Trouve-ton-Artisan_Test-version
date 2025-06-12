@@ -1,5 +1,24 @@
 # PerLucCo - Page d'accueil de l'hébergement
 
+- [PerLucCo - Page d'accueil de l'hébergement](#perlucco---page-daccueil-de-lhébergement)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [Objectif du site d'accueil](#objectif-du-site-daccueil)
+  - [🔗 Projets accessibles](#-projets-accessibles)
+  - [⚙️ Hébergement du site d'accueil](#️-hébergement-du-site-daccueil)
+  - [🛠 Mise à jour de la page d’accueil](#-mise-à-jour-de-la-page-daccueil)
+  - [🚀 Évolution du site](#-évolution-du-site)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
+## Introduction
+
 L’hébergement des travaux de développement est réalisé sur **AlwaysData**. Un compte gratuit de 100Mo pour **PerLucCo** permet de disposer du nom de domaine `perlucco.alwaysdata.net`.
 
 ## Objectif du site d'accueil

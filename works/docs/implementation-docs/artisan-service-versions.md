@@ -2,9 +2,37 @@
 
 ---
 
-## Sommaire
+- [Documentation : versionnement de ArtisanService](#documentation--versionnement-de-artisanservice)
+  - [Version](#version)
+  - [Préambule](#préambule)
+  - [ArtisanService - Version Initiale (V1)](#artisanservice---version-initiale-v1)
+    - [Objectifs \& Fonctionnalités de V1](#objectifs--fonctionnalités-de-v1)
+    - [Points forts de V1](#points-forts-de-v1)
+    - [Limites de V1](#limites-de-v1)
+  - [ArtisanService - Optimisation des accès réseaux (V2)](#artisanservice---optimisation-des-accès-réseaux-v2)
+    - [Objectifs \& Fonctionnalités de V2](#objectifs--fonctionnalités-de-v2)
+    - [Points forts de V2](#points-forts-de-v2)
+    - [Limites de V2](#limites-de-v2)
+  - [ArtisanService - Passage à une approche 100% Réactive (V3)](#artisanservice---passage-à-une-approche-100-réactive-v3)
+    - [Architecture réactive de `ArtisanService`](#architecture-réactive-de-artisanservice)
+    - [Objectifs \& Fonctionnalités V3](#objectifs--fonctionnalités-v3)
+    - [Points forts de V3](#points-forts-de-v3)
+    - [Limites de V3](#limites-de-v3)
+  - [Synthèse Comparative des versions de ArtisanService](#synthèse-comparative-des-versions-de-artisanservice)
+  - [Conclusion \& Perspectives des traitements de ArtisanService](#conclusion--perspectives-des-traitements-de-artisanservice)
+  - [Synthèse sur l'initialisation de ArtisanService"](#synthèse-sur-linitialisation-de-artisanservice)
+    - [Initialisation de `ArtisanService` au démarrage de l’application](#initialisation-de-artisanservice-au-démarrage-de-lapplication)
+      - [Problème rencontré : Double appel à l’initialisation](#problème-rencontré--double-appel-à-linitialisation)
+      - [Solution retenue](#solution-retenue)
+    - [Code utilisé dans `AppModule`](#code-utilisé-dans-appmodule)
+    - [Impact et choix final](#impact-et-choix-final)
+  - [Documentation de référence"](#documentation-de-référence)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

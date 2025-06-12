@@ -2,9 +2,29 @@
 
 ---
 
-## Sommaire
+- [Documentation : Améliorations de l’accessibilité](#documentation--améliorations-de-laccessibilité)
+  - [Version](#version)
+  - [Préambule : État initial de l’accessibilité](#préambule--état-initial-de-laccessibilité)
+  - [Documents de référence](#documents-de-référence)
+  - [Sujets d’amélioration identifiés et impact sur l'accessibilité](#sujets-damélioration-identifiés-et-impact-sur-laccessibilité)
+  - [Principes de la correction d'amélioration de l’accessibilité](#principes-de-la-correction-damélioration-de-laccessibilité)
+  - [Modifications du code pour les composantes du projet](#modifications-du-code-pour-les-composantes-du-projet)
+  - [Évolution du score d’accessibilité par composant du projet](#évolution-du-score-daccessibilité-par-composant-du-projet)
+  - [Perspectives d’amélioration](#perspectives-damélioration)
+    - [1️⃣ Correction du contraste des couleurs (`A11Y-05`)](#1️⃣-correction-du-contraste-des-couleurs-a11y-05)
+    - [2️⃣ Navigation au clavier (`A11Y-06`)](#2️⃣-navigation-au-clavier-a11y-06)
+    - [3️⃣ Ajout des `landmarks` HTML (`A11Y-09`)](#3️⃣-ajout-des-landmarks-html-a11y-09)
+    - [4️⃣ Optimisation des autres composants](#4️⃣-optimisation-des-autres-composants)
+    - [5️⃣ Audit manuel et tests utilisateurs](#5️⃣-audit-manuel-et-tests-utilisateurs)
+  - [Conclusion et état final des améliorations](#conclusion-et-état-final-des-améliorations)
+    - [Démarche d'amélioration](#démarche-damélioration)
+    - [Synthèse et conclusion](#synthèse-et-conclusion)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

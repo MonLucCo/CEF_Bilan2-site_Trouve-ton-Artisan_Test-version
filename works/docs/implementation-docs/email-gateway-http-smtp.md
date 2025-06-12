@@ -1,5 +1,30 @@
 # Passerelle HTTP-SMTP : Implémentation
 
+---
+
+- [Passerelle HTTP-SMTP : Implémentation](#passerelle-http-smtp--implémentation)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [Création de l'application](#création-de-lapplication)
+    - [Commande d'initialisation](#commande-dinitialisation)
+  - [Installation des dépendances](#installation-des-dépendances)
+  - [Configuration du serveur (server.ts)](#configuration-du-serveur-serverts)
+  - [Tests et validation](#tests-et-validation)
+    - [Lancement de l'API](#lancement-de-lapi)
+    - [Test via PowerShell](#test-via-powershell)
+  - [Améliorations prévues](#améliorations-prévues)
+  - [Références techniques et éducatives](#références-techniques-et-éducatives)
+    - [Références techniques](#références-techniques)
+    - [Ressources éducatives](#ressources-éducatives)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
 ## Introduction
 
 Ce document détaille les étapes pratiques pour implémenter la passerelle HTTP-SMTP dans le projet à l'aide de l'application `email-api_angular`. Il s'appuie sur les concepts et justifications décrits dans le document `email-gateway-concept.md`.
