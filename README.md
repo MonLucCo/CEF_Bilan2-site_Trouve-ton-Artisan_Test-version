@@ -53,11 +53,11 @@ Pour garantir une utilisation optimale du projet _Trouve Ton Artisan_, deux docu
 
 - **Guide d'utilisation** (`README_Utilisation.md`)
   Ce document fournit **toutes les étapes nécessaires** pour **installer, configurer et exploiter** le projet et ses sous-projets.
-  🔗 [Accéder au guide d'utilisation](https://github.com/MonLucCo/CEF_Bilan2-site_Trouve-ton-Artisan_Test-version/blob/main/works/docs/utilisation-docs/README_Utilisation.md)
+  🔗 [Accéder au guide d'utilisation](./works/docs/utilisation-docs/README_Utilisation.md)
 
 - **Documentation de conception et d’architecture** (`README_site.md`)
   Ce document détaille la **structure globale du projet**, l’**architecture logicielle**, ainsi que les sous-projets intégrés (_MailDev_, _Validator_).
-  🔗 [Accéder à la documentation conception](https://github.com/MonLucCo/CEF_Bilan2-site_Trouve-ton-Artisan-Test-version/blob/main/works/site/README_site.md)
+  🔗 [Accéder à la documentation conception](./works/site/README_site.md)
 
 Ces documents permettent de **rattacher la conception à l’utilisation** du projet, offrant une vision claire de son fonctionnement et de sa mise en œuvre.
 
