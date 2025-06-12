@@ -79,7 +79,7 @@ node server-smtp.js
 - Linux : `server-smtp-linux`
 
 🔗 **Documentation complète :**
-[Guide `tta_maildev`](https://github.com/MonLucCo/CEF_Bilan2-site_Trouve-ton-Artisan_Test-version/blob/main/works/site/tta_maildev/docs/README_tta_maildev.md)
+[Guide `tta_maildev`](../../site/tta_maildev/README_TTA-MailDev.md)
 
 ---
 
@@ -113,7 +113,7 @@ npm start
 📌 **Accès au serveur de validation** : `http://localhost:3010`
 
 🔗 **Documentation complète :**
-[Guide `tta_validator`](https://github.com/MonLucCo/CEF_Bilan2-site_Trouve-ton-Artisan_Test-version/blob/main/works/site/tta_validator/docs/README_tta_validator.md)
+[Guide `tta_validator`](../../site/tta_validator/docs/README_tta_validator.md)
 
 ---
 
