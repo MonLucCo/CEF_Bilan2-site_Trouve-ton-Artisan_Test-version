@@ -48,15 +48,17 @@ Ces dossiers développés dans les sections suivantes concernent :
       1. `./public/datas` : contenu des fichiers JSON des données du projet.
       2. `./public/images` : contenu des logos et images du projet.
    3. `./src` : contenu des sources du site...
-      1. `./src/app` : contenu des sources de l'application réparti dans les dossiers
+      1. `./src/assets` : contient les assets de l'application
+      2. `./src/app` : contenu des sources de l'application réparti dans les dossiers
          1. `./pages` : contient les composants des pages principales
          2. `./components` : contient les composants réutilisables
-      2. `./src/seo` : contient les fichiers TS des scripts de configuration du SEO, ainsi qu'un dossier d'exemples de schémas de référencement (`schema.org`)
-      3. _Rédaction réservée_ : **à compléter lors du développement**
-
----
-
-_Rédaction réservée_ : **==> Indiquer les différents documents... à supprimer à la dernière mise à jour**
+         3. `./guards` : contient les contrôleurs (guards) de l'application
+         4. `./legals` : contient les conteneur des pages légales (contenu en attente de construction')
+         5. `./models` : modèles de l'application
+         6. `./pipes` : contient les filtres (pipes) de l'application
+         7. `./services` : contient les services de l'application
+         8. `./utils` : contient les fonctions utilitaires de l'application
+      3. `./src/seo` : contient les fichiers TS des scripts de configuration du SEO, ainsi qu'un dossier d'exemples de schémas de référencement (`schema.org`)
 
 ---
 
@@ -73,7 +75,7 @@ _Rédaction réservée_ : **==> Indiquer les différents documents... à supprim
 
 ## 4. Site d'accueil pour l'hébergement
 
-Le dossier contient une page statique `index.html` et un fichier de documentation `README_hosting.md` relatif au déploiement du site chez **AlwaysData**.
+Le dossier contient une page statique `index.html` et un fichier de documentation `README_hosting.md` relatif au déploiement du site chez **AlwaysData**. Accès à la [documentation de Hosting](./hosting/README_hosting.md)
 
 ## 5. Validateur W3C pour les sites réactifs (SPA)
 
