@@ -1,5 +1,25 @@
 # Passerelle HTTP-SMTP : Concept et Justification
 
+---
+
+- [Passerelle HTTP-SMTP : Concept et Justification](#passerelle-http-smtp--concept-et-justification)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [Problématique](#problématique)
+    - [Contexte](#contexte)
+    - [Contraintes](#contraintes)
+  - [Rôle de la passerelle HTTP-SMTP](#rôle-de-la-passerelle-http-smtp)
+  - [Diagramme de haut niveau](#diagramme-de-haut-niveau)
+  - [Ressources complémentaires](#ressources-complémentaires)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
 ## Introduction
 
 Ce document présente le concept et la justification de la passerelle HTTP-SMTP utilisée dans le projet. Cette passerelle, réalisée avec l'application `email-api_angular`, permet de résoudre l'incompatibilité entre les protocoles HTTP (utilisé par le front-end Angular) et SMTP (nécessaire pour l'envoi d'emails via MailDev).

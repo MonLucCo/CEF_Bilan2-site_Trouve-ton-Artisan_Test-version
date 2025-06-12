@@ -1,5 +1,20 @@
 # Documentation du projet d'étude "Trouve Ton Artisan" (TTA)
 
+---
+
+- [Documentation du projet d'étude "Trouve Ton Artisan" (TTA)](#documentation-du-projet-détude-trouve-ton-artisan-tta)
+  - [Version](#version)
+  - [Contenu du dossier](#contenu-du-dossier)
+  - [Diagramme de la structure documentaire - Synthèse graphique](#diagramme-de-la-structure-documentaire---synthèse-graphique)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
 ## Contenu du dossier
 
 Le dossier `/works/docs` contient les dossiers et documents des travaux menés pendant le projet.

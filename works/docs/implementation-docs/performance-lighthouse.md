@@ -2,9 +2,27 @@
 
 ---
 
-## Sommaire
+- [Documentation : Optimisation des performances avec Lighthouse](#documentation--optimisation-des-performances-avec-lighthouse)
+  - [Version](#version)
+  - [1- Introduction](#1--introduction)
+    - [1-1. Utilisation du navigateur en mode normal et privé](#1-1-utilisation-du-navigateur-en-mode-normal-et-privé)
+    - [1-2. Pourquoi privilégier le mode privé pour l’analyse des corrections ?](#1-2-pourquoi-privilégier-le-mode-privé-pour-lanalyse-des-corrections-)
+  - [2- Organisation et identification des corrections Lighthouse](#2--organisation-et-identification-des-corrections-lighthouse)
+    - [2-1. Analyse des résultats en mode privé pour Mobile \& Desktop](#2-1-analyse-des-résultats-en-mode-privé-pour-mobile--desktop)
+    - [2-2. Méthodologie de correction de la performance](#2-2-méthodologie-de-correction-de-la-performance)
+    - [2-3. Référence des corrections d'amélioration](#2-3-référence-des-corrections-damélioration)
+    - [2-4 Organisation des axes d’amélioration](#2-4-organisation-des-axes-damélioration)
+      - [2-4.1. Corrections avant le build (Optimisation du code \& des ressources)](#2-41-corrections-avant-le-build-optimisation-du-code--des-ressources)
+      - [2-4-2. Corrections après le build (Optimisation côté serveur \& cache)](#2-4-2-corrections-après-le-build-optimisation-côté-serveur--cache)
+      - [2-4-3. Corrections indéterminées (avant ou après le build)](#2-4-3-corrections-indéterminées-avant-ou-après-le-build)
+  - [3- Mise en oeuvre des corrections d'amélioration de la performance](#3--mise-en-oeuvre-des-corrections-damélioration-de-la-performance)
+  - [4- Conclusion et synthèse des corrections de performances du projet](#4--conclusion-et-synthèse-des-corrections-de-performances-du-projet)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

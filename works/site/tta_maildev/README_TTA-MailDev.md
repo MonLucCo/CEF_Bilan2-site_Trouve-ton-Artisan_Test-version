@@ -1,10 +1,48 @@
 # Projet tta_maildev
 
+- [Projet tta\_maildev](#projet-tta_maildev)
+  - [Version](#version)
+  - [1- Objectif du projet](#1--objectif-du-projet)
+  - [2- Description de l'application](#2--description-de-lapplication)
+  - [3- Technologies utilisées](#3--technologies-utilisées)
+  - [4- Fonctionnalités du serveur](#4--fonctionnalités-du-serveur)
+    - [4-1. Envoi d'emails](#4-1-envoi-demails)
+    - [4-2. Récupération de tous les emails capturés](#4-2-récupération-de-tous-les-emails-capturés)
+    - [4-3. Suppression de tous les emails capturés](#4-3-suppression-de-tous-les-emails-capturés)
+    - [4-4. Serveur SMTP simulé](#4-4-serveur-smtp-simulé)
+    - [4-5. Interface web MailDev](#4-5-interface-web-maildev)
+  - [5- Installation](#5--installation)
+    - [5-1. Prérequis](#5-1-prérequis)
+    - [5-2. Étapes d'installation](#5-2-étapes-dinstallation)
+  - [6- Utilisation de tta\_maildev](#6--utilisation-de-tta_maildev)
+    - [6-1 Mode 1 : Exécution en développement (avec Node.js)](#6-1-mode-1--exécution-en-développement-avec-nodejs)
+      - [6-1.1 Démarrer le serveur](#6-11-démarrer-le-serveur)
+    - [6-1-2 Accéder à MailDev](#6-1-2-accéder-à-maildev)
+    - [6-1-3 Tester l'API HTTP](#6-1-3-tester-lapi-http)
+    - [6-2 Mode 2 : Exécution d'un binaire autonome (avec `pkg`)](#6-2-mode-2--exécution-dun-binaire-autonome-avec-pkg)
+      - [6-2-1. Installer `pkg`](#6-2-1-installer-pkg)
+    - [6-2.2. Générer un binaire Windows](#6-22-générer-un-binaire-windows)
+    - [6-2.3. Générer un binaire Linux](#6-23-générer-un-binaire-linux)
+    - [6-2-4. Lancer le binaire](#6-2-4-lancer-le-binaire)
+  - [6-3 Exemple d'intégration avec Angular](#6-3-exemple-dintégration-avec-angular)
+  - [7- Développement de tta\_maildev](#7--développement-de-tta_maildev)
+    - [7-1. Personnalisation du fichier source](#7-1-personnalisation-du-fichier-source)
+    - [7-2. Débogage](#7-2-débogage)
+  - [8- Déploiement](#8--déploiement)
+    - [8-1. Hébergement](#8-1-hébergement)
+    - [8-2. Variables d'environnement](#8-2-variables-denvironnement)
+  - [9- Contribuer](#9--contribuer)
+  - [10- Sources du projet](#10--sources-du-projet)
+    - [10-1. Backend](#10-1-backend)
+    - [10-2. Autres outils](#10-2-autres-outils)
+    - [10-3. IDE recommandé](#10-3-ide-recommandé)
+  - [1- Licence](#1--licence)
+
 ---
 
-## Sommaire
+## Version
 
-[TOC]
+v1.0.6
 
 ---
 

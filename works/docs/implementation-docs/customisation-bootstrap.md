@@ -1,8 +1,26 @@
 # Documentation – Intégration et Customisation de Bootstrap (BS)
 
-## Sommaire
+---
 
-[TOC]
+- [Documentation – Intégration et Customisation de Bootstrap (BS)](#documentation--intégration-et-customisation-de-bootstrap-bs)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [Pré-requis : Installation de Bootstrap dans Angular](#pré-requis--installation-de-bootstrap-dans-angular)
+  - [Personnalisation de Bootstrap (Identité du projet)](#personnalisation-de-bootstrap-identité-du-projet)
+    - [Configuration du fichier `custom-bootstrap.scss`](#configuration-du-fichier-custom-bootstrapscss)
+  - [Approches d’Intégration de Bootstrap (CSS \& JS)](#approches-dintégration-de-bootstrap-css--js)
+    - [Approche 1️⃣ : Recopie locale de Bootstrap](#approche-1️⃣--recopie-locale-de-bootstrap)
+    - [Approche 2️⃣ : Exploitation directe de `node_modules`](#approche-2️⃣--exploitation-directe-de-node_modules)
+  - [Pourquoi choisir `node_modules` plutôt que la recopie locale ?](#pourquoi-choisir-node_modules-plutôt-que-la-recopie-locale-)
+    - [Avantages de l’approche `node_modules`](#avantages-de-lapproche-node_modules)
+    - [Synthèse des approches d'intégration de Bootstrap](#synthèse-des-approches-dintégration-de-bootstrap)
+  - [Références documentaires](#références-documentaires)
+
+---
+
+## Version
+
+v1.0.6
 
 ---
 

@@ -1,5 +1,29 @@
 # Document d'analyse du choix technologique pour le développement du site "Trouve-ton-Artisan"
 
+---
+
+- [Document d'analyse du choix technologique pour le développement du site "Trouve-ton-Artisan"](#document-danalyse-du-choix-technologique-pour-le-développement-du-site-trouve-ton-artisan)
+  - [1.Version](#1version)
+  - [1. Introduction](#1-introduction)
+  - [2. Objectif de l'analyse](#2-objectif-de-lanalyse)
+  - [3. Eléments d'entrée de l'analyse](#3-eléments-dentrée-de-lanalyse)
+    - [3.1 Description technique du besoin](#31-description-technique-du-besoin)
+    - [3.2 Eléments spécifiques à considérer](#32-eléments-spécifiques-à-considérer)
+    - [3.3 Eléments prioritaires de l'analyse](#33-eléments-prioritaires-de-lanalyse)
+  - [4. Analyse des technologies](#4-analyse-des-technologies)
+    - [4.1. React](#41-react)
+    - [4.2. Angular](#42-angular)
+  - [5. Comparaison des performances](#5-comparaison-des-performances)
+  - [6. Conclusion](#6-conclusion)
+
+---
+
+## 1.Version
+
+v1.0.6
+
+---
+
 ## 1. Introduction
 
 Ce document propose une analyse des technologies **React** et **Angular** pour le développement du site "Trouve-ton-Artisan". L'objectif est de comparer les deux frameworks en termes de performances, de facilité d'intégration, et d'avantages et inconvénients globaux, afin de déterminer la solution la plus adaptée à ce projet.

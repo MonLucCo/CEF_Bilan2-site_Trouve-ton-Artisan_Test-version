@@ -1,5 +1,23 @@
 # Contenu du dossier
 
+---
+
+- [Contenu du dossier](#contenu-du-dossier)
+  - [Version](#version)
+  - [1. Projet TTA en technologie Angular](#1-projet-tta-en-technologie-angular)
+  - [2. Serveur BackEnd pour échanger en SMTP avec l'application MailDev](#2-serveur-backend-pour-échanger-en-smtp-avec-lapplication-maildev)
+  - [3. Solution full-stack d'une application passerelle HTTP-SMTP](#3-solution-full-stack-dune-application-passerelle-http-smtp)
+  - [4. Site d'accueil pour l'hébergement](#4-site-daccueil-pour-lhébergement)
+  - [5. Validateur W3C pour les sites réactifs (SPA)](#5-validateur-w3c-pour-les-sites-réactifs-spa)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
 Le dossier `/works/site` contient les différents dossiers et fichiers du développement du projet **Trouve Ton Artisan**.
 Ces dossiers développés dans les sections suivantes concernent :
 
@@ -7,7 +25,7 @@ Ces dossiers développés dans les sections suivantes concernent :
 - le projet [Serveur Backend](#2-serveur-backend-pour-échanger-en-smtp-avec-lapplication-maildev) (un sujet connexe lié à MailDev - version opérationnelle).
 - le projet [full-stack](#3-solution-full-stack-dune-application-passerelle-http-smtp) (un essai pour traiter Maildev - démonstrateur technologique).
 - le projet [Hosting](#4-site-daccueil-pour-lhébergement) (un sujet connexe pour l'hébergement des sites - version opérationnelle).
-- le projet [Validator W3C dynamique](#5-validateur-w3c-pour-les-site-réactifs-spa) (un sujet connexe lié à la validation W3C des SPA - version opérationnelle).
+- le projet [Validator W3C dynamique](#5-validateur-w3c-pour-les-sites-réactifs-spa) (un sujet connexe lié à la validation W3C des SPA - version opérationnelle).
 
 ## 1. Projet TTA en technologie Angular
 

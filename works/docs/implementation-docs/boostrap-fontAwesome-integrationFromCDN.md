@@ -2,9 +2,27 @@
 
 ---
 
-## Sommaire
+- [**Documentation – Remplacement des CDN de Bootstrap (BS) et FontAwesome (FA)**](#documentation--remplacement-des-cdn-de-bootstrap-bs-et-fontawesome-fa)
+  - [Version](#version)
+  - [Introduction](#introduction)
+  - [Installation de Bootstrap et FontAwesome via `npm`](#installation-de-bootstrap-et-fontawesome-via-npm)
+    - [Commandes à exécuter dans le terminal](#commandes-à-exécuter-dans-le-terminal)
+  - [Déplacement des fichiers vers `app/assets/`](#déplacement-des-fichiers-vers-appassets)
+    - [Structure après déplacement](#structure-après-déplacement)
+    - [Copie des fichiers depuis `node_modules`](#copie-des-fichiers-depuis-node_modules)
+  - [Modification de `angular.json`](#modification-de-angularjson)
+    - [Modifications dans `angular.json`](#modifications-dans-angularjson)
+  - [Mise à jour de `index.html`](#mise-à-jour-de-indexhtml)
+    - [Version initiale du fichier `index.html` (avec CDN)](#version-initiale-du-fichier-indexhtml-avec-cdn)
+    - [Version mise à jour du fichier `index.html` (avec fichiers locaux)](#version-mise-à-jour-du-fichier-indexhtml-avec-fichiers-locaux)
+  - [Pourquoi éviter les CDN en production ?](#pourquoi-éviter-les-cdn-en-production-)
+  - [Références](#références)
 
-[TOC]
+---
+
+## Version
+
+v1.0.6
 
 ---
 

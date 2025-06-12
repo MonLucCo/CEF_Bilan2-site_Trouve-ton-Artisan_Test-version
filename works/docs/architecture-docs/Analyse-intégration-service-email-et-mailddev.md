@@ -1,6 +1,26 @@
-# **Analyse technique : Service Email et MailDev**
+# Analyse technique : Service Email et MailDev
 
-## **1. Constat initial**
+---
+
+- [Analyse technique : Service Email et MailDev](#analyse-technique--service-email-et-maildev)
+  - [Version](#version)
+  - [1. Constat initial](#1-constat-initial)
+  - [2. Présentation des solutions envisagées](#2-présentation-des-solutions-envisagées)
+    - [Solution 1 : Utilisation d’une bibliothèque SMTP directement dans Angular](#solution-1--utilisation-dune-bibliothèque-smtp-directement-dans-angular)
+    - [Solution 2 : Utilisation d’une API tierce (HTTP)](#solution-2--utilisation-dune-api-tierce-http)
+    - [Solution 3 : Développement d’une application intermédiaire (back-end)](#solution-3--développement-dune-application-intermédiaire-back-end)
+  - [3. Solution retenue](#3-solution-retenue)
+  - [4. Conclusion](#4-conclusion)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
+## 1. Constat initial
 
 Le projet impose l'utilisation de MailDev comme serveur SMTP pour la validation des emails. Cependant, le `EmailService` de l'application est conçu pour envoyer des données en HTTP, car cette méthode est nativement intégrée dans Angular via `HttpClient` et offre une communication sécurisée grâce au protocole HTTPS. Cela crée une **incompatibilité directe entre HTTP (utilisé par le service Email) et SMTP (nécessaire pour MailDev).**
 
@@ -17,11 +37,11 @@ Remarque :
 
 ---
 
-## **2. Présentation des solutions envisagées**
+## 2. Présentation des solutions envisagées
 
 Plusieurs approches ont été examinées pour résoudre cette incompatibilité en tenant compte des contraintes techniques (sécurité, React ou Angular, MailDev) et du cadre du projet (étude front-end,  hébergement) :
 
-### **Solution 1 : Utilisation d’une bibliothèque SMTP directement dans Angular**
+### Solution 1 : Utilisation d’une bibliothèque SMTP directement dans Angular
 
 - **Description** : Intégration de la bibliothèque `smtp.js` dans le front-end pour établir une connexion directe avec MailDev en utilisant le protocole SMTP.
 - **Avantages** :
@@ -32,7 +52,7 @@ Plusieurs approches ont été examinées pour résoudre cette incompatibilité e
   - Peu évolutif : Pas adapté à une mise en production ni à un environnement sécurisé.
   - Complexité pour maintenir une communication SMTP dans le navigateur.
 
-### **Solution 2 : Utilisation d’une API tierce (HTTP)**
+### Solution 2 : Utilisation d’une API tierce (HTTP)
 
 - **Description** : Le front-end envoie une requête HTTP vers une API tierce, comme SendGrid ou Mailgun, qui se charge de convertir la requête en SMTP et d’envoyer les emails.
 - **Avantages** :
@@ -44,7 +64,7 @@ Plusieurs approches ont été examinées pour résoudre cette incompatibilité e
   - Dépendance à un service externe : Nécessité d’un abonnement pour des usages intensifs (potentiellement coûteux).
   - Non pertinent pour ce projet, car le serveur MailDev est imposé et ne peut pas être remplacé.
 
-### **Solution 3 : Développement d’une application intermédiaire (back-end)**
+### Solution 3 : Développement d’une application intermédiaire (back-end)
 
 - **Description** : Développer un back-end qui reçoit les requêtes HTTP du front-end, les traite et envoie les emails à MailDev via SMTP.
 - **Avantages** :
@@ -58,7 +78,7 @@ Plusieurs approches ont été examinées pour résoudre cette incompatibilité e
 
 ---
 
-## **3. Solution retenue**
+## 3. Solution retenue
 
 La **Solution 3** a été retenue comme étant la plus adaptée pour ce projet, car elle répond à la fois aux contraintes techniques (incompatibilité HTTP/SMTP) et aux objectifs pédagogiques (étude front-end, hébergement, sécurité, React ou Angular et MailDev) :
 
@@ -85,7 +105,7 @@ La **Solution 3** a été retenue comme étant la plus adaptée pour ce projet, 
 
 ---
 
-## **4. Conclusion**
+## 4. Conclusion
 
 Cette architecture répond pleinement aux contraintes et objectifs du projet. Elle introduit une séparation claire entre les responsabilités, respecte les bonnes pratiques professionnelles et facilite l’intégration de MailDev comme outil de validation. Cette solution reste simple à déployer pour un sujet d’étude tout en simulant des cas d’usage réalistes et adaptables à un futur environnement de production.
 

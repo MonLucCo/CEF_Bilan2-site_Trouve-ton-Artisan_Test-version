@@ -4,13 +4,27 @@
 
 ---
 
-## Sommaire
-
-[TOC]
+- [Documentation Finale – SEO du Projet Trouve Ton Artisan](#documentation-finale--seo-du-projet-trouve-ton-artisan)
+  - [Version](#version)
+  - [Préambule](#préambule)
+  - [Objectifs du `SeoService`](#objectifs-du-seoservice)
+  - [Création du `SeoService` dans Angular](#création-du-seoservice-dans-angular)
+    - [Génération du service](#génération-du-service)
+    - [Implémentation de `seo.service.ts`](#implémentation-de-seoservicets)
+  - [Mise à jour de `seo-config.json`](#mise-à-jour-de-seo-configjson)
+  - [Suppression des scripts SEO dynamiques](#suppression-des-scripts-seo-dynamiques)
+  - [Résultats et validation SEO](#résultats-et-validation-seo)
+  - [Conclusion : Pourquoi cette mise à jour améliore le SEO ?](#conclusion--pourquoi-cette-mise-à-jour-améliore-le-seo-)
 
 ---
 
-## **Préambule**  
+## Version
+
+v1.0.6
+
+---
+
+## Préambule
 
 Le référencement du projet **Trouve Ton Artisan** a évolué en **deux étapes distinctes** :  
 1️⃣ **Une première version basée sur l’injection dynamique** ([lien](./seo-schema-injection-dynamique.md)), où les métadonnées `<meta>` et `Schema.org` étaient intégrées via des scripts externes (`meta-og.js` et `seo-loader.js`) dans `index.html`.  

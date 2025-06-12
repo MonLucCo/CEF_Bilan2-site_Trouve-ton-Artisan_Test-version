@@ -2,13 +2,32 @@
 
 ---
 
-## Sommaire
-
-[TOC]
+- [**Documentation – SEO Dynamique du Projet Trouve Ton Artisan**](#documentation--seo-dynamique-du-projet-trouve-ton-artisan)
+  - [Version](#version)
+  - [Préambule](#préambule)
+  - [Objectifs du **SEO Dynamique**](#objectifs-du-seo-dynamique)
+    - [La mise en place d’un **SEO dynamique**](#la-mise-en-place-dun-seo-dynamique)
+    - [Utilisation des **données structurées `Schema.org`**](#utilisation-des-données-structurées-schemaorg)
+  - [Organisation du SEO Dynamique](#organisation-du-seo-dynamique)
+  - [Fichiers **JSON Modifiables**](#fichiers-json-modifiables)
+  - [Organisation de `robots.txt`](#organisation-de-robotstxt)
+  - [Organisation de `sitemap.xml`](#organisation-de-sitemapxml)
+    - [Pourquoi exclure les pages en construction ?](#pourquoi-exclure-les-pages-en-construction-)
+    - [Pages incluses dans `sitemap.xml`](#pages-incluses-dans-sitemapxml)
+  - [Modification Dynamique du `meta robots`](#modification-dynamique-du-meta-robots)
+    - [Gestion automatique du `meta robots` pour les pages en construction](#gestion-automatique-du-meta-robots-pour-les-pages-en-construction)
+    - [Géré via le composant `app-construction`](#géré-via-le-composant-app-construction)
+  - [Documents de Référence](#documents-de-référence)
 
 ---
 
-## **Préambule**  
+## Version
+
+v1.0.6
+
+---
+
+## Préambule
 
 La documentation du SEO est réalisée en deux parties documentaires car l'analyse et le codage ont dû être revus pour obtenir une qualité optimale du SEO.
 

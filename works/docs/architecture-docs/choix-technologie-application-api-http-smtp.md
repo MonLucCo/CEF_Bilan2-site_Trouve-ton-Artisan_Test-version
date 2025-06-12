@@ -1,12 +1,30 @@
 # Choix technologie de développement - application API HTTP-SMTP
 
-## **Rôle de l'application API HTTP-SMTP**
+---
+
+- [Choix technologie de développement - application API HTTP-SMTP](#choix-technologie-de-développement---application-api-http-smtp)
+  - [Version](#version)
+  - [Rôle de l'application API HTTP-SMTP](#rôle-de-lapplication-api-http-smtp)
+  - [Cas d’Angular pour la seconde application](#cas-dangular-pour-la-seconde-application)
+  - [Cas de React pour la seconde application](#cas-de-react-pour-la-seconde-application)
+  - [Alternative technologique pour la seconde application](#alternative-technologique-pour-la-seconde-application)
+  - [Conclusion](#conclusion)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
+## Rôle de l'application API HTTP-SMTP
 
 L'application (la seconde) jouera le rôle d’une API back-end intermédiaire. Elle recevra les données en HTTP du front-end (l'application principale) et enverra ensuite les emails via SMTP à MailDev.
 
 ---
 
-## **Cas d’Angular pour la seconde application**
+## Cas d’Angular pour la seconde application
 
 1. **Avantages** :
    - Angular est un framework robuste avec une structure intégrée.
@@ -19,7 +37,7 @@ L'application (la seconde) jouera le rôle d’une API back-end intermédiaire. 
 
 ---
 
-## **Cas de React pour la seconde application**
+## Cas de React pour la seconde application
 
 1. **Avantages** :
    - React étant léger et centré sur la modularité, il peut être utilisé pour cette tâche.
@@ -31,7 +49,7 @@ L'application (la seconde) jouera le rôle d’une API back-end intermédiaire. 
 
 ---
 
-## **Alternative technologique pour la seconde application**
+## Alternative technologique pour la seconde application
 
 1. **Technologie alternative pour le rôle back-end** :
    - Pour un back-end classique, **Node.js** serait mieux adapté. Avec Node.js, l'utilisation  des bibliothèques comme **Express** pour gérer les requêtes HTTP et **Nodemailer** pour les emails via SMTP est grandement facilitée.
@@ -70,7 +88,7 @@ L'application (la seconde) jouera le rôle d’une API back-end intermédiaire. 
 
 ---
 
-### **Conclusion**
+## Conclusion
 
 La contrainte de l'étude impose Angular ou React. Ainsi **Angular** est choisi pour sa structure plus rigoureuse et la possibilité de réutiliser des pratiques déjà appliquées dans l'application principale.
 Cependant, dans un contexte professionnel, un back-end avec **Node.js** ou d’autres frameworks back-end plus adaptés serait le choix optimal.

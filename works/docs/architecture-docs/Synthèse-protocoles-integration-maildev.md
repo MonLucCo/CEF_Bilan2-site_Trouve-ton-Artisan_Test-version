@@ -1,5 +1,22 @@
 # Analyse technique : Intégration protocole d'échanges du service Email avec MailDev
 
+---
+
+- [Analyse technique : Intégration protocole d'échanges du service Email avec MailDev](#analyse-technique--intégration-protocole-déchanges-du-service-email-avec-maildev)
+  - [Version](#version)
+  - [Contexte](#contexte)
+  - [Problème](#problème)
+  - [Analyse des solutions](#analyse-des-solutions)
+  - [Solution retenue](#solution-retenue)
+
+---
+
+## Version
+
+v1.0.6
+
+---
+
 ## Contexte
 
 Ce document analyse la problématique et les solutions envisagées pour intégrer un service Email dans le projet, en tenant compte des contraintes imposées :
