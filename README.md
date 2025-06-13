@@ -63,7 +63,7 @@ Ces documents permettent de **rattacher la conception à l’utilisation** du pr
 
 ## Contribuer
 
-Ce projet, **Trouve Ton Artisan**, a été développé dans le cadre d'une formation en développement web et web mobile avec le CEF. Il a pour objectif principal de démontrer et valider des compétences dans la gestion d'emails via un serveur backend dédié, en intégration avec un client Angular.
+Ce projet, **Trouve Ton Artisan**, a été développé dans le cadre d'une formation en développement web et web mobile avec le CEF. Il a pour objectif principal de démontrer et valider des compétences dans la gestion d'emails via un serveur backend dédié, en intégration avec un client Angular. Le rapport et sa présentation de soutenance sont disponibles à la consultation dans le [dossier des livrables](./works/deliverables/project-report/README_project-report.md).
 
 Les évolutions futures de ce projet ne sont pas prévues après son rendu, mais il reste disponible pour être étudié et adapté dans d'autres contextes éducatifs ou professionnels.
 
